@@ -20,7 +20,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         registerViewModel = RegisterViewModel()
-        presenter = RegisterPresenter(this, RetrofitClient.create(), applicationContext)
+        presenter = RegisterPresenter(this, RetrofitClient.getInstance(), applicationContext)
 
         registerViewModel.registerFormState.observe(this@RegisterActivity, Observer {
             val registerState = it ?: return@Observer

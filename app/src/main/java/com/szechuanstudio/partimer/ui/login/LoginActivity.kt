@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             true
         }
 
-        presenter = LoginPresenter(this, RetrofitClient.create(), applicationContext)
+        presenter = LoginPresenter(this, RetrofitClient.getInstance(), applicationContext)
         init()
 
         loginViewModel = ViewModelProviders.of(this,
