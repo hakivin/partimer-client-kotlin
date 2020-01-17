@@ -20,7 +20,6 @@ import com.szechuanstudio.partimer.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class LoginActivity : AppCompatActivity(), LoginView {
@@ -96,14 +95,14 @@ class LoginActivity : AppCompatActivity(), LoginView {
         }
     }
 
-    private fun updateUiWithUser(model: Model.User) {
-        startActivity<MainActivity>()
+    private fun updateUiWithUser() {
+        startActivity(intentFor<MainActivity>().singleTop())
+        finish()
     }
 
     override fun getUser(user: Model.User?) {
         if (user != null) {
-            updateUiWithUser(user)
-            finish()
+            updateUiWithUser()
         }
         loading.visibility = View.GONE
     }

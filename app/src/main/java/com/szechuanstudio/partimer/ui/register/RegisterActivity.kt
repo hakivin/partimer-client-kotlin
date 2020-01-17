@@ -92,5 +92,6 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
 
     override fun failed(message: String?) {
         message?.let { toast(it) }
+        loading.visibility = View.GONE
     }
 }

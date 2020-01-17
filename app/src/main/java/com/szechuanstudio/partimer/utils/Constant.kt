@@ -4,5 +4,5 @@ object Constant {
 
     val KEY_EMAIL = "email"
     val KEY_PASSWORD = "password"
-    val KEY_RESET = 191
+    val KEY_ID = "id_user"
 }

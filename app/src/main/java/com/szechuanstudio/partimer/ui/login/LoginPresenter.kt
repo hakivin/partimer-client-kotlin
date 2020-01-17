@@ -28,6 +28,7 @@ class LoginPresenter(private val view: LoginView,
                     view.getUser(user)
                     PreferenceUtils.saveEmail(email, context)
                     PreferenceUtils.savePassword(password, context)
+                    user.id?.let { PreferenceUtils.saveId(it, context) }
                 }
                 else
                     view.failed("Invalid Credential")

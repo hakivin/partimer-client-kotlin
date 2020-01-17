@@ -33,6 +33,16 @@ class PreferenceUtils {
             return getPreference(context).getString(Constant.KEY_PASSWORD, null)
         }
 
+        fun saveId(id: Int, context: Context){
+            getPreference(context).edit()
+                .putInt(Constant.KEY_ID, id)
+                .apply()
+        }
+
+        fun getId(context: Context) : Int? {
+            return getPreference(context).getInt(Constant.KEY_ID, 0)
+        }
+
         @SuppressLint("ApplySharedPref")
         fun reset(context: Context) {
             getPreference(context).edit()
