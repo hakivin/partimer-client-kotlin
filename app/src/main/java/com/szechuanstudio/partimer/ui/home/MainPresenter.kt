@@ -1,19 +1,12 @@
 package com.szechuanstudio.partimer.ui.home
 
-import android.app.Activity
 import android.content.Context
-import android.widget.Toast
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.Api
-import com.szechuanstudio.partimer.ui.profile.ProfileActivity
 import com.szechuanstudio.partimer.utils.PreferenceUtils
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.singleTop
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class MainPresenter(private val view: MainView,
                     private val api: Api,

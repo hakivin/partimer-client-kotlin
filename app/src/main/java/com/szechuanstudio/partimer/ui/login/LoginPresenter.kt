@@ -28,6 +28,7 @@ class LoginPresenter(private val view: LoginView,
                     view.getUser(user)
                     PreferenceUtils.saveEmail(email, context)
                     PreferenceUtils.savePassword(password, context)
+                    PreferenceUtils.saveToken(response.body()!!.access_token.toString(), context)
                     user.id?.let { PreferenceUtils.saveId(it, context) }
                 }
                 else

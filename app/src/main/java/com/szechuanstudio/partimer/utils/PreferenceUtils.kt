@@ -43,6 +43,16 @@ class PreferenceUtils {
             return getPreference(context).getInt(Constant.KEY_ID, 0)
         }
 
+        fun saveToken(token: String, context: Context){
+            getPreference(context).edit()
+                .putString(Constant.KEY_TOKEN, "Bearer " + token)
+                .apply()
+        }
+
+        fun getToken(context: Context) : String? {
+            return getPreference(context).getString(Constant.KEY_TOKEN, null)
+        }
+
         @SuppressLint("ApplySharedPref")
         fun reset(context: Context) {
             getPreference(context).edit()

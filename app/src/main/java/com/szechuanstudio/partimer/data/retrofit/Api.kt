@@ -1,6 +1,5 @@
 package com.szechuanstudio.partimer.data.retrofit
 
-import android.content.Context
 import com.szechuanstudio.partimer.data.model.Model
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -28,7 +27,7 @@ interface Api {
     fun getProfile(@Path("id") id : Int?) : Call<Model.ProfileResponse>
 
     @PUT("profile/{id}/update")
-    fun updateProfile(@Path("id") id : Int?, @Body updatedProfile: Model.Profile) : Call<ResponseBody>
+    fun updateProfile(@Path("id") id : Int?, @Header("Authorization") token : String?, @Body updatedProfile: Model.Profile) : Call<ResponseBody>
 }
 
 class RetrofitClient {
@@ -41,7 +40,7 @@ class RetrofitClient {
             if (instance == null)
                 instance = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("http://192.168.0.104:8000/api/")
+                    .baseUrl("http://192.168.0.105:8000/api/")
                     .build()
                     .create(Api::class.java)
             return instance as Api
