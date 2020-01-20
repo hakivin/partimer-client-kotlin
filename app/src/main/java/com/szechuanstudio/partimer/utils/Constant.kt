@@ -6,4 +6,7 @@ object Constant {
     val KEY_PASSWORD = "password"
     val KEY_ID = "id_user"
     val KEY_TOKEN = "bearer_token"
+
+    //for intent
+    val KEY_PROFILE = "profile key"
 }

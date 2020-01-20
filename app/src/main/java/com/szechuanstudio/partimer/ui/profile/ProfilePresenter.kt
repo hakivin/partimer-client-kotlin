@@ -25,10 +25,8 @@ class ProfilePresenter(val view: ProfileView,
                 response: Response<Model.ProfileResponse>
             ) {
                 val profile = response.body()?.profile?.get(0)
-                profile?.alamat = "Perum PPH Gang Kresna"
                 if (profile != null) {
                     view.showProfile(profile)
-                    update(profile)
                 }
             }
 

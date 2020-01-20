@@ -3,9 +3,12 @@ package com.szechuanstudio.partimer.ui.home
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.szechuanstudio.partimer.R
+import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
 import com.szechuanstudio.partimer.ui.login.LoginActivity
 import com.szechuanstudio.partimer.ui.profile.ProfileActivity
+import com.szechuanstudio.partimer.ui.profile.update.UpdateProfileActivity
+import com.szechuanstudio.partimer.utils.Constant
 import com.szechuanstudio.partimer.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
@@ -39,8 +42,8 @@ class MainActivity : AppCompatActivity(), MainView {
 
     }
 
-    override fun reject() {
-        startActivity(intentFor<ProfileActivity>().singleTop())
+    override fun reject(profile: Model.Profile) {
+        startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
         toast("Please complete your identities first")
         finish()
     }

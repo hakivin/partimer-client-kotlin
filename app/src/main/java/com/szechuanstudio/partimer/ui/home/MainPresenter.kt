@@ -26,8 +26,8 @@ class MainPresenter(private val view: MainView,
                 val profile = response.body()?.profile?.get(0)
                 if (profile == null)
                     view.error("Something went wrong")
-                else if (profile.nomor_telepon.isNullOrEmpty() || profile.jenis_kelamin.isNullOrEmpty() || profile.alamat.isNullOrEmpty()){
-                    view.reject()
+                else if (profile.nomor_telepon.isNullOrEmpty() || profile.alamat.isNullOrEmpty()){
+                    view.reject(profile)
                 }
             }
         })

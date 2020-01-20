@@ -1,5 +1,8 @@
 package com.szechuanstudio.partimer.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 object Model {
 
     data class LoginResponse(
@@ -16,8 +19,9 @@ object Model {
 
     data class ProfileResponse(val profile: List<Profile>)
 
+    @Parcelize
     data class Profile(val id: Int?,
-                       val id_user: Int?,
+                       val user_id: Int?,
                        var nama: String?,
                        var nama_lengkap: String?,
                        var nomor_telepon: String?,
@@ -29,5 +33,5 @@ object Model {
                        var foto: String?,
                        var cover: String?,
                        var created_at: String?,
-                       var updated_at: String?)
+                       var updated_at: String?) : Parcelable
 }
