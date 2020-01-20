@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.update.UpdateProfileActivity"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/update_photo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_name"
+            android:text="@string/name"
+            app:layout_constraintTop_toBottomOf="@id/update_photo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_name"
+            app:layout_constraintTop_toBottomOf="@id/update_name"
+            app:layout_constraintLeft_toLeftOf="@id/update_name"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_full_name"
+            android:text="@string/full_name"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_full_name"
+            app:layout_constraintTop_toBottomOf="@id/update_full_name"
+            app:layout_constraintLeft_toLeftOf="@id/update_name"
+            android:inputType="textCapWords"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_address"
+            android:text="@string/address"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_full_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_address"
+            app:layout_constraintTop_toBottomOf="@id/update_address"
+            app:layout_constraintLeft_toLeftOf="@id/update_name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_social_media"
+            android:text="@string/social_media"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_address"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_social_media"
+            app:layout_constraintTop_toBottomOf="@id/update_social_media"
+            app:layout_constraintLeft_toLeftOf="@id/update_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_phone_number"
+            android:text="@string/phone_number"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_social_media"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_phone_number"
+            android:inputType="phone"
+            app:layout_constraintTop_toBottomOf="@id/update_phone_number"
+            app:layout_constraintLeft_toLeftOf="@id/update_name"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_save_profile"
+            android:text="@string/save"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_phone_number"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="32dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
