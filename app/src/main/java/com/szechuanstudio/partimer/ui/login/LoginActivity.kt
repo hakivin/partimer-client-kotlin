@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
-import com.szechuanstudio.partimer.ui.home.HomeActivity
 import com.szechuanstudio.partimer.ui.main.MainActivity
 import com.szechuanstudio.partimer.ui.register.RegisterActivity
 import com.szechuanstudio.partimer.utils.LoginViewModelFactory

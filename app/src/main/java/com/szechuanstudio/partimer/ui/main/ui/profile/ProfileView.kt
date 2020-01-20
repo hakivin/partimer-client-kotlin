@@ -1,4 +1,4 @@
-package com.szechuanstudio.partimer.ui.profile
+package com.szechuanstudio.partimer.ui.main.ui.profile
 
 import com.szechuanstudio.partimer.data.model.Model
 

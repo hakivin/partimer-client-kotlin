@@ -1,4 +1,4 @@
-package com.szechuanstudio.partimer.ui.profile.update
+package com.szechuanstudio.partimer.ui.main.ui.profile.update
 
 import android.os.Bundle
 import android.view.View
