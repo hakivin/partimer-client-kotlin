@@ -8,7 +8,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainPresenter(private val view: MainView,
+class HomePresenter(private val view: HomeView,
                     private val api: Api,
                     private val context: Context) {
 

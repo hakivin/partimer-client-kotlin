@@ -6,27 +6,26 @@ import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
 import com.szechuanstudio.partimer.ui.login.LoginActivity
-import com.szechuanstudio.partimer.ui.profile.ProfileActivity
 import com.szechuanstudio.partimer.ui.profile.update.UpdateProfileActivity
 import com.szechuanstudio.partimer.utils.Constant
 import com.szechuanstudio.partimer.utils.PreferenceUtils
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.toast
 
-class MainActivity : AppCompatActivity(), MainView {
+class HomeActivity : AppCompatActivity(), HomeView {
 
     private var id : Int? = null
-    private lateinit var presenter: MainPresenter
+    private lateinit var presenter: HomePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
         id = PreferenceUtils.getId(applicationContext)
         activateButton()
-        presenter = MainPresenter(this, RetrofitClient.getInstance(), applicationContext)
+        presenter = HomePresenter(this, RetrofitClient.getInstance(), applicationContext)
         presenter.checkProfile()
     }
 

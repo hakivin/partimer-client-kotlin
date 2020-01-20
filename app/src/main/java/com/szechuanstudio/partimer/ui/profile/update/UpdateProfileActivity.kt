@@ -31,6 +31,7 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         edit_update_full_name.setText(profile?.nama_lengkap)
         edit_update_address.setText(profile?.alamat)
         edit_update_social_media.setText(profile?.social_media)
+        edit_update_phone_number.setText(profile?.nomor_telepon)
         if (profile?.foto.isNullOrEmpty())
             Picasso.with(applicationContext).load(R.drawable.placeholder_avatar).noFade().into(update_photo)
     }
@@ -40,6 +41,7 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         profile?.nama_lengkap = edit_update_full_name.text.toString()
         profile?.alamat = edit_update_address.text.toString()
         profile?.social_media = edit_update_social_media.text.toString()
+        profile?.nomor_telepon = edit_update_phone_number.text.toString()
         return profile
     }
 

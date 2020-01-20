@@ -19,4 +19,9 @@
     <string name="social_media">Social Media</string>
     <string name="phone_number">Phone Number</string>
     <string name="save">SAVE</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="profile">Profile</string>
 </resources>
