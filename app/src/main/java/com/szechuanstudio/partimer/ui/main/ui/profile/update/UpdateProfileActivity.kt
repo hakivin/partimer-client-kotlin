@@ -2,6 +2,7 @@ package com.szechuanstudio.partimer.ui.main.ui.profile.update
 
 import android.os.Bundle
 import android.view.View
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.partimer.R
@@ -52,5 +53,24 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     override fun failed() {
         toast("failed")
+    }
+
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
+
+            // Check which radio button was clicked
+            when (view.getId()) {
+                update_gender_male.id ->
+                    if (checked) {
+                        // Pirates are the best
+                    }
+                update_gender_female.id ->
+                    if (checked) {
+                        // Ninjas rule
+                    }
+            }
+        }
     }
 }

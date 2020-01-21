@@ -17,12 +17,6 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.szechuanstudio.partimer.ui.main.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-
-    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.szechuanstudio.partimer.ui.main.ui.profile.ProfileFragment"
         android:label="@string/profile"
