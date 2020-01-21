@@ -15,7 +15,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="name">Name</string>
     <string name="full_name">Full Name</string>
-    <string name="address">Address</string>
     <string name="social_media">Social Media</string>
     <string name="phone_number">Phone Number</string>
     <string name="save">SAVE</string>
@@ -26,7 +25,20 @@
     <string name="profile">Profile</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+    <string name="edit_profile">edit profile</string>
+    <string name="about">About</string>
+    <string name="gender">Gender</string>
+    <string name="education">Education</string>
+    <string name="address">Address</string>
+    <string name="contact">Contact</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="social">Social</string>
+    <string name="preferred_positions">Preferred Positions</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="latest_education">Latest Education</string>
+
     <string-array name="education_arrays">
         <item>Elementary School</item>
         <item>Middle School</item>

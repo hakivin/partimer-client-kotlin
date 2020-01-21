@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update_gender"
-            android:text="Gender"
+            android:text="@string/gender"
             app:layout_constraintTop_toBottomOf="@id/edit_update_phone_number"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -120,12 +120,12 @@
             <RadioButton android:id="@+id/update_gender_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male"
+                android:text="@string/male"
                 android:onClick="onRadioButtonClicked"/>
             <RadioButton android:id="@+id/update_gender_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Female"
+                android:text="@string/female"
                 android:onClick="onRadioButtonClicked"/>
         </RadioGroup>
 
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update_latest_education"
-            android:text="Latest Education"
+            android:text="@string/latest_education"
             app:layout_constraintTop_toBottomOf="@id/radio_update_gender"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -144,7 +144,8 @@
             android:id="@+id/spinner_update_latest_education"
             android:entries="@array/education_arrays"
             app:layout_constraintTop_toBottomOf="@id/update_latest_education"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:prompt="@string/latest_education"/>
 
         <Button
             android:layout_width="250dp"

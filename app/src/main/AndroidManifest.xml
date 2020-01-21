@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main"/>
         <activity android:name="com.szechuanstudio.partimer.ui.main.ui.profile.update.UpdateProfileActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
         <activity

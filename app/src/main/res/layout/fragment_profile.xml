@@ -44,13 +44,14 @@
                 app:layout_constraintBottom_toBottomOf="@id/profile_photo"
                 android:padding="8dp"
                 tools:text="full name bij"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textColor="@android:color/black"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:id="@+id/btn_edit_profile"
-                android:text="edit profile"
+                android:text="@string/edit_profile"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textAllCaps="false"
@@ -66,7 +67,7 @@
                 android:id="@+id/profile_about_placeholder"
                 app:layout_constraintTop_toBottomOf="@id/profile_photo"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:text="About"
+                android:text="@string/about"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
@@ -84,7 +85,7 @@
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_gender_placeholder"
-                android:text="Gender"
+                android:text="@string/gender"
                 app:layout_constraintTop_toBottomOf="@id/profile_line_1"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -96,13 +97,14 @@
                 app:layout_constraintLeft_toRightOf="@id/profile_gender_placeholder"
                 app:layout_constraintTop_toTopOf="@id/profile_gender_placeholder"
                 app:layout_constraintBottom_toBottomOf="@id/profile_gender_placeholder"
-                tools:text="Male"/>
+                tools:text="Male"
+                android:textColor="@android:color/black"/>
 
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_education_placeholder"
-                android:text="Education"
+                android:text="@string/education"
                 app:layout_constraintTop_toBottomOf="@id/profile_gender_placeholder"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -114,13 +116,14 @@
                 app:layout_constraintLeft_toRightOf="@id/profile_education_placeholder"
                 app:layout_constraintTop_toTopOf="@id/profile_education_placeholder"
                 app:layout_constraintBottom_toBottomOf="@id/profile_education_placeholder"
-                tools:text="Bachelor"/>
+                tools:text="Bachelor"
+                android:textColor="@android:color/black"/>
 
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_address_placeholder"
-                android:text="Address"
+                android:text="@string/address"
                 app:layout_constraintTop_toBottomOf="@id/profile_education_placeholder"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -133,9 +136,9 @@
                 app:layout_constraintRight_toRightOf="@id/profile_line_1"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintTop_toTopOf="@id/profile_address_placeholder"
-
                 tools:text="Some long text"
-                android:singleLine="false"/>
+                android:singleLine="false"
+                android:textColor="@android:color/black"/>
 
             <!-- Part 1 -->
 
@@ -145,7 +148,7 @@
                 android:id="@+id/profile_contact_placeholder"
                 app:layout_constraintTop_toBottomOf="@id/profile_address"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:text="Contact"
+                android:text="@string/contact"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="24dp"/>
 
@@ -163,7 +166,7 @@
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_phone_placeholder"
-                android:text="Phone"
+                android:text="@string/phone"
                 app:layout_constraintTop_toBottomOf="@id/profile_line_2"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -175,13 +178,14 @@
                 app:layout_constraintLeft_toRightOf="@id/profile_phone_placeholder"
                 app:layout_constraintTop_toTopOf="@id/profile_phone_placeholder"
                 app:layout_constraintBottom_toBottomOf="@id/profile_phone_placeholder"
-                tools:text="+6281239839005"/>
+                tools:text="+6281239839005"
+                android:textColor="@android:color/black"/>
 
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_email_placeholder"
-                android:text="Email"
+                android:text="@string/email"
                 app:layout_constraintTop_toBottomOf="@id/profile_phone_placeholder"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -193,13 +197,14 @@
                 app:layout_constraintLeft_toRightOf="@id/profile_email_placeholder"
                 app:layout_constraintTop_toTopOf="@id/profile_email_placeholder"
                 app:layout_constraintBottom_toBottomOf="@id/profile_email_placeholder"
-                tools:text="hakikidhakikid@gmail.com"/>
+                tools:text="hakikidhakikid@gmail.com"
+                android:textColor="@android:color/black"/>
 
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_social_media_placeholder"
-                android:text="Socmed"
+                android:text="@string/social"
                 app:layout_constraintTop_toBottomOf="@id/profile_email_placeholder"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -211,7 +216,8 @@
                 app:layout_constraintLeft_toRightOf="@id/profile_social_media_placeholder"
                 app:layout_constraintTop_toTopOf="@id/profile_social_media_placeholder"
                 app:layout_constraintBottom_toBottomOf="@id/profile_social_media_placeholder"
-                tools:text="instagram.com/hakivin"/>
+                tools:text="instagram.com/hakivin"
+                android:textColor="@android:color/black"/>
 
             <!-- Part 2 -->
 
@@ -221,7 +227,7 @@
                 android:id="@+id/profile_position_placeholder"
                 app:layout_constraintTop_toBottomOf="@id/profile_social_media_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:text="Preferred Positions"
+                android:text="@string/preferred_positions"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="24dp"/>
 
