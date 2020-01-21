@@ -54,6 +54,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
             // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
 
+            if (login.isEnabled)
+                login.background = getDrawable(R.drawable.custom_button)
+
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
             }

@@ -27,6 +27,9 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
 
             register.isEnabled = registerState.isDataValid
 
+            if (register.isEnabled)
+                register.background = getDrawable(R.drawable.custom_button)
+
             if (registerState.nameError != null){
                 name_register.error = getString(registerState.nameError)
             }
