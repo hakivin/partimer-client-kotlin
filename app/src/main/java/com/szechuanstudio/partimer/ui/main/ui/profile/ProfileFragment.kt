@@ -1,6 +1,5 @@
 package com.szechuanstudio.partimer.ui.main.ui.profile
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,10 +21,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-/**
- * A simple [Fragment] subclass.
- */
 class ProfileFragment : Fragment() {
 
     private lateinit var profile: Model.Profile
@@ -49,16 +44,44 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun setGender(string: String?) : String?{
+        if (string.equals("L"))
+            return "Male"
+        else if(string.equals("P"))
+            return "Female"
+        return null
+    }
+
+    private fun setEducation(string: String?) : String?{
+        return when {
+            string.equals("SD") -> "Elementary School"
+            string.equals("SMP") -> "Middle School"
+            string.equals("SMA") -> "High School"
+            string.equals("Diploma") -> "Diploma"
+            string.equals("S1") -> "Bachelor"
+            string.equals("S2") -> "Master"
+            string.equals("S3") -> "Doctorate"
+            else -> null
+        }
+    }
+
     private fun showProfile(profile : Model.Profile?){
         profile_full_name.text = profile?.nama_lengkap
-        profile_gender.text = profile?.jenis_kelamin
-        profile_education.text = profile?.pendidikan_terakhir
+        profile_gender.text = setGender(profile?.jenis_kelamin)
+        profile_education.text = setEducation(profile?.pendidikan_terakhir)
         profile_phone.text = profile?.nomor_telepon
         profile_email.text = profile?.email
         profile_address.text = profile?.alamat
         profile_social_media.text = profile?.social_media
-        Picasso.with(activity?.applicationContext).load(R.drawable.placeholder_avatar).noFade().into(profile_photo)
-        profile_cover.backgroundColor = R.color.colorPrimary
+        if (profile?.foto.isNullOrEmpty())
+            Picasso.with(activity?.applicationContext).load(R.drawable.placeholder_avatar).noFade().into(profile_photo)
+        if (profile?.cover.isNullOrEmpty())
+            profile_cover.backgroundColor = R.color.colorPrimary
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkProfile()
     }
 
     private fun checkProfile(){

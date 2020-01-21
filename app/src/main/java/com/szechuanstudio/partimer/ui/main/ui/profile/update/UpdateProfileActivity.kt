@@ -33,8 +33,20 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         edit_update_address.setText(profile?.alamat)
         edit_update_social_media.setText(profile?.social_media)
         edit_update_phone_number.setText(profile?.nomor_telepon)
+        setGender(profile)
+        setEducation(profile?.pendidikan_terakhir)
         if (profile?.foto.isNullOrEmpty())
             Picasso.with(applicationContext).load(R.drawable.placeholder_avatar).noFade().into(update_photo)
+    }
+
+    private fun setGender(profile: Model.Profile?) {
+        if (profile?.jenis_kelamin.equals("L")) {
+            male = true
+            update_gender_male.isChecked = true
+        } else if (profile?.jenis_kelamin.equals("P")) {
+            male = false
+            update_gender_female.isChecked = true
+        }
     }
 
     private fun constructModel(profile: Model.Profile?): Model.Profile? {
@@ -43,6 +55,8 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         profile?.alamat = edit_update_address.text.toString()
         profile?.social_media = edit_update_social_media.text.toString()
         profile?.nomor_telepon = edit_update_phone_number.text.toString()
+        profile?.jenis_kelamin = getGender()
+        profile?.pendidikan_terakhir = getEducation()
         return profile
     }
 
@@ -55,6 +69,44 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         toast("failed")
     }
 
+    private var male : Boolean? = null
+
+    private fun getGender() : String?{
+        return if (male == null)
+            ""
+        else {
+            if (male as Boolean)
+                "L"
+            else
+                "P"
+        }
+    }
+
+    private fun getEducation() : String?{
+        return when (spinner_update_latest_education.selectedItemPosition) {
+            0 -> "SD"
+            1 -> "SMP"
+            2 -> "SMA"
+            3 -> "Diploma"
+            4 -> "S1"
+            5 -> "S2"
+            6 -> "S3"
+            else -> null
+        }
+    }
+
+    private fun setEducation(level : String?){
+        when {
+            level.equals("SD") -> spinner_update_latest_education.setSelection(0)
+            level.equals("SMP") -> spinner_update_latest_education.setSelection(1)
+            level.equals("SMA") -> spinner_update_latest_education.setSelection(2)
+            level.equals("Diploma") -> spinner_update_latest_education.setSelection(3)
+            level.equals("S1") -> spinner_update_latest_education.setSelection(4)
+            level.equals("S2") -> spinner_update_latest_education.setSelection(5)
+            level.equals("S3") -> spinner_update_latest_education.setSelection(6)
+        }
+    }
+
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
             // Is the button now checked?
@@ -64,11 +116,11 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
             when (view.getId()) {
                 update_gender_male.id ->
                     if (checked) {
-                        // Pirates are the best
+                        male = true
                     }
                 update_gender_female.id ->
                     if (checked) {
-                        // Ninjas rule
+                        male = false
                     }
             }
         }
