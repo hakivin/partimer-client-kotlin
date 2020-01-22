@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
+import com.szechuanstudio.partimer.BuildConfig
 import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
 import com.szechuanstudio.partimer.ui.main.ui.profile.update.UpdateProfileActivity
 import com.szechuanstudio.partimer.utils.Constant
 import com.szechuanstudio.partimer.utils.PreferenceUtils
+import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.singleTop
+import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
@@ -34,6 +37,8 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        act.nav_view.clearAnimation()
+        act.nav_view.animate().translationY(act.nav_view.height.toFloat()).duration = 50
         checkProfile()
     }
 
@@ -75,8 +80,12 @@ class ProfileFragment : Fragment() {
         profile_social_media.text = profile?.social_media
         if (profile?.foto.isNullOrEmpty())
             Picasso.with(activity?.applicationContext).load(R.drawable.placeholder_avatar).noFade().into(profile_photo)
+        else
+            Picasso.with(activity?.applicationContext).load(BuildConfig.BASE_URL+profile?.foto).noFade().into(profile_photo)
         if (profile?.cover.isNullOrEmpty())
             profile_cover.backgroundColor = R.color.colorPrimary
+        else
+            Picasso.with(activity?.applicationContext).load(BuildConfig.BASE_URL+profile?.cover).noFade().into(profile_cover)
     }
 
     override fun onResume() {
@@ -102,6 +111,8 @@ class ProfileFragment : Fragment() {
                     else {
                         this@ProfileFragment.profile = profile
                         showProfile(profile)
+                        act.nav_view.clearAnimation()
+                        act.nav_view.animate().translationY(0.0F).duration = 50
                         if (profile.nomor_telepon.isNullOrEmpty() || profile.alamat.isNullOrEmpty()) {
                             startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
                             toast("Please complete your identities first")

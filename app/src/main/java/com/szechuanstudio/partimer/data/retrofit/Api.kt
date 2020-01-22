@@ -1,6 +1,8 @@
 package com.szechuanstudio.partimer.data.retrofit
 
+import com.szechuanstudio.partimer.BuildConfig
 import com.szechuanstudio.partimer.data.model.Model
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -28,6 +30,10 @@ interface Api {
 
     @PUT("profile/{id}/update")
     fun updateProfile(@Path("id") id : Int?, @Header("Authorization") token : String?, @Body updatedProfile: Model.Profile) : Call<ResponseBody>
+
+    @Multipart
+    @POST("profile/{id}/upload")
+    fun uploadPhoto(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part imageName:MultipartBody.Part) : Call<Model.Profile>
 }
 
 class RetrofitClient {
@@ -40,7 +46,7 @@ class RetrofitClient {
             if (instance == null)
                 instance = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("http://192.168.0.105:8000/api/")
+                    .baseUrl(BuildConfig.BASE_URL+"api/")
                     .build()
                     .create(Api::class.java)
             return instance as Api

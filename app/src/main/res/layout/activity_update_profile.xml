@@ -7,20 +7,33 @@
     tools:context=".ui.main.ui.profile.update.UpdateProfileActivity"
     android:paddingStart="@dimen/activity_horizontal_margin"
     android:paddingEnd="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:scrollbars="none"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/update_photo"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            tools:background="@color/colorPrimary"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_photo_fab"
+            app:layout_constraintRight_toRightOf="@id/update_photo"
+            app:layout_constraintBottom_toBottomOf="@id/update_photo"
+            app:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_camera_alt_black_24dp"
+            app:fabSize="mini"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -160,7 +173,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="32dp"
-            android:background="@drawable/custom_button"/>
+            android:background="@drawable/custom_button"
+            android:enabled="false"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
