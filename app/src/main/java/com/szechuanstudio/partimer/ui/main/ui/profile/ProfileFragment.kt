@@ -1,56 +1,57 @@
 package com.szechuanstudio.partimer.ui.main.ui.profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.partimer.BuildConfig
 import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
+import com.szechuanstudio.partimer.ui.login.LoginActivity
 import com.szechuanstudio.partimer.ui.main.ui.profile.update.UpdateProfileActivity
 import com.szechuanstudio.partimer.utils.Constant
 import com.szechuanstudio.partimer.utils.PreferenceUtils
-import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), ProfileView {
 
-    private lateinit var profile: Model.Profile
+    private lateinit var presenter: ProfilePresenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        checkProfile()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        act.nav_view.clearAnimation()
-        act.nav_view.animate().translationY(act.nav_view.height.toFloat()).duration = 50
+        presenter = ProfilePresenter(this, RetrofitClient.getInstance(), act.applicationContext)
+        presenter.checkProfile()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btn_edit_profile.setOnClickListener {
-            startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.profile_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.logout){
+            PreferenceUtils.reset(act.applicationContext)
+            startActivity(intentFor<LoginActivity>().singleTop())
+            act.finish()
         }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setGender(string: String?) : String?{
@@ -74,55 +75,38 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun showProfile(profile : Model.Profile?){
-        profile_full_name.text = profile?.nama_lengkap
-        profile_gender.text = setGender(profile?.jenis_kelamin)
-        profile_education.text = setEducation(profile?.pendidikan_terakhir)
-        profile_phone.text = profile?.nomor_telepon
-        profile_email.text = profile?.email
-        profile_address.text = profile?.alamat
-        profile_social_media.text = profile?.social_media
-        if (profile?.foto.isNullOrEmpty())
-            Picasso.with(activity?.applicationContext).load(R.drawable.placeholder_avatar).noFade().into(profile_photo)
-        else
-            Picasso.with(activity?.applicationContext).load(BuildConfig.BASE_URL+profile?.foto).noFade().into(profile_photo)
-        if (profile?.cover.isNullOrEmpty())
-            profile_cover.backgroundColor = R.color.colorPrimary
-        else
-            Picasso.with(activity?.applicationContext).load(BuildConfig.BASE_URL+profile?.cover).noFade().into(profile_cover)
-    }
-
     override fun onResume() {
         super.onResume()
-        checkProfile()
+        presenter.checkProfile()
     }
 
-    private fun checkProfile(){
-        RetrofitClient.getInstance().getProfile(PreferenceUtils.getId(activity?.applicationContext!!))
-            .enqueue(object : Callback<Model.ProfileResponse> {
-                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
-                    toast("Fatal Error\n${t.message}")
-                    activity?.finish()
-                }
+    override fun showProfile(profile: Model.Profile?) {
+        if (profile_full_name != null) {
+            profile_full_name.text = profile?.nama_lengkap
+            profile_gender.text = setGender(profile?.jenis_kelamin)
+            profile_education.text = setEducation(profile?.pendidikan_terakhir)
+            profile_phone.text = profile?.nomor_telepon
+            profile_email.text = profile?.email
+            profile_address.text = profile?.alamat
+            profile_social_media.text = profile?.social_media
+            Picasso.with(activity?.applicationContext)
+                .load(BuildConfig.BASE_URL + profile?.foto)
+                .placeholder(R.drawable.placeholder_avatar)
+                .noFade()
+                .into(profile_photo)
 
-                override fun onResponse(
-                    call: Call<Model.ProfileResponse>,
-                    response: Response<Model.ProfileResponse>
-                ) {
-                    val profile = response.body()?.profile?.get(0)
-                    if (profile == null)
-                        toast("Something went wrong").also { activity?.finish() }
-                    else {
-                        this@ProfileFragment.profile = profile
-                        showProfile(profile)
-                        act.nav_view.clearAnimation()
-                        act.nav_view.animate().translationY(0.0F).duration = 50
-                        if (profile.nomor_telepon.isNullOrEmpty() || profile.alamat.isNullOrEmpty()) {
-                            startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
-                            toast("Please complete your identities first")
-                        }
-                    }
-                }
-            })
+            Picasso.with(activity?.applicationContext)
+                .load(BuildConfig.BASE_URL + profile?.cover)
+                .placeholder(R.drawable.placeholder_cover)
+                .into(profile_cover)
+
+            btn_edit_profile.setOnClickListener {
+                startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
+            }
+        }
+    }
+
+    override fun reject(message: String?) {
+        message?.let { toast(it) }
     }
 }

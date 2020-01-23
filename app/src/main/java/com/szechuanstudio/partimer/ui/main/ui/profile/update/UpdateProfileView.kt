@@ -6,4 +6,5 @@ interface UpdateProfileView{
     fun success()
     fun failed()
     fun getPhoto(profile: Model.Profile)
+    fun getCover(profile: Model.Profile)
 }

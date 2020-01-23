@@ -9,4 +9,8 @@ object Constant {
 
     //for intent
     val KEY_PROFILE = "profile key"
+
+    //for request code
+    val PHOTO_REQUEST_CODE = 100
+    val COVER_REQUEST_CODE = 200
 }

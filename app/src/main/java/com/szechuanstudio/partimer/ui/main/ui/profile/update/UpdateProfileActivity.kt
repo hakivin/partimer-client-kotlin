@@ -41,6 +41,10 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
             Picasso.with(applicationContext).load(R.drawable.placeholder_avatar).noFade().into(update_photo)
         else
             Picasso.with(applicationContext).load(BuildConfig.BASE_URL+profile?.foto).noFade().into(update_photo)
+        if (profile?.cover.isNullOrEmpty())
+            Picasso.with(applicationContext).load(R.color.colorPrimaryDark).into(update_cover)
+        else
+            Picasso.with(applicationContext).load(BuildConfig.BASE_URL+profile?.cover).into(update_cover)
         btn_save_profile.isEnabled = true
         btn_save_profile.setOnClickListener { _: View? ->
             val newProfile = constructModel(profile)
@@ -49,10 +53,23 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         update_photo_fab.setOnClickListener {
             if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
                 ImagePicker.with(this)
-                    .crop()
-                    .compress(1024)
+                    .crop(1f,1f)
+                    .compress(1260)
                     .maxResultSize(1080,1080)
-                    .start()
+                    .start(Constant.PHOTO_REQUEST_CODE)
+
+            } else {
+                EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
+                    991,android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+        update_cover_fab.setOnClickListener {
+            if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                ImagePicker.with(this)
+                    .crop(1.7f,1f)
+                    .compress(4048)
+                    .maxResultSize(1080,2860)
+                    .start(Constant.COVER_REQUEST_CODE)
 
             } else {
                 EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
@@ -64,8 +81,13 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && data != null){
-            update_photo.setImageURI(data.data)
-            presenter.uploadPhoto(data.data)
+            if (requestCode == Constant.PHOTO_REQUEST_CODE) {
+                update_photo.setImageURI(data.data)
+                presenter.uploadPhoto(data.data)
+            } else if (requestCode == Constant.COVER_REQUEST_CODE){
+                update_cover.setImageURI(data.data)
+                presenter.uploadCover(data.data)
+            }
         }
     }
 
@@ -87,7 +109,6 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         profile?.nomor_telepon = edit_update_phone_number.text.toString()
         profile?.jenis_kelamin = getGender()
         profile?.pendidikan_terakhir = getEducation()
-        println("foto = ${profile?.foto}")
         return profile
     }
 
@@ -102,6 +123,10 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     override fun getPhoto(profile: Model.Profile) {
         this.profile.foto = profile.foto
+    }
+
+    override fun getCover(profile: Model.Profile) {
+        this.profile.cover = profile.cover
     }
 
     private var male : Boolean? = null
@@ -144,10 +169,8 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
-            // Is the button now checked?
             val checked = view.isChecked
 
-            // Check which radio button was clicked
             when (view.getId()) {
                 update_gender_male.id ->
                     if (checked) {

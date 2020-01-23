@@ -61,6 +61,31 @@ class UpdateProfilePresenter(private val view: UpdateProfileView,
                 })
     }
 
+    fun uploadCover(uri: Uri?){
+        val file = File(getRealPathFromURI(uri))
+        val requestFile =
+            RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        val body =
+            MultipartBody.Part.createFormData("image", file.name, requestFile)
+
+        RetrofitClient.getInstance().uploadCover(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
+            .enqueue(object : Callback<Model.Profile>{
+                override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
+                    println(t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<Model.Profile>,
+                    response: Response<Model.Profile>
+                ) {
+                    val profile = response.body()
+                    if (profile != null) {
+                        view.getCover(profile)
+                    }
+                }
+            })
+    }
+
     private fun getRealPathFromURI(contentURI: Uri?): String? {
         val result: String?
         val cursor =

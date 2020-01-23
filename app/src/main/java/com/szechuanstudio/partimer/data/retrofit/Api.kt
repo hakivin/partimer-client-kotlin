@@ -32,8 +32,12 @@ interface Api {
     fun updateProfile(@Path("id") id : Int?, @Header("Authorization") token : String?, @Body updatedProfile: Model.Profile) : Call<ResponseBody>
 
     @Multipart
-    @POST("profile/{id}/upload")
+    @POST("profile/{id}/upload/profile")
     fun uploadPhoto(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part imageName:MultipartBody.Part) : Call<Model.Profile>
+
+    @Multipart
+    @POST("profile/{id}/upload/cover")
+    fun uploadCover(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
 }
 
 class RetrofitClient {

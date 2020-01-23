@@ -2,6 +2,9 @@
 <resources>
     <color name="colorPrimary">#17A2B8</color>
     <color name="colorPrimaryDark">#02899C</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#17A2B8</color>
     <color name="blue_link">#00B0FF</color>
+    <color name="ucrop_color_toolbar">@color/colorPrimary</color>
+    <color name="ucrop_color_statusbar">@color/colorPrimaryDark</color>
+    <color name="ucrop_color_widget_active">@color/blue_link</color>
 </resources>
