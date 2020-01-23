@@ -37,9 +37,13 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkProfile()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         act.nav_view.clearAnimation()
         act.nav_view.animate().translationY(act.nav_view.height.toFloat()).duration = 50
-        checkProfile()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

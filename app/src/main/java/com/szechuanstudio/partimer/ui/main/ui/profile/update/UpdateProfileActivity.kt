@@ -2,43 +2,30 @@ package com.szechuanstudio.partimer.ui.main.ui.profile.update
 
 import android.app.Activity
 import android.content.Intent
-import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.partimer.BuildConfig
 import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
 import com.szechuanstudio.partimer.utils.Constant
-import com.szechuanstudio.partimer.utils.PreferenceUtils
-import com.vincent.filepicker.Constant.MAX_NUMBER
-import com.vincent.filepicker.Constant.REQUEST_CODE_PICK_IMAGE
 import kotlinx.android.synthetic.main.activity_update_profile.*
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import org.jetbrains.anko.toast
 import pub.devrel.easypermissions.EasyPermissions
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.File
-
 
 class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     private lateinit var presenter: UpdateProfilePresenter
+    private lateinit var profile : Model.Profile
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_profile)
         presenter = UpdateProfilePresenter(this, RetrofitClient.getInstance(), applicationContext)
-        val profile = intent.getParcelableExtra<Model.Profile>(Constant.KEY_PROFILE)
+        profile = intent.getParcelableExtra(Constant.KEY_PROFILE)!!
         fillEditText(profile)
     }
 
@@ -61,15 +48,11 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         }
         update_photo_fab.setOnClickListener {
             if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
-//                val i = Intent(this, ImagePickActivity::class.java)
-//                i.putExtra(MAX_NUMBER,1)
-//                startActivityForResult(i, REQUEST_CODE_PICK_IMAGE)
-                val pickPhoto = Intent(
-                    Intent.ACTION_PICK,
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                )
-                pickPhoto.putExtra(MAX_NUMBER,1)
-                startActivityForResult(pickPhoto, REQUEST_CODE_PICK_IMAGE) //one can be replaced with any action code
+                ImagePicker.with(this)
+                    .crop()
+                    .compress(1024)
+                    .maxResultSize(1080,1080)
+                    .start()
 
             } else {
                 EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
@@ -80,43 +63,10 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null){
-            upload(data.data)
+        if(resultCode == Activity.RESULT_OK && data != null){
+            update_photo.setImageURI(data.data)
+            presenter.uploadPhoto(data.data)
         }
-    }
-
-    private fun getPath(uri: Uri?): String? {
-        val projection =
-            arrayOf(MediaStore.Images.Media.DATA)
-        val cursor: Cursor = managedQuery(uri, projection, null, null, null)
-        startManagingCursor(cursor)
-        val columnIndex: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        cursor.moveToFirst()
-        return cursor.getString(columnIndex)
-    }
-
-    private fun upload(uri : Uri?){
-        val file = File(getPath(uri))
-        println(file.totalSpace)
-        val requestFile =
-            RequestBody.create(MediaType.parse("multipart/form-data"), file)
-        val body =
-            MultipartBody.Part.createFormData("image", file.name, requestFile)
-
-        RetrofitClient.getInstance().uploadPhoto(PreferenceUtils.getId(applicationContext),PreferenceUtils.getToken(applicationContext),body)
-            .enqueue(object : Callback<Model.Profile>{
-                override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
-                    println(t.message)
-                }
-
-                override fun onResponse(
-                    call: Call<Model.Profile>,
-                    response: Response<Model.Profile>
-                ) {
-                    val profile = response.body()
-                    profile?.let { presenter.updateProfile(it) }
-                }
-            })
     }
 
     private fun setGender(profile: Model.Profile?) {
@@ -137,6 +87,7 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         profile?.nomor_telepon = edit_update_phone_number.text.toString()
         profile?.jenis_kelamin = getGender()
         profile?.pendidikan_terakhir = getEducation()
+        println("foto = ${profile?.foto}")
         return profile
     }
 
@@ -147,6 +98,10 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     override fun failed() {
         toast("failed")
+    }
+
+    override fun getPhoto(profile: Model.Profile) {
+        this.profile.foto = profile.foto
     }
 
     private var male : Boolean? = null
