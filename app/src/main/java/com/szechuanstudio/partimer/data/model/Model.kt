@@ -34,4 +34,8 @@ object Model {
                        var cover: String?,
                        var created_at: String?,
                        var updated_at: String?) : Parcelable
+
+    data class PositionsResponse(val positions: List<Position>)
+
+    data class Position(val id: Int?, val nama_posisi: String?)
 }

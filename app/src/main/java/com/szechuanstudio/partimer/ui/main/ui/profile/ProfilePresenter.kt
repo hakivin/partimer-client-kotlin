@@ -30,12 +30,6 @@ class ProfilePresenter(private val view: ProfileView,
                         view.reject("Something went wrong")
                     else {
                         view.showProfile(profile)
-//                        this@ProfileFragment.profile = profile
-//                        showProfile(profile)
-//                        if (profile.nomor_telepon.isNullOrEmpty() || profile.alamat.isNullOrEmpty()) {
-//                            startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
-//                            toast("Please complete your identities first")
-//                        }
                     }
                 }
             })

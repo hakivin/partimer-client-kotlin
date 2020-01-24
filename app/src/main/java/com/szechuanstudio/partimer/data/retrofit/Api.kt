@@ -38,6 +38,9 @@ interface Api {
     @Multipart
     @POST("profile/{id}/upload/cover")
     fun uploadCover(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+
+    @GET("positions")
+    fun getPositions() : Call<Model.PositionsResponse>
 }
 
 class RetrofitClient {

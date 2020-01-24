@@ -102,6 +102,7 @@ class ProfileFragment : Fragment(), ProfileView {
 
             btn_edit_profile.setOnClickListener {
                 startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
+                act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
             }
         }
     }

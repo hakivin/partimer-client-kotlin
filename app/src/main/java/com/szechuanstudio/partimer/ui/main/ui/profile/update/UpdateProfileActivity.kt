@@ -3,6 +3,8 @@ package com.szechuanstudio.partimer.ui.main.ui.profile.update
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +26,9 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_profile)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_black_24dp)
         presenter = UpdateProfilePresenter(this, RetrofitClient.getInstance(), applicationContext)
         profile = intent.getParcelableExtra(Constant.KEY_PROFILE)!!
         fillEditText(profile)
@@ -127,6 +132,29 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     override fun getCover(profile: Model.Profile) {
         this.profile.cover = profile.cover
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.update_profile_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.update_save){
+            val newProfile = constructModel(profile)
+            newProfile?.let { presenter.updateProfile(it) }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.stay, R.anim.slide_in_down)
     }
 
     private var male : Boolean? = null
