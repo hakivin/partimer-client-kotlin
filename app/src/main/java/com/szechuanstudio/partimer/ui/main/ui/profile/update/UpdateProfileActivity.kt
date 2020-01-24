@@ -29,6 +29,7 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_black_24dp)
+        supportActionBar?.title = "Edit Profile"
         presenter = UpdateProfilePresenter(this, RetrofitClient.getInstance(), applicationContext)
         profile = intent.getParcelableExtra(Constant.KEY_PROFILE)!!
         fillEditText(profile)
@@ -50,11 +51,7 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
             Picasso.with(applicationContext).load(R.color.colorPrimaryDark).into(update_cover)
         else
             Picasso.with(applicationContext).load(BuildConfig.BASE_URL+profile?.cover).into(update_cover)
-        btn_save_profile.isEnabled = true
-        btn_save_profile.setOnClickListener { _: View? ->
-            val newProfile = constructModel(profile)
-            newProfile?.let { presenter.updateProfile(it) }
-        }
+
         update_photo_fab.setOnClickListener {
             if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
                 ImagePicker.with(this)
