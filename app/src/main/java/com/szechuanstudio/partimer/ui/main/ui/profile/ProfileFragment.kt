@@ -47,9 +47,7 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.logout){
-            PreferenceUtils.reset(act.applicationContext)
-            startActivity(intentFor<LoginActivity>().singleTop())
-            act.finish()
+            presenter.logout()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -109,5 +107,15 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun reject(message: String?) {
         message?.let { toast(it) }
+    }
+
+    override fun logoutSuccess() {
+        PreferenceUtils.reset(act.applicationContext)
+        startActivity(intentFor<LoginActivity>().singleTop())
+        act.finish()
+    }
+
+    override fun logoutFailed() {
+        toast("Logout Failed")
     }
 }

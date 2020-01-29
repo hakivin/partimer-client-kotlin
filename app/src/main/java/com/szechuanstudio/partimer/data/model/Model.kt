@@ -38,4 +38,6 @@ object Model {
     data class PositionsResponse(val positions: List<Position>)
 
     data class Position(val id: Int?, val nama_posisi: String?)
+
+
 }

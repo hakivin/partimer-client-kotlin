@@ -3,7 +3,6 @@ package com.szechuanstudio.partimer.ui.main.ui.profile
 import android.content.Context
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.Api
-import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
 import com.szechuanstudio.partimer.utils.PreferenceUtils
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -33,5 +32,20 @@ class ProfilePresenter(private val view: ProfileView,
                     }
                 }
             })
+    }
+
+    fun logout(){
+        api.logout(PreferenceUtils.getToken(context)).enqueue(object : Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                view.logoutFailed()
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.code() == 200)
+                    view.logoutSuccess()
+                else
+                    view.logoutFailed()
+            }
+        })
     }
 }

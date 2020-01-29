@@ -73,6 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@id/profile_photo"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="@string/about"
+                android:textStyle="bold"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
@@ -154,6 +155,7 @@
                 app:layout_constraintTop_toBottomOf="@id/profile_address"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="@string/contact"
+                android:textStyle="bold"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="24dp"/>
 
@@ -234,6 +236,7 @@
                 android:id="@+id/profile_position_placeholder"
                 app:layout_constraintTop_toBottomOf="@id/profile_social_media_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
+                android:textStyle="bold"
                 android:text="@string/preferred_positions"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="24dp"/>

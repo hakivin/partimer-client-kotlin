@@ -43,14 +43,17 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         edit_update_phone_number.setText(profile?.nomor_telepon)
         setGender(profile)
         setEducation(profile?.pendidikan_terakhir)
-        if (profile?.foto.isNullOrEmpty())
-            Picasso.with(applicationContext).load(R.drawable.placeholder_avatar).noFade().into(update_photo)
-        else
-            Picasso.with(applicationContext).load(BuildConfig.BASE_URL+profile?.foto).noFade().into(update_photo)
-        if (profile?.cover.isNullOrEmpty())
-            Picasso.with(applicationContext).load(R.color.colorPrimaryDark).into(update_cover)
-        else
-            Picasso.with(applicationContext).load(BuildConfig.BASE_URL+profile?.cover).into(update_cover)
+
+        Picasso.with(applicationContext)
+            .load(BuildConfig.BASE_URL + profile?.foto)
+            .placeholder(R.drawable.placeholder_avatar)
+            .noFade()
+            .into(update_photo)
+
+        Picasso.with(applicationContext)
+            .load(BuildConfig.BASE_URL + profile?.cover)
+            .placeholder(R.drawable.placeholder_cover)
+            .into(update_cover)
 
         update_photo_fab.setOnClickListener {
             if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){

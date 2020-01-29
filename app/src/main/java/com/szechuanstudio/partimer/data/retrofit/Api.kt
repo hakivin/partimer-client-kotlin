@@ -25,6 +25,9 @@ interface Api {
         @Field("password") password: String,
         @Field("password_confirmation") passwordConfirmation : String) : Call<Model.LoginResponse>
 
+    @POST("logout")
+    fun logout(@Header("Authorization") token : String?) : Call<ResponseBody>
+
     @GET("profile/{id}")
     fun getProfile(@Path("id") id : Int?) : Call<Model.ProfileResponse>
 
@@ -53,7 +56,7 @@ class RetrofitClient {
             if (instance == null)
                 instance = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BuildConfig.BASE_URL+"api/")
+                    .baseUrl(BuildConfig.BASE_URL+"/api/")
                     .build()
                     .create(Api::class.java)
             return instance as Api
