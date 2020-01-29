@@ -44,6 +44,9 @@ interface Api {
 
     @GET("positions")
     fun getPositions() : Call<Model.PositionsResponse>
+
+    @GET("profile/{id}/positions")
+    fun getUserPositions(@Path("id") id: Int?) : Call<Model.PositionsResponse>
 }
 
 class RetrofitClient {

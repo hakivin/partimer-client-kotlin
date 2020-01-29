@@ -7,4 +7,5 @@ interface ProfileView {
     fun reject(message: String?)
     fun logoutSuccess()
     fun logoutFailed()
+    fun showPositions(positions: Model.PositionsResponse?)
 }

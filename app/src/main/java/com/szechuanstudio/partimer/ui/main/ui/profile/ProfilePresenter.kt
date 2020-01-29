@@ -14,6 +14,7 @@ class ProfilePresenter(private val view: ProfileView,
                        private val context: Context) {
 
     fun checkProfile(){
+        getPositions()
         api.getProfile(PreferenceUtils.getId(context))
             .enqueue(object : Callback<Model.ProfileResponse> {
                 override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
@@ -31,6 +32,23 @@ class ProfilePresenter(private val view: ProfileView,
                         view.showProfile(profile)
                     }
                 }
+            })
+    }
+
+    fun getPositions(){
+        api.getUserPositions(PreferenceUtils.getId(context))
+            .enqueue(object : Callback<Model.PositionsResponse>{
+                override fun onFailure(call: Call<Model.PositionsResponse>, t: Throwable) {
+                    view.reject(t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<Model.PositionsResponse>,
+                    response: Response<Model.PositionsResponse>
+                ) {
+                    view.showPositions(response.body())
+                }
+
             })
     }
 

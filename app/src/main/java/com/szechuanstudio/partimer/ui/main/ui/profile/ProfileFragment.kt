@@ -3,6 +3,7 @@ package com.szechuanstudio.partimer.ui.main.ui.profile
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.partimer.BuildConfig
 import com.szechuanstudio.partimer.R
@@ -15,6 +16,7 @@ import com.szechuanstudio.partimer.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.act
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
 
@@ -117,5 +119,12 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun logoutFailed() {
         toast("Logout Failed")
+    }
+
+    override fun showPositions(positions: Model.PositionsResponse?) {
+        if (rv_positions != null){
+            rv_positions.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
+            rv_positions.adapter = positions?.positions?.let { PositionAdapter(it) }
+        }
     }
 }
