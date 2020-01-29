@@ -12,7 +12,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_tag_position"
         tools:text="Hello World za warudoo"
-        android:padding="4dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:background="@drawable/custom_oval_shape"
         android:textColor="@android:color/white" />
 </LinearLayout>
