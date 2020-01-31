@@ -1,12 +1,14 @@
 package com.szechuanstudio.partimer.ui.main.ui.profile.update
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.squareup.picasso.Picasso
@@ -18,6 +20,7 @@ import com.szechuanstudio.partimer.utils.Constant
 import kotlinx.android.synthetic.main.activity_update_profile.*
 import org.jetbrains.anko.toast
 import pub.devrel.easypermissions.EasyPermissions
+import java.util.*
 
 class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
@@ -38,7 +41,11 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
     private fun fillEditText(profile: Model.Profile?) {
         edit_update_name.setText(profile?.nama)
         edit_update_full_name.setText(profile?.nama_lengkap)
+        edit_update_birthday.setText(profile?.tanggal_lahir)
+        edit_update_birthday.hint = profile?.tanggal_lahir
         edit_update_address.setText(profile?.alamat)
+        edit_update_height.setText(profile?.tinggi_badan.toString())
+        edit_update_weight.setText(profile?.berat_badan.toString())
         edit_update_social_media.setText(profile?.social_media)
         edit_update_phone_number.setText(profile?.nomor_telepon)
         setGender(profile)
@@ -54,6 +61,19 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
             .load(BuildConfig.BASE_URL + profile?.cover)
             .placeholder(R.drawable.placeholder_cover)
             .into(update_cover)
+
+        edit_update_birthday.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                // Display Selected date in Toast
+                edit_update_birthday.setText("""$year-${monthOfYear + 1}-$dayOfMonth""")
+            }, year, month, day)
+            dpd.show()
+        }
 
         update_photo_fab.setOnClickListener {
             if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
@@ -109,7 +129,10 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
     private fun constructModel(profile: Model.Profile?): Model.Profile? {
         profile?.nama = edit_update_name.text.toString()
         profile?.nama_lengkap = edit_update_full_name.text.toString()
+        profile?.tanggal_lahir = edit_update_birthday.text.toString()
         profile?.alamat = edit_update_address.text.toString()
+        profile?.tinggi_badan = edit_update_height.text.toString().toInt()
+        profile?.berat_badan = edit_update_weight.text.toString().toInt()
         profile?.social_media = edit_update_social_media.text.toString()
         profile?.nomor_telepon = edit_update_phone_number.text.toString()
         profile?.jenis_kelamin = getGender()

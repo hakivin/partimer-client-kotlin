@@ -1,5 +1,6 @@
 package com.szechuanstudio.partimer.ui.main.ui.profile
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -19,6 +20,8 @@ import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ProfileFragment : Fragment(), ProfileView {
 
@@ -75,6 +78,16 @@ class ProfileFragment : Fragment(), ProfileView {
         }
     }
 
+    private fun convertDate(string: String?) : String? {
+        val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !string.isNullOrEmpty()) {
+            LocalDate.parse(string, DateTimeFormatter.ISO_DATE)
+        } else {
+            return string
+        }
+
+        return "${date.dayOfMonth} ${date.month.name.toLowerCase().capitalize()} ${date.year}"
+    }
+
     override fun onResume() {
         super.onResume()
         presenter.checkProfile()
@@ -83,7 +96,9 @@ class ProfileFragment : Fragment(), ProfileView {
     override fun showProfile(profile: Model.Profile?) {
         if (profile_full_name != null) {
             profile_full_name.text = profile?.nama_lengkap
+            profile_birthday.text = convertDate(profile?.tanggal_lahir)
             profile_gender.text = setGender(profile?.jenis_kelamin)
+            profile_height_weight.text = setHeightWeight(profile?.tinggi_badan, profile?.berat_badan)
             profile_education.text = setEducation(profile?.pendidikan_terakhir)
             profile_phone.text = profile?.nomor_telepon
             profile_email.text = profile?.email
@@ -105,6 +120,18 @@ class ProfileFragment : Fragment(), ProfileView {
                 act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
             }
         }
+    }
+
+    private fun setHeightWeight(height: Int?, weight: Int?): CharSequence? {
+        val h: CharSequence? = if (height != null)
+            "$height cm"
+        else
+            ""
+        val w: CharSequence? = if (weight != null)
+            "$weight kg"
+        else
+            ""
+        return "$h / $w"
     }
 
     override fun reject(message: String?) {

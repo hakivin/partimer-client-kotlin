@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.ui.profile.ProfileFragment"
-    android:layout_marginBottom="4dp">
+    tools:context=".ui.main.ui.profile.ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -90,9 +89,28 @@
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/profile_birthday_placeholder"
+                android:text="Birthday"
+                app:layout_constraintTop_toBottomOf="@id/profile_line_1"
+                app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_birthday"
+                app:layout_constraintLeft_toRightOf="@id/profile_birthday_placeholder"
+                app:layout_constraintTop_toTopOf="@id/profile_birthday_placeholder"
+                app:layout_constraintBottom_toBottomOf="@id/profile_birthday_placeholder"
+                tools:text="7 January 2000"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/profile_gender_placeholder"
                 android:text="@string/gender"
-                app:layout_constraintTop_toBottomOf="@id/profile_line_1"
+                app:layout_constraintTop_toBottomOf="@id/profile_birthday_placeholder"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
@@ -109,9 +127,28 @@
             <TextView
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/profile_height_weight_placeholder"
+                android:text="Height / Weight"
+                app:layout_constraintTop_toBottomOf="@id/profile_gender_placeholder"
+                app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
+                android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_height_weight"
+                app:layout_constraintLeft_toRightOf="@id/profile_height_weight_placeholder"
+                app:layout_constraintTop_toTopOf="@id/profile_height_weight_placeholder"
+                app:layout_constraintBottom_toBottomOf="@id/profile_height_weight_placeholder"
+                tools:text="160 cm / 50 kg"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/profile_education_placeholder"
                 android:text="@string/education"
-                app:layout_constraintTop_toBottomOf="@id/profile_gender_placeholder"
+                app:layout_constraintTop_toBottomOf="@id/profile_height_weight_placeholder"
                 app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
 

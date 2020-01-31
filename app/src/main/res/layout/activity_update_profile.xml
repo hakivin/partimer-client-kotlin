@@ -100,9 +100,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/update_birthday"
+            android:text="Birthday"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_full_name"
+            app:layout_constraintLeft_toLeftOf="@id/update_name"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_birthday"
+            android:focusable="false"
+            app:layout_constraintTop_toBottomOf="@id/update_birthday"
+            app:layout_constraintLeft_toLeftOf="@id/update_name"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/update_address"
             android:text="@string/address"
-            app:layout_constraintTop_toBottomOf="@id/edit_update_full_name"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_birthday"
             app:layout_constraintLeft_toLeftOf="@id/update_name"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
@@ -115,12 +134,60 @@
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
 
+<!--        Start Height Weight -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_height"
+            android:text="Height"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_address"
+            app:layout_constraintLeft_toLeftOf="@id/update_name"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_weight"
+            android:text="Weight"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_address"
+            app:layout_constraintLeft_toLeftOf="@id/edit_update_weight"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_height"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/update_height"
+            app:layout_constraintLeft_toLeftOf="@id/update_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/edit_update_height"
+            app:layout_constraintBottom_toBottomOf="@id/edit_update_height"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textSize="22sp"
+            android:id="@+id/slash"
+            tools:text=" / "/>
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_update_weight"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/update_height"
+            app:layout_constraintLeft_toRightOf="@id/slash" />
+
+<!--        End Height Weight -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update_social_media"
             android:text="@string/social_media"
-            app:layout_constraintTop_toBottomOf="@id/edit_update_address"
+            app:layout_constraintTop_toBottomOf="@id/edit_update_height"
             app:layout_constraintLeft_toLeftOf="@id/update_name"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
 

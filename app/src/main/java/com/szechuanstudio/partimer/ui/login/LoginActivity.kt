@@ -91,8 +91,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
         loading.visibility = View.VISIBLE
         val email = PreferenceUtils.getEmail(this)
         val password = PreferenceUtils.getPassword(this)
-        if (!email.isNullOrEmpty() && !password.isNullOrEmpty())
-            presenter.login(email, password)
+        val token = PreferenceUtils.getToken(this)
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty() && !token.isNullOrEmpty())
+            //presenter.login(email, password)
+            updateUiWithUser()
         else {
             loading.visibility = View.GONE
         }
