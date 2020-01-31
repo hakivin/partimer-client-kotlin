@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         presenter = LoginPresenter(this, RetrofitClient.getInstance(), applicationContext)
         init()
 
-        loginViewModel = ViewModelProviders.of(this,
+        loginViewModel = ViewModelProvider(this,
             LoginViewModelFactory()
         )
             .get(LoginViewModel::class.java)
@@ -93,7 +93,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
         val password = PreferenceUtils.getPassword(this)
         val token = PreferenceUtils.getToken(this)
         if (!email.isNullOrEmpty() && !password.isNullOrEmpty() && !token.isNullOrEmpty())
-            //presenter.login(email, password)
             updateUiWithUser()
         else {
             loading.visibility = View.GONE
