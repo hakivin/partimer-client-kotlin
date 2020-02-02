@@ -11,6 +11,7 @@ import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
 import com.szechuanstudio.partimer.ui.login.LoginActivity
+import com.szechuanstudio.partimer.ui.main.ui.profile.positions.UpdatePositionActivity
 import com.szechuanstudio.partimer.ui.main.ui.profile.update.UpdateProfileActivity
 import com.szechuanstudio.partimer.utils.Constant
 import com.szechuanstudio.partimer.utils.PreferenceUtils
@@ -117,6 +118,11 @@ class ProfileFragment : Fragment(), ProfileView {
 
             btn_edit_profile.setOnClickListener {
                 startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
+                act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
+            }
+
+            btn_edit_position.setOnClickListener {
+                startActivity(intentFor<UpdatePositionActivity>(Constant.KEY_PROFILE to profile).singleTop())
                 act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
             }
         }

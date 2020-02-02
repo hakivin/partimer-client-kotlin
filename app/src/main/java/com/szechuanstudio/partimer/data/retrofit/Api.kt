@@ -47,6 +47,9 @@ interface Api {
 
     @GET("profile/{id}/positions")
     fun getUserPositions(@Path("id") id: Int?) : Call<Model.PositionsResponse>
+
+    @POST("profile/positions/update")
+    fun selectPosition(@Query("id") id: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 }
 
 class RetrofitClient {

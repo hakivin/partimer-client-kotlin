@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="64dp"
+        android:overScrollMode="never"
         android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,16 +40,18 @@
                 android:src="@drawable/placeholder_avatar"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/profile_full_name"
-                app:layout_constraintTop_toBottomOf="@id/profile_cover"
-                app:layout_constraintLeft_toRightOf="@id/profile_photo"
-                app:layout_constraintBottom_toBottomOf="@id/profile_photo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:padding="8dp"
-                tools:text="full name bij"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textColor="@android:color/black"/>
+                android:layout_marginTop="4dp"
+                app:layout_constraintRight_toLeftOf="@id/btn_edit_profile"
+                app:layout_constraintLeft_toRightOf="@id/profile_photo"
+                app:layout_constraintTop_toBottomOf="@id/profile_cover"
+                app:layout_constraintHorizontal_bias="0.0"
+                tools:text="full name bij" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -57,11 +60,11 @@
                 android:text="@string/edit_profile"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:layout_marginTop="8dp"
                 android:textAllCaps="false"
                 android:background="@android:color/white"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/profile_full_name"
-                app:layout_constraintBottom_toBottomOf="@id/profile_full_name"
                 android:layout_marginEnd="16dp"
                 />
 
@@ -69,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_about_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/profile_photo"
+                app:layout_constraintTop_toBottomOf="@id/profile_full_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="@string/about"
                 android:textStyle="bold"
@@ -279,6 +282,19 @@
                 android:layout_marginTop="24dp"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:id="@+id/btn_edit_position"
+                android:text="edit"
+                android:textAllCaps="false"
+                android:background="@android:color/white"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/profile_position_placeholder"
+                app:layout_constraintBottom_toBottomOf="@id/profile_position_placeholder"
+                android:layout_marginEnd="16dp"
+                android:textColor="@android:color/black"/>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:id="@+id/profile_line_3"
@@ -298,6 +314,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:overScrollMode="never"
                 app:layout_constrainedHeight="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
