@@ -16,6 +16,9 @@ class UpdatePositionActivity : AppCompatActivity(), UpdatePositionView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_position)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = "Edit Positions"
         presenter = UpdatePositionPresenter(this, RetrofitClient.getInstance(), applicationContext)
         presenter.getAllPositions()
     }
@@ -29,5 +32,10 @@ class UpdatePositionActivity : AppCompatActivity(), UpdatePositionView {
     override fun populateUserPositions(userPositions: List<Model.Position>?) {
         rv_update_position.layoutManager = LinearLayoutManager(this)
         rv_update_position.adapter = userPositions?.let { UpdatePositionAdapter(applicationContext, allPositions, it) }
+    }
+
+    override fun onNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onNavigateUp()
     }
 }
