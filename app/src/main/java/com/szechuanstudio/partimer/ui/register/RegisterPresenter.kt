@@ -32,6 +32,8 @@ class RegisterPresenter(private val view : RegisterView,
                         view.registered(newUser)
                         PreferenceUtils.saveEmail(email, context)
                         PreferenceUtils.savePassword(password, context)
+                        PreferenceUtils.saveToken(response.body()!!.access_token.toString(), context)
+                        newUser.id?.let { PreferenceUtils.saveId(it, context) }
                     } else
                         view.failed("Invalid Credential")
                 }

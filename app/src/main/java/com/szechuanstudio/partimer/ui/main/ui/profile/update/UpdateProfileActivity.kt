@@ -44,8 +44,10 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         edit_update_birthday.setText(profile?.tanggal_lahir)
         edit_update_birthday.hint = profile?.tanggal_lahir
         edit_update_address.setText(profile?.alamat)
-        edit_update_height.setText(profile?.tinggi_badan.toString())
-        edit_update_weight.setText(profile?.berat_badan.toString())
+        if (profile?.tinggi_badan != null)
+            edit_update_height.setText(profile.tinggi_badan.toString())
+        if (profile?.berat_badan != null)
+            edit_update_weight.setText(profile.berat_badan.toString())
         edit_update_social_media.setText(profile?.social_media)
         edit_update_phone_number.setText(profile?.nomor_telepon)
         setGender(profile)
@@ -64,14 +66,14 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
         edit_update_birthday.setOnClickListener {
             val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
+            val years = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
-            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 // Display Selected date in Toast
                 edit_update_birthday.setText("""$year-${monthOfYear + 1}-$dayOfMonth""")
-            }, year, month, day)
+            }, years, month, day)
             dpd.show()
         }
 

@@ -8,7 +8,10 @@ import com.szechuanstudio.partimer.R
 import com.szechuanstudio.partimer.data.model.Model
 import com.szechuanstudio.partimer.data.retrofit.RetrofitClient
 import com.szechuanstudio.partimer.ui.login.afterTextChanged
+import com.szechuanstudio.partimer.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_register.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.toast
 
 class RegisterActivity : AppCompatActivity(), RegisterView {
@@ -90,6 +93,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
     }
 
     override fun registered(user: Model.User?) {
+        startActivity(intentFor<MainActivity>().singleTop())
         finish()
     }
 

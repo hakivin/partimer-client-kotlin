@@ -34,8 +34,8 @@ class UpdatePositionActivity : AppCompatActivity(), UpdatePositionView {
         rv_update_position.adapter = userPositions?.let { UpdatePositionAdapter(applicationContext, allPositions, it) }
     }
 
-    override fun onNavigateUp(): Boolean {
+    override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
-        return super.onNavigateUp()
+        return super.onSupportNavigateUp()
     }
 }
