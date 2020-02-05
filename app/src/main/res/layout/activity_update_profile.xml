@@ -148,7 +148,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/update_weight"
             android:text="Weight"
             app:layout_constraintTop_toBottomOf="@id/edit_update_address"
             app:layout_constraintLeft_toLeftOf="@id/edit_update_weight"
