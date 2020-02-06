@@ -27,13 +27,15 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun showAllJobs(jobs: List<Model.Job>?) {
-        rv_home_job.layoutManager = LinearLayoutManager(context)
-        println(jobs!=null)
-        if (jobs != null)
-            rv_home_job.adapter = HomeAdapter(jobs)
+        if (isAdded) {
+            rv_home_job.layoutManager = LinearLayoutManager(context)
+            if (jobs != null)
+                rv_home_job.adapter = HomeAdapter(jobs)
+        }
     }
 
     override fun reject(message: String?) {
-        message?.let { toast(it) }
+        if (isAdded)
+            message?.let { toast(it) }
     }
 }

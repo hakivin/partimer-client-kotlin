@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorPrimary">#18DCFF</color>
-    <color name="colorPrimaryDark">#17c0eb</color>
-    <color name="colorAccent">#18DCFF</color>
-    <color name="blue_link">#18DCFF</color>
+    <color name="colorPrimary">#00E5FF</color>
+    <color name="colorPrimaryDark">#00B8D4</color>
+    <color name="colorAccent">#00E5FF</color>
+    <color name="blue_link">#00E5FF</color>
 
 <!--for ucrop    -->
     <color name="ucrop_color_toolbar" tools:override="true">@color/colorPrimary</color>
@@ -11,7 +11,4 @@
     <color name="ucrop_color_widget_active" tools:override="true">@color/blue_link</color>
 
 <!-- for progress bar-->
-    <color name="color_preloader_start">#000000</color>
-    <color name="color_preloader_center">#000000</color>
-    <color name="color_preloader_end">#ff56a9c7</color>
 </resources>

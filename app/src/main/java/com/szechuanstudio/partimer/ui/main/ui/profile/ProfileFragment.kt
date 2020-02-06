@@ -95,7 +95,7 @@ class ProfileFragment : Fragment(), ProfileView {
     }
 
     override fun showProfile(profile: Model.Profile?) {
-        if (profile_full_name != null) {
+        if (isAdded) {
             profile_full_name.text = profile?.nama_lengkap
             profile_birthday.text = convertDate(profile?.tanggal_lahir)
             profile_gender.text = setGender(profile?.jenis_kelamin)
@@ -141,7 +141,8 @@ class ProfileFragment : Fragment(), ProfileView {
     }
 
     override fun reject(message: String?) {
-        message?.let { toast(it) }
+        if (isAdded)
+            message?.let { toast(it) }
     }
 
     override fun logoutSuccess() {
@@ -151,7 +152,8 @@ class ProfileFragment : Fragment(), ProfileView {
     }
 
     override fun logoutFailed() {
-        toast("Logout Failed")
+        if (isAdded)
+            toast("Logout Failed")
     }
 
     override fun showPositions(positions: Model.PositionsResponse?) {

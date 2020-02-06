@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
+        android:paddingBottom="8dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -35,7 +35,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/img_cover_job"
             app:layout_constraintLeft_toLeftOf="@+id/img_cover_job"
             app:layout_constraintRight_toRightOf="@+id/img_cover_job"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             tools:text="Hotel Cendana"/>
@@ -58,9 +59,7 @@
             app:layout_constraintLeft_toLeftOf="@id/tv_hotel_name_job"
             app:layout_constraintRight_toRightOf="@id/tv_hotel_name_job"
             android:textSize="18sp"
-            android:layout_marginTop="8dp"
             android:textColor="@android:color/black"
-            android:layout_marginBottom="4dp"
             tools:text="Security"/>
 
         <TextView

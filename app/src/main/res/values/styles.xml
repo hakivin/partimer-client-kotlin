@@ -21,7 +21,16 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.White">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimaryDark">#ffffff</item>
+    </style>
+
+    <style name="ToolbarWhite" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">#fff</item>
     </style>
 
 </resources>
