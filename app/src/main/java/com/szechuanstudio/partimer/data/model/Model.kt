@@ -42,5 +42,40 @@ object Model {
 
     data class Position(val id: Int?, val nama_posisi: String?)
 
+    data class JobsResponse(val jobs: List<Job>)
 
+    data class Job(val id: Int?,
+                   val hotel_id: Int?,
+                   val posisi_id: Int?,
+                   val area: String?,
+                   val tanggal_mulai: String?,
+                   val waktu_mulai: String?,
+                   val waktu_selesai: String?,
+                   val tinggi_minimal: Int?,
+                   val tinggi_maksimal: Int?,
+                   val berat_minimal: Int?,
+                   val berat_maksimal: Int?,
+                   val kuota: Int?,
+                   val bayaran: Int?,
+                   val deskripsi: String?,
+                   val url_slug: String?,
+                   val created_at: String?,
+                   val updated_at: String?,
+                   val dikerjakan_count: Int?,
+                   val hotel: Hotel?,
+                   val posisi: Position?)
+
+    data class Hotel(val id: Int?,
+                     val profile: HotelProfile?)
+
+    data class HotelProfile(val id: Int?,
+                            val hotel_id: Int?,
+                            val nama: String?,
+                            val alamat: String?,
+                            val email: String?,
+                            val nomor_telepon: String?,
+                            val social_media: String?,
+                            val foto: String?,
+                            val website: String?,
+                            val url_slug: String?)
 }

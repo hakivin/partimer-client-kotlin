@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
+    android:layout_marginBottom="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:src="@drawable/placeholder_cover"
+            android:id="@+id/img_cover_job"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_hotel_name_job"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/img_cover_job"
+            app:layout_constraintLeft_toLeftOf="@+id/img_cover_job"
+            app:layout_constraintRight_toRightOf="@+id/img_cover_job"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            tools:text="Hotel Cendana"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_date_job"
+            app:layout_constraintTop_toBottomOf="@id/img_cover_job"
+            app:layout_constraintLeft_toLeftOf="@id/tv_hotel_name_job"
+            app:layout_constraintRight_toRightOf="@id/tv_hotel_name_job"
+            android:layout_marginTop="8dp"
+            tools:text="7 January 2020"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_position_job"
+            app:layout_constraintTop_toBottomOf="@id/tv_date_job"
+            app:layout_constraintLeft_toLeftOf="@id/tv_hotel_name_job"
+            app:layout_constraintRight_toRightOf="@id/tv_hotel_name_job"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="4dp"
+            tools:text="Security"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/img_cover_job"
+            app:layout_constraintRight_toRightOf="@id/tv_hotel_name_job"
+            android:layout_marginTop="8dp"
+            android:id="@+id/tv_quota_job"
+            tools:text="30 out of 50\navailable"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

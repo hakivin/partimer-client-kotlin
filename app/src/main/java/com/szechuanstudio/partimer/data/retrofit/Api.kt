@@ -50,6 +50,18 @@ interface Api {
 
     @POST("profile/positions/update")
     fun selectPosition(@Query("id") id: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
+
+    @GET("jobs")
+    fun getAllJobs() : Call<Model.JobsResponse>
+
+    @GET("jobs/{query}")
+    fun getJobs(@Path("query") query: String?) : Call<Model.JobsResponse>
+
+    @GET("jobs/position/{id}")
+    fun getJobsWithPosition(@Path("id") idPosition: Int?) : Call<Model.JobsResponse>
+
+    @POST("jobs/{job}/apply")
+    fun applyJob(@Path("job") idJob: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 }
 
 class RetrofitClient {
