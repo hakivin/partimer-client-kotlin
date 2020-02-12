@@ -17,6 +17,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:label=""
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.main.ui.profile.update.UpdateProfileActivity" />
         <activity android:name=".ui.register.RegisterActivity"

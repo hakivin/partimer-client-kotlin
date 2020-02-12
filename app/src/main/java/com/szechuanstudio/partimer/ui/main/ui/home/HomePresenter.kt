@@ -30,4 +30,48 @@ class HomePresenter(private val view: HomeView,
 
             })
     }
+
+    fun searchJob(query: String?){
+        api.searchJobs(query)
+            .enqueue(object : Callback<Model.JobsResponse>{
+                override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
+                    view.reject(t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<Model.JobsResponse>,
+                    response: Response<Model.JobsResponse>
+                ) {
+                    if (!response.isSuccessful) {
+                        view.reject("Error code = ${response.code()}")
+                        return
+                    }
+                    view.showAllJobs(response.body()?.jobs)
+                }
+            })
+    }
+
+    fun setEmptyJob(){
+        val emptyJob = emptyList<Model.Job>()
+        view.showAllJobs(emptyJob)
+    }
+
+    fun getPositions(){
+        api.getPositions()
+            .enqueue(object : Callback<Model.PositionsResponse>{
+                override fun onFailure(call: Call<Model.PositionsResponse>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<Model.PositionsResponse>,
+                    response: Response<Model.PositionsResponse>
+                ) {
+                    if (response.isSuccessful){
+                        view.showPositions(response.body()?.positions)
+                    }
+                }
+
+            })
+    }
 }

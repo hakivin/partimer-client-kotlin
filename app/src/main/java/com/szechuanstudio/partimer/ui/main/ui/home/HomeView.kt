@@ -5,4 +5,5 @@ import com.szechuanstudio.partimer.data.model.Model
 interface HomeView {
     fun showAllJobs(jobs: List<Model.Job>?)
     fun reject(message: String?)
+    fun showPositions(positions: List<Model.Position>?)
 }

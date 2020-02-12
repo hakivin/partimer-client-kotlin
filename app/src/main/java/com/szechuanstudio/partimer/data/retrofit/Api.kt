@@ -55,7 +55,7 @@ interface Api {
     fun getAllJobs() : Call<Model.JobsResponse>
 
     @GET("jobs/{query}")
-    fun getJobs(@Path("query") query: String?) : Call<Model.JobsResponse>
+    fun searchJobs(@Path("query") query: String?) : Call<Model.JobsResponse>
 
     @GET("jobs/position/{id}")
     fun getJobsWithPosition(@Path("id") idPosition: Int?) : Call<Model.JobsResponse>

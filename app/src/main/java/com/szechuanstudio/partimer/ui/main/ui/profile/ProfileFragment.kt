@@ -1,6 +1,5 @@
 package com.szechuanstudio.partimer.ui.main.ui.profile
 
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -15,14 +14,13 @@ import com.szechuanstudio.partimer.ui.main.ui.profile.positions.UpdatePositionAc
 import com.szechuanstudio.partimer.ui.main.ui.profile.update.UpdateProfileActivity
 import com.szechuanstudio.partimer.utils.Constant
 import com.szechuanstudio.partimer.utils.PreferenceUtils
+import com.szechuanstudio.partimer.utils.Utils
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class ProfileFragment : Fragment(), ProfileView {
 
@@ -79,16 +77,6 @@ class ProfileFragment : Fragment(), ProfileView {
         }
     }
 
-    private fun convertDate(string: String?) : String? {
-        val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !string.isNullOrEmpty()) {
-            LocalDate.parse(string, DateTimeFormatter.ISO_DATE)
-        } else {
-            return string
-        }
-
-        return "${date.dayOfMonth} ${date.month.name.toLowerCase().capitalize()} ${date.year}"
-    }
-
     override fun onResume() {
         super.onResume()
         presenter.checkProfile()
@@ -97,7 +85,7 @@ class ProfileFragment : Fragment(), ProfileView {
     override fun showProfile(profile: Model.Profile?) {
         if (isAdded) {
             profile_full_name.text = profile?.nama_lengkap
-            profile_birthday.text = convertDate(profile?.tanggal_lahir)
+            profile_birthday.text = Utils.convertDate(profile?.tanggal_lahir)
             profile_gender.text = setGender(profile?.jenis_kelamin)
             profile_height_weight.text = setHeightWeight(profile?.tinggi_badan, profile?.berat_badan)
             profile_education.text = setEducation(profile?.pendidikan_terakhir)
