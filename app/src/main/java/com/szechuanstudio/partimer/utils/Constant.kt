@@ -9,6 +9,7 @@ object Constant {
 
     //for intent
     const val KEY_PROFILE = "profile key"
+    const val KEY_IMAGE_JOB = "image job"
 
     //for request code
     const val PHOTO_REQUEST_CODE = 100

@@ -33,6 +33,7 @@
             app:layout_constraintTop_toTopOf="@id/update_cover"
             android:layout_margin="@dimen/activity_vertical_margin"
             app:backgroundTint="@android:color/darker_gray"
+            app:tint="@android:color/white"
             android:src="@drawable/ic_camera_alt_black_24dp"
             app:fabSize="mini"
             android:alpha="0.65"/>
@@ -55,6 +56,7 @@
             app:layout_constraintRight_toRightOf="@id/update_photo"
             app:layout_constraintBottom_toBottomOf="@id/update_photo"
             app:backgroundTint="@color/colorPrimary"
+            app:tint="@android:color/white"
             android:src="@drawable/ic_camera_alt_black_24dp"
             app:fabSize="mini"/>
 

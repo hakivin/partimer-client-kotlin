@@ -40,10 +40,12 @@ object Model {
 
     data class PositionsResponse(val positions: List<Position>)
 
-    data class Position(val id: Int?, val nama_posisi: String?)
+    @Parcelize
+    data class Position(val id: Int?, val nama_posisi: String?) : Parcelable
 
     data class JobsResponse(val jobs: List<Job>)
 
+    @Parcelize
     data class Job(val id: Int?,
                    val hotel_id: Int?,
                    val posisi_id: Int?,
@@ -63,11 +65,13 @@ object Model {
                    val updated_at: String?,
                    val dikerjakan_count: Int?,
                    val hotel: Hotel?,
-                   val posisi: Position?)
+                   val posisi: Position?) : Parcelable
 
+    @Parcelize
     data class Hotel(val id: Int?,
-                     val profile: HotelProfile?)
+                     val profile: HotelProfile?) : Parcelable
 
+    @Parcelize
     data class HotelProfile(val id: Int?,
                             val hotel_id: Int?,
                             val nama: String?,
@@ -77,5 +81,5 @@ object Model {
                             val social_media: String?,
                             val foto: String?,
                             val website: String?,
-                            val url_slug: String?)
+                            val url_slug: String?) : Parcelable
 }

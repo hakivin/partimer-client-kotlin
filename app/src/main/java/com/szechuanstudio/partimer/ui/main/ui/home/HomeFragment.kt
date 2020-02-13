@@ -74,7 +74,7 @@ class HomeFragment : Fragment(), HomeView {
         if (isAdded) {
             rv_home_job.layoutManager = LinearLayoutManager(context)
             if (jobs != null)
-                rv_home_job.adapter = HomeAdapter(jobs)
+                rv_home_job.adapter = HomeAdapter(jobs, act)
         }
     }
 
