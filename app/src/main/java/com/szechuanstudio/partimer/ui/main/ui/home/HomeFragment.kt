@@ -86,15 +86,24 @@ class HomeFragment : Fragment(), HomeView {
     override fun showPositions(positions: List<Model.Position>?) {
         if (positions != null) {
             for (pos in positions){
-                addChipView(pos.nama_posisi)
+                addChipView(pos)
             }
         }
     }
 
-    private fun addChipView(text : String?){
-        val chipGroup = act.findViewById<ChipGroup>(R.id.filter_chip_group)
-        val chip = layoutInflater.inflate(R.layout.filter_job_chip_item, chipGroup, false) as Chip
-        chip.text = text
-        filter_chip_group.addView(chip)
+    private fun addChipView(pos : Model.Position?){
+        if (isAdded) {
+            val chipGroup = act.findViewById<ChipGroup>(R.id.filter_chip_group)
+            val chip =
+                layoutInflater.inflate(R.layout.filter_job_chip_item, chipGroup, false) as Chip
+            chip.text = pos?.nama_posisi
+            chip.setOnClickListener {
+                if (chip.isChecked)
+                    presenter.searchJobWithPosition(pos?.id)
+                else
+                    presenter.getJobs()
+            }
+            filter_chip_group.addView(chip)
+        }
     }
 }

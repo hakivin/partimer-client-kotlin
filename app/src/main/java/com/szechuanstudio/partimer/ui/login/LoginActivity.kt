@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.szechuanstudio.partimer.R
@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<Button>(R.id.login)
+        val login = findViewById<AppCompatButton>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
         register_intent.setOnTouchListener { _, _ -> startActivity(intentFor<RegisterActivity>().singleTop())
             true
@@ -83,6 +83,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 presenter.login(username.text.toString(), password.text.toString())
+                login.isEnabled = false
             }
         }
     }
@@ -116,6 +117,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             toast(message)
         }
         loading.visibility = View.GONE
+        login.isEnabled = true
     }
 
     override fun onResume() {

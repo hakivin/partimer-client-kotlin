@@ -69,13 +69,14 @@
         android:theme="@style/TextLabel"
         app:layout_constraintTop_toBottomOf="@id/line_login_1"
         android:id="@+id/til_username">
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
+            android:background="@android:color/transparent"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/til_username"
         android:theme="@style/TextLabel"
         android:id="@+id/til_password">
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,10 +100,11 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:selectAllOnFocus="true"
+            android:background="@android:color/transparent"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
@@ -120,6 +122,7 @@
         android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/til_password"
         app:layout_constraintVertical_bias="0.2"
+        android:elevation="4dp"
         android:textColor="@android:color/white"/>
 
     <LinearLayout

@@ -20,6 +20,9 @@ class HomeAdapter(private val jobs : List<Model.Job>) : RecyclerView.Adapter<Hom
             itemView.tv_hotel_name_job.text = job.hotel?.profile?.nama
             itemView.tv_quota_job.text = "${job.kuota!! - job.dikerjakan_count!!} left"
             itemView.tv_position_job.text = job.posisi?.nama_posisi
+            itemView.setOnClickListener {
+
+            }
         }
     }
 

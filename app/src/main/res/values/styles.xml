@@ -14,7 +14,7 @@
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorAccent">@android:color/black</item>
         <item name="colorControlNormal">#c5c5c5</item>
-        <item name="colorControlActivated">@android:color/black</item>
+<!--        <item name="colorControlActivated">@android:color/black</item>-->
         <item name="colorControlHighlight">@android:color/black</item>
     </style>
 
