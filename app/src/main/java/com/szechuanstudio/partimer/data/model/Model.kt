@@ -35,6 +35,7 @@ object Model {
                        var pendidikan_terakhir: String?,
                        var foto: String?,
                        var cover: String?,
+                       var isCompleted: Boolean?,
                        var created_at: String?,
                        var updated_at: String?) : Parcelable
 

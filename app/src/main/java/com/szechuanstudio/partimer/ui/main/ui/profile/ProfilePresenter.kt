@@ -35,7 +35,7 @@ class ProfilePresenter(private val view: ProfileView,
             })
     }
 
-    fun getPositions(){
+    private fun getPositions(){
         api.getUserPositions(PreferenceUtils.getId(context))
             .enqueue(object : Callback<Model.PositionsResponse>{
                 override fun onFailure(call: Call<Model.PositionsResponse>, t: Throwable) {

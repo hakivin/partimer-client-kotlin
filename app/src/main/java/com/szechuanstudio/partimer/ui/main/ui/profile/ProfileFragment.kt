@@ -84,34 +84,43 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun showProfile(profile: Model.Profile?) {
         if (isAdded) {
-            profile_full_name.text = profile?.nama_lengkap
-            profile_birthday.text = Utils.convertDate(profile?.tanggal_lahir)
-            profile_gender.text = setGender(profile?.jenis_kelamin)
-            profile_height_weight.text = setHeightWeight(profile?.tinggi_badan, profile?.berat_badan)
-            profile_education.text = setEducation(profile?.pendidikan_terakhir)
-            profile_phone.text = profile?.nomor_telepon
-            profile_email.text = profile?.email
-            profile_address.text = profile?.alamat
-            profile_social_media.text = profile?.social_media
-            Picasso.with(activity?.applicationContext)
-                .load(BuildConfig.BASE_URL + profile?.foto)
-                .placeholder(R.drawable.placeholder_avatar)
-                .noFade()
-                .into(profile_photo)
+            if (profile != null) {
+                if (!profile.isCompleted!!){
+                    startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
+                    toast("Please complete your profile")
+                    act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
+                } else {
+                    profile_full_name.text = profile.nama_lengkap
+                    profile_birthday.text = Utils.convertDate(profile.tanggal_lahir)
+                    profile_gender.text = setGender(profile.jenis_kelamin)
+                    profile_height_weight.text =
+                        setHeightWeight(profile.tinggi_badan, profile.berat_badan)
+                    profile_education.text = setEducation(profile.pendidikan_terakhir)
+                    profile_phone.text = profile.nomor_telepon
+                    profile_email.text = profile.email
+                    profile_address.text = profile.alamat
+                    profile_social_media.text = profile.social_media
+                    Picasso.with(act.applicationContext)
+                        .load(BuildConfig.BASE_URL + profile.foto)
+                        .placeholder(R.drawable.placeholder_avatar)
+                        .noFade()
+                        .into(profile_photo)
 
-            Picasso.with(activity?.applicationContext)
-                .load(BuildConfig.BASE_URL + profile?.cover)
-                .placeholder(R.drawable.placeholder_cover)
-                .into(profile_cover)
+                    Picasso.with(act.applicationContext)
+                        .load(BuildConfig.BASE_URL + profile.cover)
+                        .placeholder(R.drawable.placeholder_cover)
+                        .into(profile_cover)
 
-            btn_edit_profile.setOnClickListener {
-                startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
-                act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
-            }
+                    btn_edit_profile.setOnClickListener {
+                        startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
+                        act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
+                    }
 
-            btn_edit_position.setOnClickListener {
-                startActivity(intentFor<UpdatePositionActivity>(Constant.KEY_PROFILE to profile).singleTop())
-                act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
+                    btn_edit_position.setOnClickListener {
+                        startActivity(intentFor<UpdatePositionActivity>(Constant.KEY_PROFILE to profile).singleTop())
+                        act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
+                    }
+                }
             }
         }
     }
@@ -145,7 +154,7 @@ class ProfileFragment : Fragment(), ProfileView {
     }
 
     override fun showPositions(positions: Model.PositionsResponse?) {
-        if (rv_positions != null){
+        if (isAdded){
             rv_positions.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
             rv_positions.adapter = positions?.positions?.let { PositionAdapter(it) }
         }
