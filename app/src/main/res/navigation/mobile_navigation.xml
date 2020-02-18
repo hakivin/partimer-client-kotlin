@@ -7,19 +7,19 @@
 
     <keep_state_fragment
         android:id="@+id/navigation_home"
-        android:name="com.szechuanstudio.partimer.ui.main.ui.home.HomeFragment"
+        android:name="com.szechuanstudio.kolegahotel.ui.main.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <keep_state_fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.szechuanstudio.partimer.ui.main.ui.dashboard.DashboardFragment"
+        android:name="com.szechuanstudio.kolegahotel.ui.main.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <keep_state_fragment
         android:id="@+id/navigation_profile"
-        android:name="com.szechuanstudio.partimer.ui.main.ui.profile.ProfileFragment"
+        android:name="com.szechuanstudio.kolegahotel.ui.main.ui.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile"/>
 </navigation>
