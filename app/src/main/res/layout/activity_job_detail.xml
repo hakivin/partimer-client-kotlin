@@ -42,13 +42,19 @@
 
     <include layout="@layout/content_job_detail" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        android:text="Apply Job"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:textAllCaps="false"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        app:cornerRadius="8dp"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:layout_gravity="bottom"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

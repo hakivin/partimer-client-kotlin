@@ -65,6 +65,7 @@ object Model {
                    val created_at: String?,
                    val updated_at: String?,
                    val dikerjakan_count: Int?,
+                   val isApplied: Boolean?,
                    val hotel: Hotel?,
                    val posisi: Position?) : Parcelable
 

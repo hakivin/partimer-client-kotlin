@@ -8,10 +8,94 @@
     tools:context="com.szechuanstudio.kolegahotel.ui.job.JobDetailActivity"
     tools:showIn="@layout/activity_job_detail">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_middle"
-        android:text="@string/large_text" />
+        android:paddingBottom="36dp"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:textSize="22sp"
+            android:textColor="@color/grey_800"
+            android:gravity="center"
+            android:text="Pool Maintenance"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2 left"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_height="1dp"
+            android:background="@color/grey_600"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="Area"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kolam Renang"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="Date"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="March 13th, 2020"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="Time"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="08:00 until 10:100"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="Wage"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="150000"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="Description"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/large_text"/>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
