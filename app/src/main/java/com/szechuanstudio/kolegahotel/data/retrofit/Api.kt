@@ -51,14 +51,14 @@ interface Api {
     @POST("profile/positions/update")
     fun selectPosition(@Query("id") id: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 
-    @GET("jobs")
-    fun getAllJobs() : Call<Model.JobsResponse>
+    @GET("auth/jobs")
+    fun getAllJobs(@Header("Authorization") token : String?) : Call<Model.JobsResponse>
 
-    @GET("jobs/{query}")
-    fun searchJobs(@Path("query") query: String?) : Call<Model.JobsResponse>
+    @GET("auth/jobs/{query}")
+    fun searchJobs(@Path("query") query: String?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
 
-    @GET("jobs/position/{id}")
-    fun getJobsWithPosition(@Path("id") idPosition: Int?) : Call<Model.JobsResponse>
+    @GET("auth/jobs/position/{id}")
+    fun getJobsWithPosition(@Path("id") idPosition: Int?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
 
     @POST("jobs/{job}/apply")
     fun applyJob(@Path("job") idJob: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
