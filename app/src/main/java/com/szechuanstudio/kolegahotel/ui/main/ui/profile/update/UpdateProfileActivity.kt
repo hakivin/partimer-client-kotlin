@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.R
@@ -83,7 +84,7 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
                     .compress(1260)
                     .maxResultSize(1080,1080)
                     .start(Constant.PHOTO_REQUEST_CODE)
-
+                photoState = false
             } else {
                 EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
                     991,android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -96,7 +97,7 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
                     .compress(4048)
                     .maxResultSize(1080,2860)
                     .start(Constant.COVER_REQUEST_CODE)
-
+                coverState = false
             } else {
                 EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
                     991,android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -144,7 +145,6 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
     }
 
     override fun success() {
-        toast("success")
         finish()
     }
 
@@ -152,12 +152,17 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         toast("failed")
     }
 
+    private var photoState = true
+    private var coverState = true
+
     override fun getPhoto(profile: Model.Profile) {
         this.profile.foto = profile.foto
+        photoState = true
     }
 
     override fun getCover(profile: Model.Profile) {
         this.profile.cover = profile.cover
+        coverState = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -167,14 +172,20 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.update_save){
-            val newProfile = constructModel(profile)
-            newProfile?.let { presenter.updateProfile(it) }
+            if (coverState && photoState) {
+                val newProfile = constructModel(profile)
+                newProfile?.let { presenter.updateProfile(it) }
+            } else
+                toast("Please Wait")
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        if (coverState && photoState)
+            onBackPressed()
+        else
+            toast("Please Wait")
         return super.onSupportNavigateUp()
     }
 

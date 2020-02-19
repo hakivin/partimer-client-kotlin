@@ -31,7 +31,7 @@ class UpdateProfilePresenter(private val view: UpdateProfileView,
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    println(response.body().toString())
+                    println(response.body())
                     view.success()
                 }
             })
@@ -56,6 +56,7 @@ class UpdateProfilePresenter(private val view: UpdateProfileView,
                     ) {
                         val profile = response.body()
                         if (profile != null) {
+                            println(profile.foto)
                             view.getPhoto(profile)
                         }
                     }
@@ -81,6 +82,7 @@ class UpdateProfilePresenter(private val view: UpdateProfileView,
                 ) {
                     val profile = response.body()
                     if (profile != null) {
+                        println(profile.cover)
                         view.getCover(profile)
                     }
                 }

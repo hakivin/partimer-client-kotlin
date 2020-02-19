@@ -1,6 +1,7 @@
 package com.szechuanstudio.kolegahotel.ui.main.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -79,6 +80,7 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun onResume() {
         super.onResume()
+        Log.d(this.tag, "onResume: Called")
         presenter.checkProfile()
     }
 
