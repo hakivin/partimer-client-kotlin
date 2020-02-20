@@ -78,6 +78,11 @@ class HomeFragment : Fragment(), HomeView {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.getJobs()
+    }
+
     override fun reject(message: String?) {
         if (isAdded)
             message?.let { toast(it) }

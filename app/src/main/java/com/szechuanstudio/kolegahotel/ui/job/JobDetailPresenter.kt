@@ -16,7 +16,7 @@ class JobDetailPresenter(private val view: JobDetailView,
         api.applyJob(idJob, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<ResponseBody>{
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    view.reject(t.message)
+                    view.error(t.message)
                 }
 
                 override fun onResponse(
@@ -26,7 +26,7 @@ class JobDetailPresenter(private val view: JobDetailView,
                     if (response.isSuccessful)
                         view.success()
                     else
-                        view.reject(response.code().toString())
+                        view.reject()
                 }
             })
     }

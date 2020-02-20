@@ -44,6 +44,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:text="Apply Job"
+        android:id="@+id/apply_button"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"

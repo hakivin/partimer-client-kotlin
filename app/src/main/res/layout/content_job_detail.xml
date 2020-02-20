@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_middle"
@@ -26,6 +27,7 @@
             android:text="Pool Maintenance"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -45,6 +47,7 @@
             android:text="Area"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kolam Renang"/>
@@ -57,6 +60,7 @@
             android:text="Date"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="March 13th, 2020"/>
@@ -69,6 +73,7 @@
             android:text="Time"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="08:00 until 10:100"/>
@@ -81,6 +86,7 @@
             android:text="Wage"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_wage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="150000"/>
@@ -90,9 +96,36 @@
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
             android:layout_marginTop="@dimen/spacing_medium"
+            android:text="Height"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="150 cm - 190 cm"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="Weight"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="50 kg - 100 kg"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_medium"
             android:text="Description"/>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/large_text"/>
