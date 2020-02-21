@@ -156,6 +156,7 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
             else
                 toast("Job Successfully Applied")
         }
+        setResult(Constant.APPLY_REQUEST_CODE)
         onBackPressed()
         apply_button.isEnabled = true
     }

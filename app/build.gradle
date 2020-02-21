@@ -91,4 +91,7 @@ dependencies {
 
     //ucrop
     implementation 'com.github.yalantis:ucrop:2.2.4'
+
+    //shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 }

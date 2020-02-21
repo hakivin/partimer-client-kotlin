@@ -1,13 +1,12 @@
 package com.szechuanstudio.kolegahotel.ui.main.ui.home
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
@@ -18,26 +17,26 @@ import com.szechuanstudio.kolegahotel.utils.Constant
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.job_item.view.*
 
-class HomeAdapter(private val jobs : List<Model.Job>, private val act: Activity) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(private val jobs : List<Model.Job>, private val act: Fragment) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(job : Model.Job, act: Activity){
+        fun bind(job : Model.Job, act: Fragment){
             Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + job.hotel?.profile?.foto).into(itemView.img_cover_job)
             itemView.tv_date_job.text = Utils.convertDate(job.tanggal_mulai)
             itemView.tv_hotel_name_job.text = job.hotel?.profile?.nama
-            itemView.tv_quota_job.text = Utils.getQuotaRemaining(job.kuota, job.dikerjakan_count, act)
+            itemView.tv_quota_job.text = Utils.getQuotaRemaining(job.kuota, job.dikerjakan_count, act.context!!)
             itemView.tv_position_job.text = job.posisi?.nama_posisi
             itemView.setOnClickListener {
                 val intent =
-                    Intent(act, JobDetailActivity::class.java)
+                    Intent(act.context, JobDetailActivity::class.java)
                 intent.putExtra(Constant.KEY_IMAGE_JOB, job)
                 val options =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        act,
+                        act.requireActivity(),
                         itemView.img_cover_job,
                         ViewCompat.getTransitionName(itemView.img_cover_job)!!
                     )
-                startActivity(act, intent, options.toBundle())
+                act.startActivityForResult(intent, Constant.APPLY_REQUEST_CODE, options.toBundle())
             }
         }
     }

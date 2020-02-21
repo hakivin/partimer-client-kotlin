@@ -2,6 +2,7 @@ package com.szechuanstudio.kolegahotel.ui.main.ui.home
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -12,6 +13,7 @@ import com.google.android.material.chip.ChipGroup
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
+import com.szechuanstudio.kolegahotel.utils.Constant
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.toast
@@ -24,7 +26,7 @@ class HomeFragment : Fragment(), HomeView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        presenter = HomePresenter(this, RetrofitClient.getInstance(), act.applicationContext)
+        presenter = HomePresenter(this, RetrofitClient.getInstance(), context!!)
         presenter.getJobs()
         presenter.getPositions()
         return inflater.inflate(R.layout.fragment_home, container, false)
@@ -33,6 +35,11 @@ class HomeFragment : Fragment(), HomeView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loading_home.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -48,6 +55,7 @@ class HomeFragment : Fragment(), HomeView {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     presenter.searchJob(query)
                     searchView.clearFocus()
+                    loading_home.visibility = View.VISIBLE
                     return true
                 }
 
@@ -64,6 +72,7 @@ class HomeFragment : Fragment(), HomeView {
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
                 presenter.getJobs()
+                loading_home.visibility = View.VISIBLE
                 return true
             }
 
@@ -74,18 +83,25 @@ class HomeFragment : Fragment(), HomeView {
         if (isAdded) {
             rv_home_job.layoutManager = LinearLayoutManager(context)
             if (jobs != null)
-                rv_home_job.adapter = HomeAdapter(jobs, act)
+                rv_home_job.adapter = HomeAdapter(jobs, this)
+            loading_home.visibility = View.GONE
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.getJobs()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println(resultCode)
+        if (resultCode == Constant.APPLY_REQUEST_CODE){
+            loading_home.visibility = View.VISIBLE
+            presenter.getJobs()
+        }
     }
 
     override fun reject(message: String?) {
-        if (isAdded)
+        if (isAdded) {
             message?.let { toast(it) }
+            loading_home.visibility = View.GONE
+        }
     }
 
     override fun showPositions(positions: List<Model.Position>?) {

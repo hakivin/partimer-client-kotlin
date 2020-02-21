@@ -86,6 +86,7 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun showProfile(profile: Model.Profile?) {
         if (isAdded) {
+            shimmer_android.hideShimmer()
             if (profile != null) {
                 profile_full_name.text = profile.nama_lengkap
                 profile_birthday.text = Utils.convertDate(profile.tanggal_lahir)
@@ -134,8 +135,10 @@ class ProfileFragment : Fragment(), ProfileView {
     }
 
     override fun reject(message: String?) {
-        if (isAdded)
+        if (isAdded) {
             message?.let { toast(it) }
+            shimmer_android.hideShimmer()
+        }
     }
 
     override fun logoutSuccess() {

@@ -14,4 +14,5 @@ object Constant {
     //for request code
     const val PHOTO_REQUEST_CODE = 100
     const val COVER_REQUEST_CODE = 200
+    const val APPLY_REQUEST_CODE = 300
 }

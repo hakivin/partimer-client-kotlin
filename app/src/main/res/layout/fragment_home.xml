@@ -7,6 +7,13 @@
     android:background="@color/grey_5"
     android:orientation="vertical">
 
+    <ProgressBar
+        android:id="@+id/loading_home"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
