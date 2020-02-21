@@ -1,5 +1,6 @@
 package com.szechuanstudio.kolegahotel.ui.job
 
+import android.net.ParseException
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Callback
@@ -13,6 +14,9 @@ import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.activity_job_detail.*
 import kotlinx.android.synthetic.main.content_job_detail.*
 import org.jetbrains.anko.toast
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class JobDetailActivity : AppCompatActivity(), JobDetailView {
 
@@ -33,7 +37,7 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
 
         if (job?.isApplied!!) {
             apply_button.setBackgroundColor(resources.getColor(R.color.red_500))
-            apply_button.text = "Cancel Job"
+            apply_button.text = getString(R.string.cancel_job)
         }
 
         apply_button.setOnClickListener {
@@ -42,14 +46,75 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
         }
 
         job_position.text = job?.posisi?.nama_posisi
-        job_count.text = "${(job?.dikerjakan_count?.let { job?.kuota?.minus(it) }).toString()} left"
+        job_count.text = Utils.getQuotaRemaining(job?.kuota, job?.dikerjakan_count, this)
         job_area.text = job?.area
         job_date.text = Utils.convertDate(job?.tanggal_mulai)
-        job_time.text = "${job?.waktu_mulai} until ${job?.waktu_selesai}"
+        job_time.text = setTime(job?.tanggal_mulai, job?.waktu_mulai, job?.waktu_selesai)
         job_wage.text = job?.bayaran.toString()
-        job_height.text = "${job?.tinggi_minimal} - ${job?.tinggi_maksimal}"
-        job_weight.text = "${job?.berat_minimal} - ${job?.berat_maksimal}"
+        job_height.text = setHeight(job?.tinggi_minimal, job?.tinggi_maksimal)
+        job_weight.text = setWeight(job?.berat_minimal, job?.berat_maksimal)
         job_description.text = job?.deskripsi
+
+        job_address.text = job?.hotel?.profile?.alamat
+        job_email.text = job?.hotel?.profile?.email
+        job_phone.text = job?.hotel?.profile?.nomor_telepon
+        job_social_media.text = job?.hotel?.profile?.social_media
+        job_website.text = job?.hotel?.profile?.website
+    }
+
+    private fun setHeight(minHeight : Int?, maxHeight : Int?) : CharSequence?{
+        if (minHeight == null && maxHeight == null)
+            return "Not specified"
+
+        val min: CharSequence? = if (minHeight != null)
+            "$minHeight cm"
+        else
+            "Not specified"
+        val max: CharSequence? = if (maxHeight != null)
+            "$maxHeight cm"
+        else
+            "Not specified"
+        return "$min - $max"
+    }
+
+    private fun setWeight(minWeight : Int?, maxWeight : Int?) : CharSequence?{
+        if (minWeight == null && maxWeight == null)
+            return "Not specified"
+
+        val min: CharSequence? = if (minWeight != null)
+            "$minWeight cm"
+        else
+            "Not specified"
+        val max: CharSequence? = if (maxWeight != null)
+            "$maxWeight cm"
+        else
+            "Not specified"
+        return "$min - $max"
+    }
+
+    private fun setTime(workingDate : String?, startTime : String?, endTime : String?): CharSequence? {
+        val strtTime = "$workingDate $startTime"
+        val nTime = "$workingDate $endTime"
+        val st = StringTokenizer(strtTime)
+        val en = StringTokenizer(nTime)
+        st.nextToken()
+        en.nextToken()
+        val timeStart = st.nextToken()
+        val timeEnd = en.nextToken()
+
+        val sdf = SimpleDateFormat("hh:mm:ss", Locale.getDefault())
+        val sdfs = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        val dtStart: Date
+        val dtEnd: Date
+        try {
+            dtStart = sdf.parse(timeStart)!!
+            dtEnd = sdf.parse(timeEnd)!!
+
+            return "${sdfs.format(dtStart)} until ${sdfs.format(dtEnd)}" // <-- I got result here
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return null
     }
 
     private fun initToolbar() {

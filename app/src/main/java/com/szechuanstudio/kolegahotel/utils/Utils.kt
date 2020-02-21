@@ -1,6 +1,8 @@
 package com.szechuanstudio.kolegahotel.utils
 
+import android.content.Context
 import android.os.Build
+import com.szechuanstudio.kolegahotel.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -13,6 +15,10 @@ object Utils {
             return string
         }
 
-        return "${date.dayOfMonth} ${date.month.name.toLowerCase().capitalize()} ${date.year}"
+        return "${date.dayOfWeek.name.toLowerCase().capitalize()}, ${date.dayOfMonth} ${date.month.name.toLowerCase().capitalize()} ${date.year}"
+    }
+
+    fun getQuotaRemaining(quota : Int?, applied: Int?, context: Context): CharSequence? {
+        return "${applied?.let { quota?.minus(it) }} ${context.getString(R.string.left)}"
     }
 }

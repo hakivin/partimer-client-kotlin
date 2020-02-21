@@ -138,4 +138,14 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="transition_1">transition 1</string>
+    <string name="area">Area</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="wage">Wage</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="description">Description</string>
+
+    <string name="left">left</string>
+    <string name="cancel_job">Cancel Job</string>
 </resources>

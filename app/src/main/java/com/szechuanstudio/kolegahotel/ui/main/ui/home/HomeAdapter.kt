@@ -25,7 +25,7 @@ class HomeAdapter(private val jobs : List<Model.Job>, private val act: Activity)
             Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + job.hotel?.profile?.foto).into(itemView.img_cover_job)
             itemView.tv_date_job.text = Utils.convertDate(job.tanggal_mulai)
             itemView.tv_hotel_name_job.text = job.hotel?.profile?.nama
-            itemView.tv_quota_job.text = "${job.kuota!! - job.dikerjakan_count!!} left"
+            itemView.tv_quota_job.text = Utils.getQuotaRemaining(job.kuota, job.dikerjakan_count, act)
             itemView.tv_position_job.text = job.posisi?.nama_posisi
             itemView.setOnClickListener {
                 val intent =

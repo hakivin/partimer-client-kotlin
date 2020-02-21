@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="36dp"
+        android:paddingBottom="74dp"
         android:paddingLeft="@dimen/spacing_large"
         android:paddingRight="@dimen/spacing_large"
         android:orientation="vertical">
@@ -24,14 +24,14 @@
             android:textSize="22sp"
             android:textColor="@color/grey_800"
             android:gravity="center"
-            android:text="Pool Maintenance"/>
+            tools:text="Pool Maintenance"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="2 left"/>
+            tools:text="2 left"/>
 
         <View
             android:layout_width="match_parent"
@@ -44,91 +44,174 @@
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
             android:layout_marginTop="@dimen/spacing_large"
-            android:text="Area"/>
+            android:text="@string/area"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kolam Renang"/>
+            tools:text="Kolam Renang"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="Date"/>
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="@string/date"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="March 13th, 2020"/>
+            tools:text="March 13th, 2020"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="Time"/>
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="@string/time"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="08:00 until 10:100"/>
+            tools:text="08:00 until 10:100"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="Wage"/>
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="@string/wage"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_wage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="150000"/>
+            tools:text="150000"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="Height"/>
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="@string/height"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="150 cm - 190 cm"/>
+            tools:text="150 cm - 190 cm"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="Weight"/>
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="@string/weight"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="50 kg - 100 kg"/>
+            tools:text="50 kg - 100 kg"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:text="Description"/>
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="@string/description"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/job_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/large_text"/>
+            tools:text="@string/app_name"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:text="Contact"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/grey_500"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="Address"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="map"
+            tools:text="Jalan Raden Wijaya No 21 Cangakan Karanganyar Karanganyar Jawa Tengah Indonesia 57711"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="Email"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="email"
+            tools:text="hotel1@hotel.com"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="Phone"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="phone"
+            tools:text="+6271999333"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="Social Media"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_social_media"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            tools:text="instagram.com/hotel1"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_800"
+            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:text="Website"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            tools:text="www.hotel-cendana.com"/>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
