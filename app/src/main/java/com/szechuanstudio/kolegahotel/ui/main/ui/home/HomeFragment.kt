@@ -90,7 +90,6 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        println(resultCode)
         if (resultCode == Constant.APPLY_REQUEST_CODE){
             loading_home.visibility = View.VISIBLE
             presenter.getJobs()

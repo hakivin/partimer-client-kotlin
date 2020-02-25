@@ -4,9 +4,12 @@ import android.content.Context
 import com.szechuanstudio.kolegahotel.data.retrofit.Api
 import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
 import okhttp3.ResponseBody
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class JobDetailPresenter(private val view: JobDetailView,
                          private val api: Api,
@@ -25,8 +28,16 @@ class JobDetailPresenter(private val view: JobDetailView,
                 ) {
                     if (response.isSuccessful)
                         view.success()
-                    else
-                        view.reject()
+                    else {
+                        val jsonObject: JSONObject?
+                        try {
+                            jsonObject = JSONObject(response.errorBody()!!.string())
+                            val message = jsonObject.getString("message")
+                            view.reject(message)
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
+                        }
+                    }
                 }
             })
     }

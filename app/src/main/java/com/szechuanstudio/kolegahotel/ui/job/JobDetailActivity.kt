@@ -144,8 +144,8 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
         apply_button.isEnabled = true
     }
 
-    override fun reject() {
-        toast("You do not meet the requirement")
+    override fun reject(message: String?) {
+        message?.let { toast(it) }
         apply_button.isEnabled = true
     }
 
