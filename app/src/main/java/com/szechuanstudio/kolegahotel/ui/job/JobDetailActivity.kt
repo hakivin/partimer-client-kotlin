@@ -21,7 +21,7 @@ import java.util.*
 class JobDetailActivity : AppCompatActivity(), JobDetailView {
 
     private lateinit var presenter: JobDetailPresenter
-    private var job : Model.Job? = null
+    private var jobData : Model.JobData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,31 +35,31 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
     private fun initContent() {
         presenter = JobDetailPresenter(this, RetrofitClient.getInstance(), applicationContext)
 
-        if (job?.isApplied!!) {
+        if (jobData?.isApplied!!) {
             apply_button.setBackgroundColor(resources.getColor(R.color.red_500))
             apply_button.text = getString(R.string.cancel_job)
         }
 
         apply_button.setOnClickListener {
-            presenter.applyJob(job?.id)
+            presenter.applyJob(jobData?.id)
             it.isEnabled = false
         }
 
-        job_position.text = job?.posisi?.nama_posisi
-        job_count.text = Utils.getQuotaRemaining(job?.kuota, job?.dikerjakan_count, this)
-        job_area.text = job?.area
-        job_date.text = Utils.convertDate(job?.tanggal_mulai)
-        job_time.text = setTime(job?.tanggal_mulai, job?.waktu_mulai, job?.waktu_selesai)
-        job_wage.text = job?.bayaran.toString()
-        job_height.text = setHeight(job?.tinggi_minimal, job?.tinggi_maksimal)
-        job_weight.text = setWeight(job?.berat_minimal, job?.berat_maksimal)
-        job_description.text = job?.deskripsi
+        job_position.text = jobData?.posisi?.nama_posisi
+        job_count.text = Utils.getQuotaRemaining(jobData?.kuota, jobData?.dikerjakan_count, this)
+        job_area.text = jobData?.area
+        job_date.text = Utils.convertDate(jobData?.tanggal_mulai)
+        job_time.text = setTime(jobData?.tanggal_mulai, jobData?.waktu_mulai, jobData?.waktu_selesai)
+        job_wage.text = jobData?.bayaran.toString()
+        job_height.text = setHeight(jobData?.tinggi_minimal, jobData?.tinggi_maksimal)
+        job_weight.text = setWeight(jobData?.berat_minimal, jobData?.berat_maksimal)
+        job_description.text = jobData?.deskripsi
 
-        job_address.text = job?.hotel?.profile?.alamat
-        job_email.text = job?.hotel?.profile?.email
-        job_phone.text = job?.hotel?.profile?.nomor_telepon
-        job_social_media.text = job?.hotel?.profile?.social_media
-        job_website.text = job?.hotel?.profile?.website
+        job_address.text = jobData?.hotel?.profile?.alamat
+        job_email.text = jobData?.hotel?.profile?.email
+        job_phone.text = jobData?.hotel?.profile?.nomor_telepon
+        job_social_media.text = jobData?.hotel?.profile?.social_media
+        job_website.text = jobData?.hotel?.profile?.website
     }
 
     private fun setHeight(minHeight : Int?, maxHeight : Int?) : CharSequence?{
@@ -118,11 +118,11 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
     }
 
     private fun initToolbar() {
-        job = intent.getParcelableExtra<Model.Job?>(
+        jobData = intent.getParcelableExtra<Model.JobData?>(
             Constant.KEY_IMAGE_JOB
         )
-        val img = BuildConfig.BASE_URL + '/' + job?.hotel?.profile?.foto
-        toolbar.title = job?.hotel?.profile?.nama
+        val img = BuildConfig.BASE_URL + '/' + jobData?.hotel?.profile?.foto
+        toolbar.title = jobData?.hotel?.profile?.nama
         setSupportActionBar(toolbar)
         supportPostponeEnterTransition()
 
@@ -150,8 +150,8 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
     }
 
     override fun success() {
-        if (job != null) {
-            if (job!!.isApplied!!)
+        if (jobData != null) {
+            if (jobData!!.isApplied!!)
                 toast("Job Cancelled")
             else
                 toast("Job Successfully Applied")

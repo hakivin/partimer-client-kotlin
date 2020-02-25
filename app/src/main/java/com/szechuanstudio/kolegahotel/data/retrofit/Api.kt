@@ -60,8 +60,17 @@ interface Api {
     @GET("auth/jobs/position/{id}")
     fun getJobsWithPosition(@Path("id") idPosition: Int?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
 
-    @POST("jobs/{job}/apply")
+    @POST("auth/jobs/{job}/apply")
     fun applyJob(@Path("job") idJob: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
+
+    @GET("profile/{id}/jobs")
+    fun getUserJob(@Path("id") id: Int?) : Call<Model.JobsResponse>
+
+    @GET("profile/{id}/jobsdetail")
+    fun getJobDetail(@Path("id") id: Int?, @Header("Authorization") token : String?) : Call<Model.JobDetailResponse>
+
+    @POST("auth/jobs/todo/{todo}/check")
+    fun checkTodolist(@Path("todo") todoId: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 }
 
 class RetrofitClient {

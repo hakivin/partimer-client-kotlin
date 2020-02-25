@@ -79,11 +79,11 @@ class HomeFragment : Fragment(), HomeView {
         })
     }
 
-    override fun showAllJobs(jobs: List<Model.Job>?) {
+    override fun showAllJobs(jobData: List<Model.JobData>?) {
         if (isAdded) {
             rv_home_job.layoutManager = LinearLayoutManager(context)
-            if (jobs != null)
-                rv_home_job.adapter = HomeAdapter(jobs, this)
+            if (jobData != null)
+                rv_home_job.adapter = HomeAdapter(jobData, this)
             loading_home.visibility = View.GONE
         }
     }

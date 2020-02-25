@@ -70,7 +70,7 @@ class HomePresenter(private val view: HomeView,
     }
 
     fun setEmptyJob(){
-        val emptyJob = emptyList<Model.Job>()
+        val emptyJob = emptyList<Model.JobData>()
         view.showAllJobs(emptyJob)
     }
 
