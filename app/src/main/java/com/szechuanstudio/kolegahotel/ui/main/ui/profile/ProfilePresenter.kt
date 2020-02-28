@@ -39,7 +39,7 @@ class ProfilePresenter(private val view: ProfileView,
         api.getUserPositions(PreferenceUtils.getId(context))
             .enqueue(object : Callback<Model.PositionsResponse>{
                 override fun onFailure(call: Call<Model.PositionsResponse>, t: Throwable) {
-                    view.reject(t.message)
+                    view.reject("Check your internet connection")
                 }
 
                 override fun onResponse(

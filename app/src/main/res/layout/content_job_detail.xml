@@ -37,103 +37,272 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/spacing_middle"
             android:layout_height="1dp"
-            android:background="@color/grey_600"/>
+            android:background="@color/blue_link"/>
 
-        <com.google.android.material.textview.MaterialTextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:text="@string/area"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_area"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_area"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_area"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_area"
+                app:layout_constraintBottom_toBottomOf="@id/image_area"
+                app:layout_constraintLeft_toRightOf="@id/image_area"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="@string/area"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Kolam Renang"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Kolam Renang"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_date"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_today"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_date"
+                app:layout_constraintBottom_toBottomOf="@id/image_date"
+                app:layout_constraintLeft_toRightOf="@id/image_date"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="@string/date"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="March 13th, 2020"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="@string/date"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_date"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_time"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_time"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_time"
+                app:layout_constraintBottom_toBottomOf="@id/image_time"
+                app:layout_constraintLeft_toRightOf="@id/image_time"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="@string/time"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="08:00 until 10:100"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="March 13th, 2020"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_wage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_money"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_wage"
+                app:layout_constraintBottom_toBottomOf="@id/image_wage"
+                app:layout_constraintLeft_toRightOf="@id/image_wage"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="@string/wage"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_wage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="150000"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="@string/time"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_time"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_height"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_accessibility"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_height"
+                app:layout_constraintBottom_toBottomOf="@id/image_height"
+                app:layout_constraintLeft_toRightOf="@id/image_height"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="@string/height"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="150 cm - 190 cm"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="08:00 until 10:100"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="@string/wage"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_weight"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_weight"
+                android:rotation="180"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_wage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="150000"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_weight"
+                app:layout_constraintBottom_toBottomOf="@id/image_weight"
+                app:layout_constraintLeft_toRightOf="@id/image_weight"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="@string/weight"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="@string/height"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="50 kg - 100 kg"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_height"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="150 cm - 190 cm"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="@string/weight"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_description"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:src="@drawable/ic_description" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="50 kg - 100 kg"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/desc_placeholder"
+                app:layout_constraintLeft_toRightOf="@id/image_description"
+                app:layout_constraintTop_toTopOf="@id/image_description"
+                app:layout_constraintBottom_toTopOf="@id/image_description"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textColor="@color/grey_800"
+                android:text="@string/description"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="@string/description"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="@string/app_name"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/job_description"
+                android:layout_width="320dp"
+                app:layout_constraintLeft_toLeftOf="@id/desc_placeholder"
+                app:layout_constraintTop_toBottomOf="@id/desc_placeholder"
+                android:layout_height="wrap_content"
+                tools:text="@string/description"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/colorIcon"
             android:layout_marginTop="24dp"
             android:text="Contact"/>
 
@@ -141,77 +310,197 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="4dp"
-            android:background="@color/grey_500"/>
+            android:background="@color/blue_link"/>
 
-        <com.google.android.material.textview.MaterialTextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_address"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:src="@drawable/ic_place" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/address_placeholder"
+                app:layout_constraintLeft_toRightOf="@id/image_address"
+                app:layout_constraintTop_toTopOf="@id/image_address"
+                app:layout_constraintBottom_toTopOf="@id/image_address"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textColor="@color/grey_800"
+                android:text="Address"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/job_address"
+                android:layout_width="320dp"
+                app:layout_constraintLeft_toLeftOf="@id/address_placeholder"
+                app:layout_constraintTop_toBottomOf="@id/address_placeholder"
+                android:layout_height="wrap_content"
+                android:autoLink="map"
+                tools:text="Jalan Raden Wijaya No 21 Cangakan Karanganyar Karanganyar Jawa Tengah Indonesia 57711"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="Address"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_address"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_email"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_email" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_email"
+                app:layout_constraintBottom_toBottomOf="@id/image_email"
+                app:layout_constraintLeft_toRightOf="@id/image_email"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="Email"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="email"
+                    tools:text="hotel1@hotel.com"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoLink="map"
-            tools:text="Jalan Raden Wijaya No 21 Cangakan Karanganyar Karanganyar Jawa Tengah Indonesia 57711"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_phone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_phone" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_phone"
+                app:layout_constraintBottom_toBottomOf="@id/image_phone"
+                app:layout_constraintLeft_toRightOf="@id/image_phone"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="Phone"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="phone"
+                    tools:text="+6271999333"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="Email"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_email"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_social"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_social" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_social"
+                app:layout_constraintBottom_toBottomOf="@id/image_social"
+                app:layout_constraintLeft_toRightOf="@id/image_social"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="Social Media"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_social_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    tools:text="instagram.com/hotel1"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoLink="email"
-            tools:text="hotel1@hotel.com"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="8dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="Phone"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/image_web"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_web" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="phone"
-            tools:text="+6271999333"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/image_web"
+                app:layout_constraintBottom_toBottomOf="@id/image_web"
+                app:layout_constraintLeft_toRightOf="@id/image_web"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_800"
+                    android:text="Website"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="Social Media"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    tools:text="www.hotel-cendana.com"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_social_media"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            tools:text="instagram.com/hotel1"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_800"
-            android:layout_marginTop="@dimen/spacing_xmedium"
-            android:text="Website"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/job_website"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            tools:text="www.hotel-cendana.com"/>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

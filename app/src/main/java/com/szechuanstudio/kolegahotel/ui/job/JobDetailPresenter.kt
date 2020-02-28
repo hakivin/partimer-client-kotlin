@@ -19,7 +19,7 @@ class JobDetailPresenter(private val view: JobDetailView,
         api.applyJob(idJob, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<ResponseBody>{
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    view.error(t.message)
+                    view.error("Check your internet connection")
                 }
 
                 override fun onResponse(
