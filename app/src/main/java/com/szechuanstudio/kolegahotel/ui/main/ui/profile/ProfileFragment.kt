@@ -11,6 +11,7 @@ import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.ui.login.LoginActivity
+import com.szechuanstudio.kolegahotel.ui.main.ui.profile.documents.DocumentActivity
 import com.szechuanstudio.kolegahotel.ui.main.ui.profile.positions.UpdatePositionActivity
 import com.szechuanstudio.kolegahotel.ui.main.ui.profile.update.UpdateProfileActivity
 import com.szechuanstudio.kolegahotel.utils.Constant
@@ -80,7 +81,7 @@ class ProfileFragment : Fragment(), ProfileView {
 
     override fun onResume() {
         super.onResume()
-        Log.d(this.tag, "onResume: Called")
+        shimmer_android.showShimmer(true)
         presenter.checkProfile()
     }
 
@@ -98,6 +99,7 @@ class ProfileFragment : Fragment(), ProfileView {
                 profile_email.text = profile.email
                 profile_address.text = profile.alamat
                 profile_social_media.text = profile.social_media
+                profile_documents.text = if (profile.status_ktp == 1 && profile.status_skck == 1) "Complete" else "Not complete"
                 Picasso.with(act.applicationContext)
                     .load(BuildConfig.BASE_URL + '/' + profile.foto)
                     .placeholder(R.drawable.placeholder_avatar)
@@ -118,6 +120,14 @@ class ProfileFragment : Fragment(), ProfileView {
                     startActivity(intentFor<UpdatePositionActivity>(Constant.KEY_PROFILE to profile).singleTop())
                     act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
                 }
+
+                btn_edit_documents.setOnClickListener {
+                    startActivity(intentFor<DocumentActivity>(Constant.KEY_DOCUMENTS to profile).singleTop())
+                    act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
+                }
+
+                if(profile.isCompleted!!)
+                    verified_profile.visibility = View.VISIBLE
             }
         }
     }

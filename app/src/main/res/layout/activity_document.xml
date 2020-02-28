@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh_document"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.szechuanstudio.kolegahotel.ui.main.ui.profile.documents.DocumentActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ktp_placeholder"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/grey_800"
+                            android:layout_margin="8dp"
+                            android:text="KTP"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ktp_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintTop_toBottomOf="@+id/ktp_placeholder"
+                            android:layout_marginTop="8dp"
+                            app:tint="@color/grey_400"
+                            android:src="@drawable/ic_weight" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/update_ktp_fab"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/ic_edit"
+                            app:fabSize="mini"
+                            android:backgroundTint="@color/colorIcon"
+                            app:tint="@android:color/white"
+                            app:layout_constraintRight_toRightOf="@id/ktp_image"
+                            app:layout_constraintBottom_toBottomOf="@id/ktp_image"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/skck_placeholder"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/grey_800"
+                            android:layout_margin="8dp"
+                            android:text="SKCK"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/skck_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintTop_toBottomOf="@+id/skck_placeholder"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/placeholder_avatar" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/update_skck_fab"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/ic_edit"
+                            app:fabSize="mini"
+                            android:backgroundTint="@color/colorIcon"
+                            app:tint="@android:color/white"
+                            app:layout_constraintRight_toRightOf="@id/skck_image"
+                            app:layout_constraintBottom_toBottomOf="@id/skck_image"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/sertif_placeholder"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/grey_800"
+                            android:layout_margin="8dp"
+                            android:text="Sertifikat Uji Kompetensi"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/sertif_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            app:tint="@color/grey_400"
+                            app:layout_constraintTop_toBottomOf="@+id/sertif_placeholder"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/ic_description" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/update_sertif_fab"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/ic_edit"
+                            app:fabSize="mini"
+                            android:backgroundTint="@color/colorIcon"
+                            app:tint="@android:color/white"
+                            app:layout_constraintRight_toRightOf="@id/sertif_image"
+                            app:layout_constraintBottom_toBottomOf="@id/sertif_image"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/kartu_satpam_placeholder"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/grey_800"
+                            android:layout_margin="8dp"
+                            android:text="Kartu Garda Pratama (Security)"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/kartu_satpam_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintTop_toBottomOf="@+id/kartu_satpam_placeholder"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/placeholder_cover" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/update_kartu_fab"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/ic_edit"
+                            app:fabSize="mini"
+                            android:backgroundTint="@color/colorIcon"
+                            app:tint="@android:color/white"
+                            app:layout_constraintRight_toRightOf="@id/kartu_satpam_image"
+                            app:layout_constraintBottom_toBottomOf="@id/kartu_satpam_image"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"/>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

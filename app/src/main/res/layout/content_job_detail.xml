@@ -337,7 +337,7 @@
                 app:layout_constraintBottom_toTopOf="@id/image_address"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:textColor="@color/grey_800"
-                android:text="Address"/>
+                android:text="Address" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/job_address"

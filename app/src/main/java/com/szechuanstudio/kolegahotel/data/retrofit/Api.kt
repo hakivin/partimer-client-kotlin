@@ -42,6 +42,22 @@ interface Api {
     @POST("profile/{id}/upload/cover")
     fun uploadCover(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
 
+    @Multipart
+    @POST("profile/{id}/upload/ktp")
+    fun uploadKtp(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+
+    @Multipart
+    @POST("profile/{id}/upload/skck")
+    fun uploadSkck(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+
+    @Multipart
+    @POST("profile/{id}/upload/sertif")
+    fun uploadCertificate(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+
+    @Multipart
+    @POST("profile/{id}/upload/kartu")
+    fun uploadCard(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+
     @GET("positions")
     fun getPositions() : Call<Model.PositionsResponse>
 
