@@ -39,8 +39,4 @@ object Utils {
         }
         return result
     }
-
-    fun setTextViewColor(tv : TextView, color: Int, context: Context){
-        tv.setTextColor(color)
-    }
 }
