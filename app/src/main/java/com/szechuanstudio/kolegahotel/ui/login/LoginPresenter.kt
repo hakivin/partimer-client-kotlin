@@ -17,7 +17,6 @@ class LoginPresenter(private val view: LoginView,
             .enqueue(object : Callback<Model.LoginResponse>{
             override fun onFailure(call: Call<Model.LoginResponse>, t: Throwable) {
                 view.failed(t.message)
-                println(t.message)
             }
 
             override fun onResponse(

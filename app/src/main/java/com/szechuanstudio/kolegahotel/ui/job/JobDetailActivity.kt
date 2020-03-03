@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
@@ -38,7 +39,7 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
         presenter = JobDetailPresenter(this, RetrofitClient.getInstance(), applicationContext)
 
         if (jobData?.isApplied!!) {
-            apply_button.setBackgroundColor(resources.getColor(R.color.red_500))
+            apply_button.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.red_500))
             apply_button.text = getString(R.string.cancel_job)
         }
 

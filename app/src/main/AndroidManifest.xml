@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.szechuanstudio.kolegahotel">
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.ui.profile.documents.DocumentActivity"></activity>
+        <activity android:name=".ui.main.ui.profile.documents.DocumentActivity" />
         <activity
             android:name=".ui.job.JobDetailActivity"
             android:label="@string/title_activity_job_detail"
