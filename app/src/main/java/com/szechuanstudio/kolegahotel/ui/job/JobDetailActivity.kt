@@ -1,7 +1,9 @@
 package com.szechuanstudio.kolegahotel.ui.job
 
 import android.net.ParseException
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -53,7 +55,11 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
         job_wage.text = jobData?.bayaran.toString()
         job_height.text = setHeight(jobData?.tinggi_minimal, jobData?.tinggi_maksimal)
         job_weight.text = setWeight(jobData?.berat_minimal, jobData?.berat_maksimal)
-        job_description.text = jobData?.deskripsi
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            job_description.text = Html.fromHtml(jobData?.deskripsi, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            job_description.text = Html.fromHtml(jobData?.deskripsi)
+        }
 
         job_address.text = jobData?.hotel?.profile?.alamat
         job_email.text = jobData?.hotel?.profile?.email

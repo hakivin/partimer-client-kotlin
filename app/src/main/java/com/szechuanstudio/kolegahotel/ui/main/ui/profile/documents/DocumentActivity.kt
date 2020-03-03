@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
@@ -13,7 +14,6 @@ import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.utils.Constant
 import kotlinx.android.synthetic.main.activity_document.*
-import org.jetbrains.anko.textColor
 import pub.devrel.easypermissions.EasyPermissions
 
 class DocumentActivity : AppCompatActivity(), DocumentView {
@@ -27,7 +27,6 @@ class DocumentActivity : AppCompatActivity(), DocumentView {
         supportActionBar?.title = "Upload Documents"
         showFab(false)
         presenter = DocumentPresenter(this, RetrofitClient.getInstance(), applicationContext)
-        refresh_document.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorIcon)
         presenter.getDocuments()
         initComponent()
     }
@@ -157,35 +156,35 @@ class DocumentActivity : AppCompatActivity(), DocumentView {
         }
 
         if (profile?.status_ktp == 1){
-            ktp_status.text = "Accepted"
-            ktp_status.setTextColor(resources.getColor(R.color.green_500))
+            ktp_status.text = getString(R.string.accepted)
+            ktp_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.green_500))
         } else if (profile?.status_ktp == 0){
-            ktp_status.text = "Rejected"
-            ktp_status.setTextColor(resources.getColor(R.color.red_500))
+            ktp_status.text = getString(R.string.rejected)
+            ktp_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.red_500))
         }
 
         if (profile?.status_skck == 1){
-            skck_status.text = "Accepted"
-            skck_status.setTextColor(resources.getColor(R.color.green_500))
+            skck_status.text = getString(R.string.accepted)
+            skck_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.green_500))
         } else if (profile?.status_skck == 0){
-            skck_status.text = "Rejected"
-            skck_status.setTextColor(resources.getColor(R.color.red_500))
+            skck_status.text = getString(R.string.rejected)
+            skck_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.red_500))
         }
 
         if (profile?.status_sertifikat == 1){
-            sertif_status.text = "Accepted"
-            sertif_status.setTextColor(resources.getColor(R.color.green_500))
+            sertif_status.text = getString(R.string.accepted)
+            sertif_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.green_500))
         } else if (profile?.status_sertifikat == 0){
-            sertif_status.text = "Rejected"
-            sertif_status.setTextColor(resources.getColor(R.color.red_500))
+            sertif_status.text = getString(R.string.rejected)
+            sertif_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.red_500))
         }
 
         if (profile?.status_kartu_satpam == 1){
-            kartu_satpam_status.text = "Accepted"
-            kartu_satpam_status.setTextColor(resources.getColor(R.color.green_500))
+            kartu_satpam_status.text = getString(R.string.accepted)
+            kartu_satpam_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.green_500))
         } else if (profile?.status_kartu_satpam == 0){
-            kartu_satpam_status.text = "Rejected"
-            kartu_satpam_status.setTextColor(resources.getColor(R.color.red_500))
+            kartu_satpam_status.text = getString(R.string.rejected)
+            kartu_satpam_status.setTextColor(ContextCompat.getColor(applicationContext, R.color.red_500))
         }
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresh_document"
@@ -44,7 +44,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/ktp_status"
-                            android:text="Pending"
+                            android:text="@string/pending"
                             android:layout_marginStart="@dimen/activity_horizontal_margin"
                             app:layout_constraintLeft_toRightOf="@id/ktp_placeholder"
                             app:layout_constraintBottom_toBottomOf="@id/ktp_placeholder"
@@ -100,7 +100,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/skck_status"
-                            android:text="Pending"
+                            android:text="@string/pending"
                             android:layout_marginStart="@dimen/activity_horizontal_margin"
                             app:layout_constraintLeft_toRightOf="@id/skck_placeholder"
                             app:layout_constraintBottom_toBottomOf="@id/skck_placeholder"
@@ -156,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/sertif_status"
-                            android:text="Pending"
+                            android:text="@string/pending"
                             android:layout_marginStart="@dimen/activity_horizontal_margin"
                             app:layout_constraintLeft_toRightOf="@id/sertif_placeholder"
                             app:layout_constraintBottom_toBottomOf="@id/sertif_placeholder"
@@ -212,7 +212,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/kartu_satpam_status"
-                            android:text="Pending"
+                            android:text="@string/pending"
                             android:layout_marginStart="@dimen/activity_horizontal_margin"
                             app:layout_constraintLeft_toRightOf="@id/kartu_satpam_placeholder"
                             app:layout_constraintBottom_toBottomOf="@id/kartu_satpam_placeholder"
@@ -250,4 +250,4 @@
 
     </androidx.core.widget.NestedScrollView>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</FrameLayout>

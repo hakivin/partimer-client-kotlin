@@ -329,7 +329,7 @@
                 android:src="@drawable/ic_place" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/address_placeholder"
                 app:layout_constraintLeft_toRightOf="@id/image_address"
@@ -337,7 +337,7 @@
                 app:layout_constraintBottom_toTopOf="@id/image_address"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:textColor="@color/grey_800"
-                android:text="Address" />
+                android:text="@string/address"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/job_address"
@@ -345,7 +345,6 @@
                 app:layout_constraintLeft_toLeftOf="@id/address_placeholder"
                 app:layout_constraintTop_toBottomOf="@id/address_placeholder"
                 android:layout_height="wrap_content"
-                android:autoLink="map"
                 tools:text="Jalan Raden Wijaya No 21 Cangakan Karanganyar Karanganyar Jawa Tengah Indonesia 57711"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

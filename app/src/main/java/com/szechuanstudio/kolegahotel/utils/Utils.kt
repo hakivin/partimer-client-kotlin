@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.widget.TextView
 import com.szechuanstudio.kolegahotel.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -37,5 +38,9 @@ object Utils {
             cursor.close()
         }
         return result
+    }
+
+    fun setTextViewColor(tv : TextView, color: Int, context: Context){
+        tv.setTextColor(color)
     }
 }

@@ -152,4 +152,7 @@
     <string name="skck">SKCK <font color='red'>*</font></string>
     <string name="kartu_garda_pratama">Kartu Garda Pratama</string>
     <string name="sertifikat_uji_kompetensi">Sertifikat Uji Kompetensi</string>
+    <string name="accepted">Accepted</string>
+    <string name="rejected">Rejected</string>
+    <string name="pending">Pending</string>
 </resources>
