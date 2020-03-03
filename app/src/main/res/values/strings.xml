@@ -148,4 +148,8 @@
 
     <string name="left">left</string>
     <string name="cancel_job">Cancel Job</string>
+    <string name="ktp">KTP <font color='red'>*</font></string>
+    <string name="skck">SKCK <font color='red'>*</font></string>
+    <string name="kartu_garda_pratama">Kartu Garda Pratama</string>
+    <string name="sertifikat_uji_kompetensi">Sertifikat Uji Kompetensi</string>
 </resources>

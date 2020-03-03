@@ -99,7 +99,8 @@ class ProfileFragment : Fragment(), ProfileView {
                 profile_email.text = profile.email
                 profile_address.text = profile.alamat
                 profile_social_media.text = profile.social_media
-                profile_documents.text = if (profile.status_ktp == 1 && profile.status_skck == 1) "Complete" else "Not complete"
+                profile_documents.text = getDocumentStatus(profile)
+                Log.d(this.tag, "showProfile: ${profile.isCompleted}")
                 Picasso.with(act.applicationContext)
                     .load(BuildConfig.BASE_URL + '/' + profile.foto)
                     .placeholder(R.drawable.placeholder_avatar)
@@ -130,6 +131,14 @@ class ProfileFragment : Fragment(), ProfileView {
                     verified_profile.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun getDocumentStatus(profile: Model.Profile) : CharSequence{
+        return if(profile.ktp.isNullOrBlank() || profile.skck.isNullOrBlank()) "Please Upload Your Documents"
+        else if (profile.status_ktp == null || profile.status_skck == null) "Waiting Verification"
+        else if (profile.status_ktp == 0 || profile.status_skck == 0 || profile.status_sertifikat == 0 || profile.status_kartu_satpam == 0) "Documents Rejected"
+        else if (profile.isCompleted == true) "Completed"
+        else "Waiting Verification"
     }
 
     private fun setHeightWeight(height: Int?, weight: Int?): CharSequence? {

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_documents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -29,7 +30,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/ktp_placeholder"
                             app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +39,16 @@
                             android:textStyle="bold"
                             android:textColor="@color/grey_800"
                             android:layout_margin="8dp"
-                            android:text="KTP"/>
+                            android:text="@string/ktp"/>
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ktp_status"
+                            android:text="Pending"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin"
+                            app:layout_constraintLeft_toRightOf="@id/ktp_placeholder"
+                            app:layout_constraintBottom_toBottomOf="@id/ktp_placeholder"
+                            app:layout_constraintTop_toTopOf="@id/ktp_placeholder"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/ktp_image"
@@ -47,12 +57,12 @@
                             android:adjustViewBounds="true"
                             app:layout_constraintTop_toBottomOf="@+id/ktp_placeholder"
                             android:layout_marginTop="8dp"
-                            app:tint="@color/grey_400"
                             android:src="@drawable/ic_weight" />
 
                         <com.google.android.material.floatingactionbutton.FloatingActionButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:elevation="0dp"
                             android:id="@+id/update_ktp_fab"
                             android:layout_margin="4dp"
                             android:src="@drawable/ic_edit"
@@ -75,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/skck_placeholder"
                             app:layout_constraintTop_toTopOf="parent"
@@ -84,7 +94,17 @@
                             android:textStyle="bold"
                             android:textColor="@color/grey_800"
                             android:layout_margin="8dp"
-                            android:text="SKCK"/>
+                            android:text="@string/skck"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/skck_status"
+                            android:text="Pending"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin"
+                            app:layout_constraintLeft_toRightOf="@id/skck_placeholder"
+                            app:layout_constraintBottom_toBottomOf="@id/skck_placeholder"
+                            app:layout_constraintTop_toTopOf="@id/skck_placeholder"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/skck_image"
@@ -98,6 +118,7 @@
                         <com.google.android.material.floatingactionbutton.FloatingActionButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:elevation="0dp"
                             android:id="@+id/update_skck_fab"
                             android:layout_margin="4dp"
                             android:src="@drawable/ic_edit"
@@ -120,23 +141,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/sertif_placeholder"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/grey_800"
                             android:layout_margin="8dp"
-                            android:text="Sertifikat Uji Kompetensi"/>
+                            android:text="@string/sertifikat_uji_kompetensi"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/sertif_status"
+                            android:text="Pending"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin"
+                            app:layout_constraintLeft_toRightOf="@id/sertif_placeholder"
+                            app:layout_constraintBottom_toBottomOf="@id/sertif_placeholder"
+                            app:layout_constraintTop_toTopOf="@id/sertif_placeholder"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/sertif_image"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
-                            app:tint="@color/grey_400"
                             app:layout_constraintTop_toBottomOf="@+id/sertif_placeholder"
                             android:layout_marginTop="8dp"
                             android:src="@drawable/ic_description" />
@@ -144,6 +174,7 @@
                         <com.google.android.material.floatingactionbutton.FloatingActionButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:elevation="0dp"
                             android:id="@+id/update_sertif_fab"
                             android:layout_margin="4dp"
                             android:src="@drawable/ic_edit"
@@ -166,16 +197,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/kartu_satpam_placeholder"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="@color/grey_800"
                             android:layout_margin="8dp"
-                            android:text="Kartu Garda Pratama (Security)"/>
+                            android:text="@string/kartu_garda_pratama"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/kartu_satpam_status"
+                            android:text="Pending"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin"
+                            app:layout_constraintLeft_toRightOf="@id/kartu_satpam_placeholder"
+                            app:layout_constraintBottom_toBottomOf="@id/kartu_satpam_placeholder"
+                            app:layout_constraintTop_toTopOf="@id/kartu_satpam_placeholder"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/kartu_satpam_image"
@@ -189,6 +230,7 @@
                         <com.google.android.material.floatingactionbutton.FloatingActionButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:elevation="0dp"
                             android:id="@+id/update_kartu_fab"
                             android:layout_margin="4dp"
                             android:src="@drawable/ic_edit"
