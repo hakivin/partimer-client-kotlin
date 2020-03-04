@@ -16,14 +16,17 @@ class DashboardPresenter(private val view: DashboardView,
         api.getUserJob(PreferenceUtils.getId(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
-
+                    view.reject()
                 }
 
                 override fun onResponse(
                     call: Call<Model.JobsResponse>,
                     response: Response<Model.JobsResponse>
                 ) {
-
+                    if (response.isSuccessful){
+                        view.showJobs(response.body()?.jobs)
+                    } else
+                        view.reject()
                 }
 
             })
