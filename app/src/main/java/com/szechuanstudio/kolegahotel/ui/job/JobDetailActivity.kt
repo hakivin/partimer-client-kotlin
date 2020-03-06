@@ -4,6 +4,7 @@ import android.net.ParseException
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.squareup.picasso.Callback
@@ -33,6 +34,11 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
         initContent()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        val w = window
+        w.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
     }
 
     private fun initContent() {

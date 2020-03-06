@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
+import com.szechuanstudio.kolegahotel.ui.dashboard.active.ActiveActivity
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.jetbrains.anko.support.v4.act
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class DashboardFragment : Fragment(), DashboardView {
@@ -22,8 +25,15 @@ class DashboardFragment : Fragment(), DashboardView {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         presenter = DashboardPresenter(this, RetrofitClient.getInstance(), act.applicationContext)
-        presenter.getUserJob()
+//        presenter.getUserJob()
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btn_active_jobs.setOnClickListener {
+            startActivity<ActiveActivity>()
+        }
     }
 
     override fun showJobs(jobs: List<Model.JobData>?) {

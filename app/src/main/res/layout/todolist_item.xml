@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/activity_vertical_margin"
+    app:cardCornerRadius="4dp"
+    android:elevation="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:padding="@dimen/activity_vertical_margin"
+            android:background="@color/green_A200"
+            android:textColor="@android:color/white"
+            android:text="1"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/green_A700"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="Mengepel kamar dua kali"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_circle"
+            app:tint="@android:color/white"
+            android:elevation="0dp"
+            app:backgroundTint="@color/green_A400"
+            android:layout_gravity="center"
+            app:fabCustomSize="26dp"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
