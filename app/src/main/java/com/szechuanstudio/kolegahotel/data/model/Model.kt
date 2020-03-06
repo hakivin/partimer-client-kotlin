@@ -119,6 +119,7 @@ object Model {
                             val nama: String?,
                             val alamat: String?,
                             val email: String?,
+                            val deskripsi: String?,
                             val nomor_telepon: String?,
                             val social_media: String?,
                             val foto: String?,

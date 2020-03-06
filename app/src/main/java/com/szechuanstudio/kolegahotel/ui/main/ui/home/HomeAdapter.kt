@@ -21,7 +21,10 @@ class HomeAdapter(private val jobData : List<Model.JobData>, private val act: Fr
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(jobData : Model.JobData, act: Fragment){
-            Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + jobData.hotel?.profile?.foto).into(itemView.img_cover_job)
+            if (jobData.foto.isNullOrBlank())
+                Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + jobData.hotel?.profile?.foto).into(itemView.img_cover_job)
+            else
+                Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + jobData.foto).into(itemView.img_cover_job)
             itemView.tv_date_job.text = Utils.convertDate(jobData.tanggal_mulai)
             itemView.tv_hotel_name_job.text = jobData.hotel?.profile?.nama
             itemView.tv_quota_job.text = Utils.getQuotaRemaining(jobData.kuota, jobData.dikerjakan_count, act.context!!)

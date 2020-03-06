@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/verified_profile"
                 android:visibility="gone"
-                android:src="@drawable/ic_check"
+                android:src="@drawable/ic_verified"
                 app:layout_constraintRight_toRightOf="@id/profile_photo"
                 app:layout_constraintBottom_toBottomOf="@id/profile_photo"/>
 
