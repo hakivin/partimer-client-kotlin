@@ -79,11 +79,20 @@ interface Api {
     @POST("auth/jobs/{job}/apply")
     fun applyJob(@Path("job") idJob: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 
-    @GET("profile/{id}/jobs")
-    fun getUserJob(@Path("id") id: Int?) : Call<Model.JobsResponse>
+    @GET("profile/{id}/activejobs")
+    fun getActiveJob(@Path("id") id: Int?, @Header("Authorization") token : String?) : Call<Model.JobDetailResponse>
 
-    @GET("profile/{id}/jobsdetail")
-    fun getJobDetail(@Path("id") id: Int?, @Header("Authorization") token : String?) : Call<Model.JobDetailResponse>
+    @GET("profile/{id}/appliedjobs")
+    fun getAppliedJobs(@Path("id") id: Int?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
+
+    @GET("profile/{id}/acceptedjobs")
+    fun getAcceptedJobs(@Path("id") id: Int?, @Header("Authorization") token : String?) : Call<Model.JobsAcceptedResponse>
+
+    @GET("profile/{id}/jobhistory")
+    fun getJobsHistory(@Path("id") id: Int?) : Call<Model.JobsResponse>
+
+    @GET("auth/job/{id}/todo")
+    fun getCheckedTodolist(@Path("id") jobId: Int?, @Header("Authorization") token : String?) : Call<Model.ToDoListResponse>
 
     @POST("auth/jobs/todo/{todo}/check")
     fun checkTodolist(@Path("todo") todoId: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>

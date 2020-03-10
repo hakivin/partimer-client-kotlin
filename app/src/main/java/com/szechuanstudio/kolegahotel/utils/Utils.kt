@@ -1,12 +1,15 @@
 package com.szechuanstudio.kolegahotel.utils
 
 import android.content.Context
+import android.net.ParseException
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import com.szechuanstudio.kolegahotel.R
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 object Utils {
 
@@ -18,6 +21,24 @@ object Utils {
         }
 
         return "${date.dayOfWeek.name.toLowerCase().capitalize()}, ${date.dayOfMonth} ${date.month.name.toLowerCase().capitalize()} ${date.year}"
+    }
+
+    fun convertTime(workingDate : String?, time : String?): CharSequence? {
+        val convertedTime = "$workingDate $time"
+        val tm = StringTokenizer(convertedTime)
+        tm.nextToken()
+        val newTime = tm.nextToken()
+
+        val sdf = SimpleDateFormat("hh:mm:ss", Locale.getDefault())
+        val sdfs = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        val dtStart: Date
+        try {
+            dtStart = sdf.parse(newTime)!!
+            return sdfs.format(dtStart) // <-- I got result here
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return null
     }
 
     fun getQuotaRemaining(quota : Int?, applied: Int?, context: Context): CharSequence? {

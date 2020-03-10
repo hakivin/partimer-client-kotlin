@@ -50,7 +50,34 @@ object Model {
     data class PositionsResponse(val positions: List<Position>)
 
     @Parcelize
-    data class Position(val id: Int?, val nama_posisi: String?) : Parcelable
+    data class Position(val id: Int?, val nama_posisi: String?, val deskripsi: String?) : Parcelable
+
+    data class JobsAcceptedResponse(val jobs: List<JobAccepted>)
+
+    data class JobAccepted(val id: Int?,
+                           val hotel_id: Int?,
+                           val posisi_id: Int?,
+                           val area: String?,
+                           val tanggal_mulai: String?,
+                           val waktu_mulai: String?,
+                           val waktu_selesai: String?,
+                           val tinggi_minimal: Int?,
+                           val tinggi_maksimal: Int?,
+                           val berat_minimal: Int?,
+                           val berat_maksimal: Int?,
+                           val foto: String?,
+                           val kuota: Int?,
+                           val bayaran: Int?,
+                           val deskripsi: String?,
+                           val url_slug: String?,
+                           val status: String?,
+                           val created_at: String?,
+                           val updated_at: String?,
+                           val dikerjakan_count: Int?,
+                           val isApplied: Boolean?,
+                           val isExpired: Boolean?,
+                           val hotel: Hotel?,
+                           val posisi: Position?)
 
     data class JobsResponse(val jobs: List<JobData>)
 
@@ -80,7 +107,7 @@ object Model {
                        val hotel: Hotel?,
                        val posisi: Position?) : Parcelable
 
-    data class JobDetailResponse(val job_detail: List<JobDetail>)
+    data class JobDetailResponse(val active_jobs: JobDetail?)
 
     data class JobDetail(val id: Int?,
                          val hotel_id: Int?,
@@ -103,7 +130,11 @@ object Model {
                          val updated_at: String?,
                          val isApplied: Boolean?,
                          val isExpired: Boolean?,
+                         val hotel: Hotel?,
+                         val posisi: Position?,
                          val todolist: List<ToDoList>)
+
+    data class ToDoListResponse(val todolist: List<ToDoList>?)
 
     data class ToDoList(val id: Int?,
                         val pekerjaan_id: Int?,

@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/grey_50"
-    tools:context="com.szechuanstudio.kolegahotel.ui.dashboard.active.ActiveActivity">
+    tools:context="com.szechuanstudio.kolegahotel.ui.dashboard.active.ActiveActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_position_todolist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="72dp"
+                android:gravity="center"
+                android:textSize="22sp"
+                tools:text="Security" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_hotel_name_todolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="26sp"
+            tools:text="Hotel Cendana" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_date_todolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            tools:text="Saturday, 7 March 2020"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_time_end_todolist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            tools:text="Finish before 03:00 PM"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ProgressBar
+        android:id="@+id/loading_active"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -17,53 +79,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/green_A200"
-                android:orientation="vertical">
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_position_todolist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:layout_marginTop="40dp"
-                    android:gravity="center"
-                    android:textSize="22sp"
-                    android:text="Security" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_hotel_name_todolist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textSize="26sp"
-                    android:text="Hotel Cendana" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_date_todolist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:text="Saturday, 7 March 2020"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_time_end_todolist"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:text="Finish before 03:00 PM"/>
-            </LinearLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,4 +86,4 @@
                 tools:listitem="@layout/todolist_item"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

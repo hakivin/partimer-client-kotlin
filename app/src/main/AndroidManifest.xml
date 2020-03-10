@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.dashboard.active.ActiveActivity"
-            android:theme="@style/AppTheme.NoActionBar.Translucent" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.main.ui.profile.documents.DocumentActivity" />
         <activity
             android:name=".ui.job.JobDetailActivity"
