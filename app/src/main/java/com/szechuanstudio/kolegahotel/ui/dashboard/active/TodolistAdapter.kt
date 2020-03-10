@@ -1,5 +1,9 @@
 package com.szechuanstudio.kolegahotel.ui.dashboard.active
 
+import android.graphics.drawable.Animatable2
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +20,34 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class TodolistAdapter(private val todolistData: List<Model.ToDoList>, private val checkedData : List<Model.ToDoList>) : RecyclerView.Adapter<TodolistAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var state: Boolean = false
+
+        val crossAnimatedDrawable = itemView.resources.getDrawable(
+            R.drawable.animated_clear,
+            null
+        ) as AnimatedVectorDrawable
+
+        val checkAnimatedDrawable = itemView.resources.getDrawable(
+            R.drawable.animated_check,
+            null
+        ) as AnimatedVectorDrawable
+
         fun bind(toDoList: Model.ToDoList?){
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                crossAnimatedDrawable.registerAnimationCallback(object :
+                    Animatable2.AnimationCallback() {
+                    override fun onAnimationEnd(drawable: Drawable) {
+                        itemView.fab_todolist_check.setImageDrawable(checkAnimatedDrawable)
+                        (itemView.fab_todolist_check.drawable as AnimatedVectorDrawable).start()
+                    }
+                })
+            }
+
             itemView.tv_todolist_index.text = (adapterPosition + 1).toString()
             itemView.tv_todolist_name.text = toDoList?.nama_pekerjaan
             itemView.fab_todolist_check.setOnClickListener {
@@ -37,13 +64,18 @@ class TodolistAdapter(private val todolistData: List<Model.ToDoList>, private va
                         ) {
                             if (response.isSuccessful){
                                 if (state) {
-                                    itemView.fab_todolist_check.image =
-                                        itemView.resources.getDrawable(R.drawable.ic_circle, null)
+//                                    itemView.fab_todolist_check.image =
+//                                        itemView.resources.getDrawable(R.drawable.ic_circle, null)
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                        crossAnimatedDrawable.reset()
+                                        checkAnimatedDrawable.reset()
+                                    }
+                                    itemView.fab_todolist_check.setImageDrawable(crossAnimatedDrawable)
                                     state = false
                                 }
                                 else {
-                                    itemView.fab_todolist_check.image =
-                                        itemView.resources.getDrawable(R.drawable.ic_check_black_24dp, null)
+                                    if (itemView.fab_todolist_check.drawable is AnimatedVectorDrawable)
+                                        (itemView.fab_todolist_check.drawable as AnimatedVectorDrawable).start()
                                     state = true
                                 }
                             } else
@@ -55,13 +87,22 @@ class TodolistAdapter(private val todolistData: List<Model.ToDoList>, private va
             }
         }
         fun check(toDoList: Model.ToDoList?, checkedList: List<Model.ToDoList>?){
+            itemView.fab_todolist_check.setImageDrawable(checkAnimatedDrawable)
             if (checkedList != null && toDoList != null) {
+                var contain = false
                 for (list in checkedList){
                     if (toDoList.id == list.id) {
-                        itemView.fab_todolist_check.image =
-                            itemView.resources.getDrawable(R.drawable.ic_check_black_24dp, null)
+                        contain = true
+                        itemView.fab_todolist_check.setImageDrawable(checkAnimatedDrawable)
                         state = true
                     }
+                }
+                if (!contain){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        crossAnimatedDrawable.reset()
+                        checkAnimatedDrawable.reset()
+                    }
+                    itemView.fab_todolist_check.setImageDrawable(crossAnimatedDrawable)
                 }
             }
         }
