@@ -94,4 +94,7 @@ dependencies {
 
     //shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //circular fab
+    implementation 'com.dmitrymalkovich.android:progress-fab:1.6'
 }

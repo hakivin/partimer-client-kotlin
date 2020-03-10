@@ -16,12 +16,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_todolist_index"
-            android:layout_width="55dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="14sp"
-            android:autoSizeMaxTextSize="22sp"
+            android:autoSizeMaxTextSize="20sp"
             android:autoSizeStepGranularity="8sp"
             android:background="@color/green_A200"
             android:textStyle="bold"
@@ -43,17 +43,32 @@
             android:paddingEnd="8dp"
             tools:text="Mengepel kamar dua kali tiga kali"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_todolist_check"
-            android:layout_width="wrap_content"
+        <com.dmitrymalkovich.android.ProgressFloatingActionButton
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_circle"
-            app:tint="@android:color/white"
-            android:elevation="0dp"
-            app:backgroundTint="@color/green_A400"
             android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            app:fabCustomSize="48dp"/>
+            android:clickable="true">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_todolist_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_circle"
+                    app:tint="@android:color/white"
+                    app:elevation="0dp"
+                    android:layout_gravity="center"
+                    app:backgroundTint="@color/green_A400"
+                    app:fabCustomSize="48dp"/>
+
+                <ProgressBar
+                    android:id="@+id/loading_check"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_gravity="center"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:visibility="gone"
+                    />
+        </com.dmitrymalkovich.android.ProgressFloatingActionButton>
 
     </LinearLayout>
 

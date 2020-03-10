@@ -24,6 +24,7 @@ class TodolistAdapter(private val todolistData: List<Model.ToDoList>, private va
             itemView.tv_todolist_index.text = (adapterPosition + 1).toString()
             itemView.tv_todolist_name.text = toDoList?.nama_pekerjaan
             itemView.fab_todolist_check.setOnClickListener {
+                itemView.loading_check.visibility = View.VISIBLE
                 RetrofitClient.getInstance().checkTodolist(toDoList?.id, PreferenceUtils.getToken(itemView.context))
                     .enqueue(object : Callback<ResponseBody>{
                         override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
@@ -47,6 +48,7 @@ class TodolistAdapter(private val todolistData: List<Model.ToDoList>, private va
                                 }
                             } else
                                 itemView.context.toast("Something went wrong")
+                            itemView.loading_check.visibility = View.GONE
                         }
 
                     })
