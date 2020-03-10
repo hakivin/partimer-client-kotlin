@@ -11,6 +11,7 @@ import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.todolist_item.view.*
 import okhttp3.ResponseBody
 import org.jetbrains.anko.image
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +45,8 @@ class TodolistAdapter(private val todolistData: List<Model.ToDoList>, private va
                                         itemView.resources.getDrawable(R.drawable.ic_check_black_24dp, null)
                                     state = true
                                 }
-                            }
+                            } else
+                                itemView.context.toast("Something went wrong")
                         }
 
                     })

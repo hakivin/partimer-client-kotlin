@@ -134,6 +134,41 @@ object Model {
                          val posisi: Position?,
                          val todolist: List<ToDoList>)
 
+    data class JobHistoryResponse(val jobs: List<JobHistory>?)
+
+    data class JobHistory(val id: Int?,
+                          val hotel_id: Int?,
+                          val posisi_id: Int?,
+                          val area: String?,
+                          val tanggal_mulai: String?,
+                          val waktu_mulai: String?,
+                          val waktu_selesai: String?,
+                          val tinggi_minimal: Int?,
+                          val tinggi_maksimal: Int?,
+                          val berat_minimal: Int?,
+                          val berat_maksimal: Int?,
+                          val foto: String?,
+                          val kuota: Int?,
+                          val bayaran: Int?,
+                          val deskripsi: String?,
+                          val url_slug: String?,
+                          val status: String?,
+                          val created_at: String?,
+                          val updated_at: String?,
+                          val dikerjakan_count: Int?,
+                          val isApplied: Boolean?,
+                          val isExpired: Boolean?,
+                          val hotel: Hotel?,
+                          val posisi: Position?,
+                          val dikerjakan: List<PivotJob>?)
+
+    data class PivotJob(val id: Int?,
+                        val pivot: Pivot?)
+
+    data class Pivot(val pekerjaan_id: Int?,
+                     val user_id: Int?,
+                     val status: String?)
+
     data class ToDoListResponse(val todolist: List<ToDoList>?)
 
     data class ToDoList(val id: Int?,
