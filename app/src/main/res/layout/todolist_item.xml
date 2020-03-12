@@ -16,7 +16,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_todolist_index"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:autoSizeTextType="uniform"
@@ -37,8 +37,8 @@
             android:textSize="18sp"
             android:layout_gravity="center"
             android:textColor="@color/green_A700"
-            android:paddingTop="32dp"
-            android:paddingBottom="32dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             tools:text="Mengepel kamar dua kali tiga kali"/>

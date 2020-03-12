@@ -6,4 +6,5 @@ interface ActiveView {
     fun showJobs(activeJobs: Model.JobDetail?)
     fun showCheckedTodolist(todolist: List<Model.ToDoList>?)
     fun reject(message: String?)
+    fun success(message: String?)
 }

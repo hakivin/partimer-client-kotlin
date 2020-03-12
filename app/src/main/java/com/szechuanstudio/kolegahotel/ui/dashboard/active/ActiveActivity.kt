@@ -9,6 +9,8 @@ import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.activity_active.*
+import kotlinx.android.synthetic.main.content_active.*
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 
 
@@ -28,6 +30,7 @@ class ActiveActivity : AppCompatActivity(), ActiveView {
 
     private fun loadContent(){
         presenter.getActiveJobs()
+        done_button.visibility = View.GONE
         showLoading(true)
     }
 
@@ -51,9 +54,6 @@ class ActiveActivity : AppCompatActivity(), ActiveView {
 
             job = activeJobs
             presenter.getCheckedTodolist(job.id)
-//            adapter = TodolistAdapter(activeJobs.todolist)
-//            rv_todolist.layoutManager = LinearLayoutManager(this)
-//            rv_todolist.adapter = adapter
         }
     }
 
@@ -64,11 +64,22 @@ class ActiveActivity : AppCompatActivity(), ActiveView {
             rv_todolist.adapter = adapter
         }
         showLoading(false)
+        done_button.setOnClickListener {
+            presenter.doneJob(job.id)
+            it.isEnabled = false
+        }
+        done_button.visibility = View.VISIBLE
     }
 
     override fun reject(message: String?) {
         showLoading(false)
-        message?.let { toast(it) }
+        done_button.isEnabled = true
+        message?.let { longToast(it) }
+    }
+
+    override fun success(message: String?) {
+        message?.let { longToast(it) }
+        finish()
     }
 
     private fun showLoading(state: Boolean){

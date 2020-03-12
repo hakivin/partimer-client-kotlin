@@ -63,20 +63,17 @@ class TodolistAdapter(private val todolistData: List<Model.ToDoList>, private va
                             response: Response<ResponseBody>
                         ) {
                             if (response.isSuccessful){
-                                if (state) {
-//                                    itemView.fab_todolist_check.image =
-//                                        itemView.resources.getDrawable(R.drawable.ic_circle, null)
+                                state = if (state) {
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                         crossAnimatedDrawable.reset()
                                         checkAnimatedDrawable.reset()
                                     }
                                     itemView.fab_todolist_check.setImageDrawable(crossAnimatedDrawable)
-                                    state = false
-                                }
-                                else {
+                                    false
+                                } else {
                                     if (itemView.fab_todolist_check.drawable is AnimatedVectorDrawable)
                                         (itemView.fab_todolist_check.drawable as AnimatedVectorDrawable).start()
-                                    state = true
+                                    true
                                 }
                             } else
                                 itemView.context.toast("Something went wrong")

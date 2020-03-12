@@ -96,6 +96,9 @@ interface Api {
 
     @POST("auth/jobs/todo/{todo}/check")
     fun checkTodolist(@Path("todo") todoId: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
+
+    @POST("auth/job/{id}/done")
+    fun jobDone(@Path("id") jobId: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 }
 
 class RetrofitClient {
