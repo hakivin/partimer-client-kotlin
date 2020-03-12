@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.szechuanstudio.kolegahotel.ui.dashboard.accepted.AcceptedActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:id="@+id/rv_accepted"
+        tools:listitem="@layout/job_item"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
