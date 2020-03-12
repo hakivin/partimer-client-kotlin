@@ -24,6 +24,10 @@ class AcceptedAdapter(private val jobs : List<Model.JobAccepted>, private val co
             itemView.tv_hotel_name_job.text = job.hotel?.profile?.nama
             itemView.tv_quota_job.text = Utils.getQuotaRemaining(job.kuota, job.dikerjakan_count, context)
             itemView.tv_position_job.text = job.posisi?.nama_posisi
+
+            itemView.setOnClickListener {
+
+            }
         }
     }
 

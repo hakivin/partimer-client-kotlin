@@ -2,6 +2,7 @@ package com.szechuanstudio.kolegahotel.ui.dashboard.accepted
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
@@ -17,7 +18,7 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accepted)
         presenter = AcceptedPresenter(this, RetrofitClient.getInstance(), applicationContext)
-        presenter.getAcceptedJobs()
+        loadContent()
         initToolbar()
     }
 
@@ -27,14 +28,21 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
+    private fun loadContent(){
+        loading_accepted.visibility = View.VISIBLE
+        presenter.getAcceptedJobs()
+    }
+
     override fun reject(message: String?) {
         message?.let { toast(it) }
+        loading_accepted.visibility = View.GONE
     }
 
     override fun showAcceptedJobs(jobs: List<Model.JobAccepted>?) {
         val adapter = jobs?.let { AcceptedAdapter(it, this) }
         rv_accepted.layoutManager = LinearLayoutManager(this)
         rv_accepted.adapter = adapter
+        loading_accepted.visibility = View.GONE
     }
 
     override fun onSupportNavigateUp(): Boolean {

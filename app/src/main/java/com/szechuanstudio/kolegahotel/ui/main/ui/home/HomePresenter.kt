@@ -91,4 +91,24 @@ class HomePresenter(private val view: HomeView,
                 }
             })
     }
+
+    fun getPendingJobs(){
+        api.getAppliedJobs(PreferenceUtils.getId(context), PreferenceUtils.getToken(context))
+            .enqueue(object : Callback<Model.JobsResponse>{
+                override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
+                    view.reject(t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<Model.JobsResponse>,
+                    response: Response<Model.JobsResponse>
+                ) {
+                    if (response.isSuccessful)
+                        view.showAllJobs(response.body()?.jobs)
+                    else
+                        view.reject(response.errorBody()?.string())
+                }
+
+            })
+    }
 }

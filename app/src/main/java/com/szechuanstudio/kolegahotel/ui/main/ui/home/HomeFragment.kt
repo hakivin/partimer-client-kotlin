@@ -83,7 +83,7 @@ class HomeFragment : Fragment(), HomeView {
         if (isAdded) {
             rv_home_job.layoutManager = LinearLayoutManager(context)
             if (jobData != null)
-                rv_home_job.adapter = HomeAdapter(jobData, this)
+                rv_home_job.adapter = HomeAdapter(jobData, this, null)
             loading_home.visibility = View.GONE
         }
     }
