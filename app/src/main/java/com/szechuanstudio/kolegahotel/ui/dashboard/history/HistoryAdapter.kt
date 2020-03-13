@@ -1,6 +1,5 @@
-package com.szechuanstudio.kolegahotel.ui.dashboard.accepted
+package com.szechuanstudio.kolegahotel.ui.dashboard.history
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,10 @@ import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.job_item.view.*
 
-class AcceptedAdapter(private val jobs : List<Model.JobAccepted>) : RecyclerView.Adapter<AcceptedAdapter.ViewHolder>() {
+class HistoryAdapter(private val jobs: List<Model.JobHistory>) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(job : Model.JobAccepted){
+        fun bind(job: Model.JobHistory){
             if (job.foto.isNullOrBlank())
                 Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + job.hotel?.profile?.foto).into(itemView.img_cover_job)
             else

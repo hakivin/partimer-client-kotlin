@@ -39,7 +39,7 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView {
     }
 
     override fun showAcceptedJobs(jobs: List<Model.JobAccepted>?) {
-        val adapter = jobs?.let { AcceptedAdapter(it, this) }
+        val adapter = jobs?.let { AcceptedAdapter(it) }
         rv_accepted.layoutManager = LinearLayoutManager(this)
         rv_accepted.adapter = adapter
         loading_accepted.visibility = View.GONE

@@ -89,7 +89,7 @@ interface Api {
     fun getAcceptedJobs(@Path("id") id: Int?, @Header("Authorization") token : String?) : Call<Model.JobsAcceptedResponse>
 
     @GET("profile/{id}/jobhistory")
-    fun getJobsHistory(@Path("id") id: Int?) : Call<Model.JobHistoryResponse>
+    fun getJobsHistory(@Path("id") id: Int?, @Header("Authorization") token : String?) : Call<Model.JobHistoryResponse>
 
     @GET("auth/job/{id}/todo")
     fun getCheckedTodolist(@Path("id") jobId: Int?, @Header("Authorization") token : String?) : Call<Model.ToDoListResponse>
