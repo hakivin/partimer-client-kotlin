@@ -52,11 +52,12 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab_todolist_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:src="@drawable/ic_circle"
                     app:tint="@android:color/white"
                     app:elevation="0dp"
+                    android:scaleType="center"
                     android:layout_gravity="center"
                     app:backgroundTint="@color/green_A400"
                     app:fabCustomSize="48dp"/>
