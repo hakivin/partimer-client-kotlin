@@ -136,6 +136,7 @@ object Model {
 
     data class JobHistoryResponse(val jobs: List<JobHistory>?)
 
+    @Parcelize
     data class JobHistory(val id: Int?,
                           val hotel_id: Int?,
                           val posisi_id: Int?,
@@ -160,14 +161,16 @@ object Model {
                           val isExpired: Boolean?,
                           val hotel: Hotel?,
                           val posisi: Position?,
-                          val dikerjakan: List<PivotJob>?)
+                          val dikerjakan: List<PivotJob>?) : Parcelable
 
+    @Parcelize
     data class PivotJob(val id: Int?,
-                        val pivot: Pivot?)
+                        val pivot: Pivot?) : Parcelable
 
+    @Parcelize
     data class Pivot(val pekerjaan_id: Int?,
                      val user_id: Int?,
-                     val status: String?)
+                     val status: String?) : Parcelable
 
     data class ToDoListResponse(val todolist: List<ToDoList>?)
 

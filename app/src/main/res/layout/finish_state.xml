@@ -24,14 +24,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Congratulation"
+            android:text="Congratulation"
             android:textSize="28sp"
             android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="You have finished your job. Let's find another job that suits you."
+            android:text="You have finished your job. Let's find another job that suits you."
             android:gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"

@@ -23,13 +23,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Almost done"
+            android:text="Almost done"
             android:textSize="28sp"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Your job is verified. Please contact number below if you haven't been paid."
+            android:text="Your job is verified. Please contact number below if you haven't been paid."
             android:textSize="20sp"
             android:gravity="center"
             android:layout_marginTop="8dp"

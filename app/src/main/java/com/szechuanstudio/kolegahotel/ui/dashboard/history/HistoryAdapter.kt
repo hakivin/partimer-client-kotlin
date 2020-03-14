@@ -8,8 +8,11 @@ import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
+import com.szechuanstudio.kolegahotel.ui.dashboard.history.state.HistoryStateActivity
+import com.szechuanstudio.kolegahotel.utils.Constant
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.job_item.view.*
+import org.jetbrains.anko.startActivity
 
 class HistoryAdapter(private val jobs: List<Model.JobHistory>) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
@@ -25,7 +28,7 @@ class HistoryAdapter(private val jobs: List<Model.JobHistory>) : RecyclerView.Ad
             itemView.tv_position_job.text = job.posisi?.nama_posisi
 
             itemView.setOnClickListener {
-
+                it.context.startActivity<HistoryStateActivity>(Constant.KEY_IMAGE_JOB to job)
             }
         }
     }

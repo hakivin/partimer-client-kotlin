@@ -23,14 +23,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Pending"
+            android:text="Pending"
             android:textSize="28sp"
             android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Wait for verification. Please contact number below to ask for verification."
+            android:text="Wait for verification. Please contact number below to ask for verification."
             android:gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
