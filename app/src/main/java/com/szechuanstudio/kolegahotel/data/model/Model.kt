@@ -77,8 +77,7 @@ object Model {
                            val isApplied: Boolean?,
                            val isExpired: Boolean?,
                            val hotel: Hotel?,
-                           val posisi: Position?,
-                           val todolist: List<ToDoList>)
+                           val posisi: Position?)
 
     data class JobsResponse(val jobs: List<JobData>)
 

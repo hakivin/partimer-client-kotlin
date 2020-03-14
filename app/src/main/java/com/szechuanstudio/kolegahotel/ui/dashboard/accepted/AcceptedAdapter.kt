@@ -1,21 +1,26 @@
 package com.szechuanstudio.kolegahotel.ui.dashboard.accepted
 
+import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
+import com.szechuanstudio.kolegahotel.ui.dashboard.accepted.todolist.TodolistFragment
+import com.szechuanstudio.kolegahotel.utils.Constant
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.job_item.view.*
 
-class AcceptedAdapter(private val jobs : List<Model.JobAccepted>) : RecyclerView.Adapter<AcceptedAdapter.ViewHolder>() {
+class AcceptedAdapter(private val jobs : List<Model.JobAccepted>, private val fm : FragmentManager) : RecyclerView.Adapter<AcceptedAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(job : Model.JobAccepted){
+        fun bind(job : Model.JobAccepted, fm : FragmentManager){
             if (job.foto.isNullOrBlank())
                 Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + job.hotel?.profile?.foto).into(itemView.img_cover_job)
             else
@@ -26,7 +31,11 @@ class AcceptedAdapter(private val jobs : List<Model.JobAccepted>) : RecyclerView
             itemView.tv_position_job.text = job.posisi?.nama_posisi
 
             itemView.setOnClickListener {
-
+                val dialog = TodolistFragment()
+                val bundle = Bundle()
+                bundle.putInt(Constant.KEY_IMAGE_JOB, job.id!!)
+                dialog.arguments = bundle
+                dialog.show(fm, "todolist_tag")
             }
         }
     }
@@ -41,6 +50,6 @@ class AcceptedAdapter(private val jobs : List<Model.JobAccepted>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(jobs[position])
+        holder.bind(jobs[position], fm)
     }
 }

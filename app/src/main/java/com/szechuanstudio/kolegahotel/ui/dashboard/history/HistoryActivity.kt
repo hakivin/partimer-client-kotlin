@@ -43,4 +43,9 @@ class HistoryActivity : AppCompatActivity(), HistoryView {
         rv_history.adapter = jobs?.let { HistoryAdapter(it) }
         loading_history.visibility = View.GONE
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
 }

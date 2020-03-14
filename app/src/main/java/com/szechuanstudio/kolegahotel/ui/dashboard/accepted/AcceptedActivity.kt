@@ -20,6 +20,7 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView {
         presenter = AcceptedPresenter(this, RetrofitClient.getInstance(), applicationContext)
         loadContent()
         initToolbar()
+        supportFragmentManager
     }
 
     private fun initToolbar(){
@@ -39,7 +40,7 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView {
     }
 
     override fun showAcceptedJobs(jobs: List<Model.JobAccepted>?) {
-        val adapter = jobs?.let { AcceptedAdapter(it) }
+        val adapter = jobs?.let { AcceptedAdapter(it, supportFragmentManager) }
         rv_accepted.layoutManager = LinearLayoutManager(this)
         rv_accepted.adapter = adapter
         loading_accepted.visibility = View.GONE

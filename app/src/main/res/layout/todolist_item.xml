@@ -44,6 +44,7 @@
             tools:text="Mengepel kamar dua kali tiga kali"/>
 
         <com.dmitrymalkovich.android.ProgressFloatingActionButton
+            android:id="@+id/fab_container"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
