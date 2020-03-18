@@ -34,9 +34,13 @@ class PendingActivity : AppCompatActivity(), HomeView {
     }
 
     override fun showAllJobs(jobData: List<Model.JobData>?) {
-        val adapter = jobData?.let { HomeAdapter(it, null, this) }
-        rv_pending.layoutManager = LinearLayoutManager(this)
-        rv_pending.adapter = adapter
+        if (jobData != null) {
+            if (!jobData.isNullOrEmpty()) {
+                rv_pending.layoutManager = LinearLayoutManager(this)
+                rv_pending.adapter = HomeAdapter(jobData, null, this)
+            } else
+                setContentView(R.layout.empty_state)
+        }
         loading_pending.visibility = View.GONE
     }
 

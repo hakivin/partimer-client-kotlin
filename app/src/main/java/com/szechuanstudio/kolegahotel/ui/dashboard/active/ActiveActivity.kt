@@ -54,11 +54,14 @@ class ActiveActivity : AppCompatActivity(), ActiveView {
 
             job = activeJobs
             presenter.getCheckedTodolist(job.id)
+        } else {
+            setContentView(R.layout.empty_state)
+            showLoading(false)
         }
     }
 
     override fun showCheckedTodolist(todolist: List<Model.ToDoList>?) {
-        if (todolist != null) {
+        if(todolist != null) {
             adapter = TodolistAdapter(job.todolist, todolist)
             rv_todolist.layoutManager = LinearLayoutManager(this)
             rv_todolist.adapter = adapter

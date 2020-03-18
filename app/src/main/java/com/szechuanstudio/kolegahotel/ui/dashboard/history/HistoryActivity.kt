@@ -39,8 +39,13 @@ class HistoryActivity : AppCompatActivity(), HistoryView {
     }
 
     override fun showJobHistory(jobs: List<Model.JobHistory>?) {
-        rv_history.layoutManager = LinearLayoutManager(this)
-        rv_history.adapter = jobs?.let { HistoryAdapter(it) }
+        if (jobs != null) {
+            if (!jobs.isNullOrEmpty()) {
+                rv_history.layoutManager = LinearLayoutManager(this)
+                rv_history.adapter = HistoryAdapter(jobs)
+            } else
+                setContentView(R.layout.empty_state)
+        }
         loading_history.visibility = View.GONE
     }
 

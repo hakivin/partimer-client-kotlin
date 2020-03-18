@@ -40,9 +40,13 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView {
     }
 
     override fun showAcceptedJobs(jobs: List<Model.JobAccepted>?) {
-        val adapter = jobs?.let { AcceptedAdapter(it, supportFragmentManager) }
-        rv_accepted.layoutManager = LinearLayoutManager(this)
-        rv_accepted.adapter = adapter
+        if (jobs != null) {
+            if (!jobs.isNullOrEmpty()) {
+                rv_accepted.layoutManager = LinearLayoutManager(this)
+                rv_accepted.adapter = AcceptedAdapter(jobs, supportFragmentManager)
+            } else
+                setContentView(R.layout.empty_state)
+        }
         loading_accepted.visibility = View.GONE
     }
 
