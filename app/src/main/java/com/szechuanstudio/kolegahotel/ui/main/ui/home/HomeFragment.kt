@@ -14,6 +14,7 @@ import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.utils.Constant
+import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.toast
@@ -35,6 +36,7 @@ class HomeFragment : Fragment(), HomeView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        println(PreferenceUtils.getToken(act.applicationContext))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

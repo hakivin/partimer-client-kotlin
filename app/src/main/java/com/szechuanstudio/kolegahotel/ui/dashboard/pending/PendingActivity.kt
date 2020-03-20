@@ -8,11 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
+import com.szechuanstudio.kolegahotel.ui.main.MainActivity
 import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomeAdapter
 import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomePresenter
 import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomeView
 import com.szechuanstudio.kolegahotel.utils.Constant
 import kotlinx.android.synthetic.main.activity_pending.*
+import kotlinx.android.synthetic.main.empty_state.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.toast
 
 class PendingActivity : AppCompatActivity(), HomeView {
@@ -39,9 +43,16 @@ class PendingActivity : AppCompatActivity(), HomeView {
                 rv_pending.layoutManager = LinearLayoutManager(this)
                 rv_pending.adapter = HomeAdapter(jobData, null, this)
             } else
-                setContentView(R.layout.empty_state)
+                setEmptyState()
         }
         loading_pending.visibility = View.GONE
+    }
+
+    private fun setEmptyState(){
+        setContentView(R.layout.empty_state)
+        find_job.setOnClickListener {
+            navigateUpTo(intentFor<MainActivity>().singleTop())
+        }
     }
 
     override fun reject(message: String?) {

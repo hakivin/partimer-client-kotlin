@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
+import com.szechuanstudio.kolegahotel.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_accepted.*
+import kotlinx.android.synthetic.main.empty_state.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.toast
 
 class AcceptedActivity : AppCompatActivity(), AcceptedView {
@@ -45,9 +49,16 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView {
                 rv_accepted.layoutManager = LinearLayoutManager(this)
                 rv_accepted.adapter = AcceptedAdapter(jobs, supportFragmentManager)
             } else
-                setContentView(R.layout.empty_state)
+                setEmptyState()
         }
         loading_accepted.visibility = View.GONE
+    }
+
+    private fun setEmptyState(){
+        setContentView(R.layout.empty_state)
+        find_job.setOnClickListener {
+            navigateUpTo(intentFor<MainActivity>().singleTop())
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

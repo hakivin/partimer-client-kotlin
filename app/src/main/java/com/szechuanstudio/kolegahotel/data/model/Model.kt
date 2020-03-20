@@ -17,7 +17,7 @@ object Model {
                     val created_at: String?,
                     val updated_at: String?)
 
-    data class ProfileResponse(val profile: List<Profile>)
+    data class ProfileResponse(val profile: Profile?)
 
     @Parcelize
     data class Profile(val id: Int?,

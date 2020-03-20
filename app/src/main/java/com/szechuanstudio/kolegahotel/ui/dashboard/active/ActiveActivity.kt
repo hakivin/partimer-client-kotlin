@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
+import com.szechuanstudio.kolegahotel.ui.main.MainActivity
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.activity_active.*
 import kotlinx.android.synthetic.main.content_active.*
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.toast
+import kotlinx.android.synthetic.main.empty_state.*
+import org.jetbrains.anko.*
 
 
 class ActiveActivity : AppCompatActivity(), ActiveView {
@@ -55,8 +56,15 @@ class ActiveActivity : AppCompatActivity(), ActiveView {
             job = activeJobs
             presenter.getCheckedTodolist(job.id)
         } else {
-            setContentView(R.layout.empty_state)
+            setEmptyState()
             showLoading(false)
+        }
+    }
+
+    private fun setEmptyState(){
+        setContentView(R.layout.empty_state)
+        find_job.setOnClickListener {
+            navigateUpTo(intentFor<MainActivity>().singleTop())
         }
     }
 

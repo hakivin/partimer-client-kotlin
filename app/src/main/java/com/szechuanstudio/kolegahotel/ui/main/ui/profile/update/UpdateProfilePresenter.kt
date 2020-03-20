@@ -46,16 +46,17 @@ class UpdateProfilePresenter(private val view: UpdateProfileView,
                 MultipartBody.Part.createFormData("image", file.name, requestFile)
 
             api.uploadPhoto(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-                .enqueue(object : Callback<Model.Profile>{
-                    override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
+                .enqueue(object : Callback<Model.ProfileResponse>{
+                    override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
                         println(t.message)
                     }
 
                     override fun onResponse(
-                        call: Call<Model.Profile>,
-                        response: Response<Model.Profile>
+                        call: Call<Model.ProfileResponse>,
+                        response: Response<Model.ProfileResponse>
                     ) {
-                        val profile = response.body()
+                        println(response.code())
+                        val profile = response.body()?.profile
                         if (profile != null) {
                             println(profile.foto)
                             view.getPhoto(profile)
@@ -72,16 +73,16 @@ class UpdateProfilePresenter(private val view: UpdateProfileView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadCover(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.Profile>{
-                override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
+            .enqueue(object : Callback<Model.ProfileResponse>{
+                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.Profile>,
-                    response: Response<Model.Profile>
+                    call: Call<Model.ProfileResponse>,
+                    response: Response<Model.ProfileResponse>
                 ) {
-                    val profile = response.body()
+                    val profile = response.body()?.profile
                     if (profile != null) {
                         println(profile.cover)
                         view.getCover(profile)

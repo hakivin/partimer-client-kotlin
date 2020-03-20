@@ -29,34 +29,34 @@ interface Api {
     fun logout(@Header("Authorization") token : String?) : Call<ResponseBody>
 
     @GET("profile/{id}")
-    fun getProfile(@Path("id") id : Int?) : Call<Model.ProfileResponse>
+    fun getProfile(@Path("id") id : Int?, @Header("Authorization") token : String?) : Call<Model.ProfileResponse>
 
     @PUT("profile/{id}/update")
     fun updateProfile(@Path("id") id : Int?, @Header("Authorization") token : String?, @Body updatedProfile: Model.Profile) : Call<ResponseBody>
 
     @Multipart
     @POST("profile/{id}/upload/profile")
-    fun uploadPhoto(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part imageName:MultipartBody.Part) : Call<Model.Profile>
+    fun uploadPhoto(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part imageName:MultipartBody.Part) : Call<Model.ProfileResponse>
 
     @Multipart
     @POST("profile/{id}/upload/cover")
-    fun uploadCover(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+    fun uploadCover(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
 
     @Multipart
     @POST("profile/{id}/upload/ktp")
-    fun uploadKtp(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+    fun uploadKtp(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
 
     @Multipart
     @POST("profile/{id}/upload/skck")
-    fun uploadSkck(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+    fun uploadSkck(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
 
     @Multipart
     @POST("profile/{id}/upload/sertif")
-    fun uploadCertificate(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+    fun uploadCertificate(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
 
     @Multipart
     @POST("profile/{id}/upload/kartu")
-    fun uploadCard(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.Profile>
+    fun uploadCard(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
 
     @GET("positions")
     fun getPositions() : Call<Model.PositionsResponse>

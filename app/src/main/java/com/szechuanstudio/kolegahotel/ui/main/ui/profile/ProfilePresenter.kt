@@ -15,7 +15,7 @@ class ProfilePresenter(private val view: ProfileView,
 
     fun checkProfile(){
         getPositions()
-        api.getProfile(PreferenceUtils.getId(context))
+        api.getProfile(PreferenceUtils.getId(context), PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.ProfileResponse> {
                 override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
                     view.reject("Check your internet connection")
@@ -25,7 +25,7 @@ class ProfilePresenter(private val view: ProfileView,
                     call: Call<Model.ProfileResponse>,
                     response: Response<Model.ProfileResponse>
                 ) {
-                    val profile = response.body()?.profile?.get(0)
+                    val profile = response.body()?.profile
                     if (profile == null)
                         view.reject("Something went wrong")
                     else {

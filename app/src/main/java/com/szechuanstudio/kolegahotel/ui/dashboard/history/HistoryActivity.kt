@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
+import com.szechuanstudio.kolegahotel.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_history.*
+import kotlinx.android.synthetic.main.empty_state.*
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.longToast
+import org.jetbrains.anko.singleTop
 
 class HistoryActivity : AppCompatActivity(), HistoryView {
 
@@ -44,9 +48,16 @@ class HistoryActivity : AppCompatActivity(), HistoryView {
                 rv_history.layoutManager = LinearLayoutManager(this)
                 rv_history.adapter = HistoryAdapter(jobs)
             } else
-                setContentView(R.layout.empty_state)
+                setEmptyState()
         }
         loading_history.visibility = View.GONE
+    }
+
+    private fun setEmptyState(){
+        setContentView(R.layout.empty_state)
+        find_job.setOnClickListener {
+            navigateUpTo(intentFor<MainActivity>().singleTop())
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

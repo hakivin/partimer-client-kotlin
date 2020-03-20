@@ -19,7 +19,7 @@ class DocumentPresenter(private val view: DocumentView,
                         private val context: Context
 ) {
     fun getDocuments(){
-        api.getProfile(PreferenceUtils.getId(context))
+        api.getProfile(PreferenceUtils.getId(context), PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.ProfileResponse>{
                 override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
 
@@ -30,7 +30,7 @@ class DocumentPresenter(private val view: DocumentView,
                     response: Response<Model.ProfileResponse>
                 ) {
                     if (response.isSuccessful){
-                        view.showDocuments(response.body()?.profile?.get(0))
+                        view.showDocuments(response.body()?.profile)
                     }
                 }
 
@@ -45,14 +45,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadKtp(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.Profile>{
-                override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
+            .enqueue(object : Callback<Model.ProfileResponse>{
+                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.Profile>,
-                    response: Response<Model.Profile>
+                    call: Call<Model.ProfileResponse>,
+                    response: Response<Model.ProfileResponse>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()
@@ -69,14 +69,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadSkck(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.Profile>{
-                override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
+            .enqueue(object : Callback<Model.ProfileResponse>{
+                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.Profile>,
-                    response: Response<Model.Profile>
+                    call: Call<Model.ProfileResponse>,
+                    response: Response<Model.ProfileResponse>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()
@@ -93,14 +93,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadCertificate(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.Profile>{
-                override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
+            .enqueue(object : Callback<Model.ProfileResponse>{
+                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.Profile>,
-                    response: Response<Model.Profile>
+                    call: Call<Model.ProfileResponse>,
+                    response: Response<Model.ProfileResponse>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()
@@ -117,14 +117,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadCard(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.Profile>{
-                override fun onFailure(call: Call<Model.Profile>, t: Throwable) {
+            .enqueue(object : Callback<Model.ProfileResponse>{
+                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.Profile>,
-                    response: Response<Model.Profile>
+                    call: Call<Model.ProfileResponse>,
+                    response: Response<Model.ProfileResponse>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()

@@ -19,7 +19,7 @@ class RegisterPresenter(private val view : RegisterView,
         api.register(name, email, password, confPassword)
             .enqueue(object : Callback<Model.LoginResponse>{
                 override fun onFailure(call: Call<Model.LoginResponse>, t: Throwable) {
-                    view.failed(null)
+                    view.failed(t.message)
                 }
 
                 override fun onResponse(
@@ -27,7 +27,6 @@ class RegisterPresenter(private val view : RegisterView,
                     response: Response<Model.LoginResponse>
                 ) {
                     val newUser = response.body()?.user
-                    println("test ${newUser?.name}")
                     if (newUser!=null){
                         view.registered(newUser)
                         PreferenceUtils.saveEmail(email, context)
