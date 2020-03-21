@@ -26,7 +26,7 @@ class HomePresenter(private val view: HomeView,
                         view.reject("Error code = ${response.code()}")
                         return
                     }
-                    view.showAllJobs(response.body()?.jobs)
+                    view.showAllJobs(response.body()?.jobs?.data)
                 }
 
             })
@@ -47,7 +47,7 @@ class HomePresenter(private val view: HomeView,
                         view.reject("Error code = ${response.code()}")
                         return
                     }
-                    view.showAllJobs(response.body()?.jobs)
+                    view.showAllJobs(response.body()?.jobs?.data)
                 }
             })
     }
@@ -64,7 +64,7 @@ class HomePresenter(private val view: HomeView,
                     response: Response<Model.JobsResponse>
                 ) {
                     if (response.isSuccessful)
-                        view.showAllJobs(response.body()?.jobs)
+                        view.showAllJobs(response.body()?.jobs?.data)
                 }
             })
     }
@@ -104,7 +104,7 @@ class HomePresenter(private val view: HomeView,
                     response: Response<Model.JobsResponse>
                 ) {
                     if (response.isSuccessful)
-                        view.showAllJobs(response.body()?.jobs)
+                        view.showAllJobs(response.body()?.jobs?.data)
                     else
                         view.reject(response.errorBody()?.string())
                 }

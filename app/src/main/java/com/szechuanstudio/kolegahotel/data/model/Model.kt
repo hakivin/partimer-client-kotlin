@@ -79,8 +79,10 @@ object Model {
                            val hotel: Hotel?,
                            val posisi: Position?)
 
-    data class JobsResponse(val jobs: List<JobData>)
+    data class JobsResponse(val jobs: JobPaginate?)
 
+    data class JobPaginate(val current_page: Int?,
+                           val data: List<JobData>?)
     @Parcelize
     data class JobData(val id: Int?,
                        val hotel_id: Int?,
