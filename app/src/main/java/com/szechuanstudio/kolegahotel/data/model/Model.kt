@@ -202,4 +202,9 @@ object Model {
                             val foto: String?,
                             val website: String?,
                             val url_slug: String?) : Parcelable
+
+    data class PageAttrib(var currentPage : Int,
+                          var isLastPage : Boolean,
+                          var totalPage : Int,
+                          var isLoading : Boolean)
 }

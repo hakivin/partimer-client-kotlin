@@ -6,8 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.szechuanstudio.kolegahotel.R
@@ -21,22 +21,25 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.toast
 
-class HomeFragment : BaseFragment(), HomeView {
+class HomeFragment : BaseFragment(), HomeView, SwipeRefreshLayout.OnRefreshListener {
 
-    private var currentPage: Int = PAGE_START
-    private var isLastPage = false
-    private var totalPage = 1
-    private var isLoading = false
+    private lateinit var homeAttrib : Model.PageAttrib
+    private lateinit var searchAttrib : Model.PageAttrib
+    private lateinit var positionAttrib : Model.PageAttrib
 
     private lateinit var layoutManager : LinearLayoutManager
+
     private lateinit var adapter: HomeAdapter
+    private lateinit var emptyAdapter: HomeAdapter
+    private lateinit var searchedAdapter: HomeAdapter
+    private lateinit var positionAdapter: HomeAdapter
+
     private lateinit var presenter: HomePresenter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        val root = inflater.inflate(R.layout.fragment_home, container, false)
         presenter = HomePresenter(this, RetrofitClient.getInstance(), context!!)
         return getPersistentView(inflater, container, savedInstanceState, R.layout.fragment_home)
     }
@@ -50,24 +53,11 @@ class HomeFragment : BaseFragment(), HomeView {
         super.onViewCreated(view, savedInstanceState)
         if (!hasInitializedRootView) {
             hasInitializedRootView = true
-            presenter.getJobs(currentPage)
+            presenter.getJobs(1)
             presenter.getPositions()
             loading_home.visibility = View.VISIBLE
             layoutManager = LinearLayoutManager(context)
-            rv_home_job.addOnScrollListener(object : PaginationScrollListener(layoutManager){
-                override fun loadMoreItems() {
-                    isLoading = true
-                    presenter.getJobs(currentPage+1)
-                }
-
-                override fun isLastPage(): Boolean {
-                    return isLastPage
-                }
-
-                override fun isLoading(): Boolean {
-                    return isLoading
-                }
-            })
+            emptyAdapter = HomeAdapter(ArrayList(), this, null)
         }
     }
 
@@ -95,13 +85,15 @@ class HomeFragment : BaseFragment(), HomeView {
         }
         search.setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                presenter.setEmptyJob()
+                rv_home_job.adapter = emptyAdapter
+                filter_chip_group.visibility = View.GONE
+                refresh_home.isEnabled = false
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                presenter.getJobs(1)
-                loading_home.visibility = View.VISIBLE
+                setToDefault()
+                filter_chip_group.visibility = View.VISIBLE
                 return true
             }
 
@@ -115,14 +107,74 @@ class HomeFragment : BaseFragment(), HomeView {
                 if(jobData.data.isNullOrEmpty())
                     toast("No result")
                 adapter = HomeAdapter(jobData.data as ArrayList<Model.JobData>, this, null)
-                if (jobData.data.size >= 5)
+                if (jobData.current_page!! < jobData.last_page!!)
                     adapter.addLoading()
                 rv_home_job.adapter = adapter
             }
-            currentPage = jobData?.current_page!!
-            totalPage = jobData.last_page!!
-            isLastPage = false
-            isLoading = false
+            homeAttrib = Model.PageAttrib(jobData?.current_page!!, false, jobData.last_page!!, false)
+            refresh_home.setOnRefreshListener(this)
+            setToDefault()
+            loading_home.visibility = View.GONE
+            refresh_home.isRefreshing = false
+        }
+    }
+
+    override fun showSearchedJobs(jobs: Model.JobPaginate?, query: String?) {
+        if (isAdded){
+            if (jobs?.data != null) {
+                searchedAdapter = HomeAdapter(jobs.data as ArrayList<Model.JobData>, this, null)
+                if (jobs.current_page!! < jobs.last_page!!)
+                    searchedAdapter.addLoading()
+                rv_home_job.adapter = searchedAdapter
+            }
+            searchAttrib = Model.PageAttrib(jobs?.current_page!!, false, jobs.last_page!!, false)
+
+            rv_home_job.clearOnScrollListeners()
+            rv_home_job.addOnScrollListener(object : PaginationScrollListener(layoutManager){
+                override fun loadMoreItems() {
+                    searchAttrib.isLoading = true
+                    presenter.searchJob(query, searchAttrib.currentPage +1)
+                }
+
+                override fun isLastPage(): Boolean {
+                    return searchAttrib.isLastPage
+                }
+
+                override fun isLoading(): Boolean {
+                    return searchAttrib.isLoading
+                }
+            })
+            refresh_home.isEnabled = false
+            loading_home.visibility = View.GONE
+        }
+    }
+
+    override fun showPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
+        if (isAdded){
+            if (jobs?.data != null) {
+                positionAdapter = HomeAdapter(jobs.data as ArrayList<Model.JobData>, this, null)
+                if (jobs.current_page!! < jobs.last_page!!)
+                    positionAdapter.addLoading()
+                rv_home_job.adapter = positionAdapter
+            }
+            positionAttrib = Model.PageAttrib(jobs?.current_page!!, false, jobs.last_page!!, false)
+
+            rv_home_job.clearOnScrollListeners()
+            rv_home_job.addOnScrollListener(object : PaginationScrollListener(layoutManager){
+                override fun loadMoreItems() {
+                    positionAttrib.isLoading = true
+                    presenter.searchJobWithPosition(id, positionAttrib.currentPage +1)
+                }
+
+                override fun isLastPage(): Boolean {
+                    return positionAttrib.isLastPage
+                }
+
+                override fun isLoading(): Boolean {
+                    return positionAttrib.isLoading
+                }
+            })
+            refresh_home.isEnabled = false
             loading_home.visibility = View.GONE
         }
     }
@@ -151,14 +203,36 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun addJobs(jobs: Model.JobPaginate?) {
-        currentPage = jobs?.current_page!!
-        if (currentPage != PAGE_START) adapter.removeLoading()
+        homeAttrib.currentPage = jobs?.current_page!!
+        if (homeAttrib.currentPage != PAGE_START) adapter.removeLoading()
         jobs.data?.let { adapter.addItems(it) }
-        if (currentPage < totalPage)
+        if (homeAttrib.currentPage < homeAttrib.totalPage)
             adapter.addLoading()
         else
-            isLastPage = true
-        isLoading = false
+            homeAttrib.isLastPage = true
+        homeAttrib.isLoading = false
+    }
+
+    override fun addSearchedJobs(jobs: Model.JobPaginate?, query: String?) {
+        searchAttrib.currentPage = jobs?.current_page!!
+        if (searchAttrib.currentPage != PAGE_START) searchedAdapter.removeLoading()
+        jobs.data?.let { searchedAdapter.addItems(it) }
+        if (searchAttrib.currentPage < searchAttrib.totalPage)
+            searchedAdapter.addLoading()
+        else
+            searchAttrib.isLastPage = true
+        searchAttrib.isLoading = false
+    }
+
+    override fun addPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
+        positionAttrib.currentPage = jobs?.current_page!!
+        if (positionAttrib.currentPage != PAGE_START) positionAdapter.removeLoading()
+        jobs.data?.let { positionAdapter.addItems(it) }
+        if (positionAttrib.currentPage < positionAttrib.totalPage)
+            positionAdapter.addLoading()
+        else
+            positionAttrib.isLastPage = true
+        positionAttrib.isLoading = false
     }
 
     private fun addChipView(pos : Model.Position?){
@@ -168,12 +242,40 @@ class HomeFragment : BaseFragment(), HomeView {
                 layoutInflater.inflate(R.layout.filter_job_chip_item, chipGroup, false) as Chip
             chip.text = pos?.nama_posisi
             chip.setOnClickListener {
-                if (chip.isChecked)
+                if (chip.isChecked) {
                     presenter.searchJobWithPosition(pos?.id)
+                    rv_home_job.adapter = emptyAdapter
+                    loading_home.visibility = View.VISIBLE
+                }
                 else
-                    presenter.getJobs(1)
+                    setToDefault()
             }
             filter_chip_group.addView(chip)
         }
+    }
+
+    private fun setToDefault(){
+        rv_home_job.adapter = adapter
+        refresh_home.isEnabled = true
+        rv_home_job.clearOnScrollListeners()
+        rv_home_job.addOnScrollListener(object : PaginationScrollListener(layoutManager){
+            override fun loadMoreItems() {
+                homeAttrib.isLoading = true
+                presenter.getJobs(homeAttrib.currentPage+1)
+            }
+
+            override fun isLastPage(): Boolean {
+                return homeAttrib.isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return homeAttrib.isLoading
+            }
+        })
+    }
+
+    override fun onRefresh() {
+        presenter.getJobs(1)
+        presenter.getPositions()
     }
 }

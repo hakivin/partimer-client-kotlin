@@ -7,4 +7,14 @@ interface HomeView {
     fun reject(message: String?)
     fun showPositions(positions: List<Model.Position>?)
     fun addJobs(jobs: Model.JobPaginate?)
+    fun showSearchedJobs(jobs: Model.JobPaginate?, query: String?)
+    fun addSearchedJobs(jobs: Model.JobPaginate?, query: String?)
+    fun showPositionJobs(
+        jobs: Model.JobPaginate?,
+        id: Int?
+    )
+    fun addPositionJobs(
+        jobs: Model.JobPaginate?,
+        id: Int?
+    )
 }

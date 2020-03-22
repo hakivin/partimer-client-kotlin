@@ -68,6 +68,25 @@ class PendingActivity : AppCompatActivity(), HomeView {
 
     }
 
+    override fun showSearchedJobs(
+        jobs: Model.JobPaginate?,
+        query: String?
+    ) {
+
+    }
+
+    override fun addSearchedJobs(jobs: Model.JobPaginate?, query: String?) {
+
+    }
+
+    override fun showPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
+
+    }
+
+    override fun addPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
+
+    }
+
     private fun loadContent(){
         loading_pending.visibility = View.VISIBLE
         presenter.getPendingJobs()

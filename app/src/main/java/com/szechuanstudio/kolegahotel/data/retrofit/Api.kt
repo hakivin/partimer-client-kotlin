@@ -71,7 +71,7 @@ interface Api {
     fun getAllJobs(@Query("page") page: Int?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
 
     @GET("auth/jobs/{query}")
-    fun searchJobs(@Path("query") query: String?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
+    fun searchJobs(@Path("query") query: String?,@Query("page") page: Int?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
 
     @GET("auth/jobs/position/{id}")
     fun getJobsWithPosition(@Path("id") idPosition: Int?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>

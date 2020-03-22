@@ -1,6 +1,5 @@
 package com.szechuanstudio.kolegahotel.utils
 
-import android.nfc.tech.MifareUltralight
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -9,7 +8,7 @@ abstract class PaginationScrollListener(private val linearLayoutManager: LinearL
 
     companion object {
         const val PAGE_START = 1
-        private const val PAGE_SIZE = 5
+        const val PAGE_SIZE = 5
     }
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -18,7 +17,7 @@ abstract class PaginationScrollListener(private val linearLayoutManager: LinearL
         val totalItemCount: Int = linearLayoutManager.itemCount
         val firstVisibleItemPosition: Int = linearLayoutManager.findFirstVisibleItemPosition()
         if (!isLoading() && !isLastPage()) {
-            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0 && totalItemCount >= MifareUltralight.PAGE_SIZE
+            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0 && totalItemCount >= PAGE_SIZE
             ) {
                 loadMoreItems()
             }

@@ -11,7 +11,7 @@ import retrofit2.Response
 class HomePresenter(private val view: HomeView,
                     private val api: Api,
                     private val context: Context) {
-    fun getJobs(page: Int?){
+    fun getJobs(page: Int? = 1){
         api.getAllJobs(page, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
@@ -35,8 +35,8 @@ class HomePresenter(private val view: HomeView,
             })
     }
 
-    fun searchJob(query: String?){
-        api.searchJobs(query, PreferenceUtils.getToken(context))
+    fun searchJob(query: String?, page: Int? = 1){
+        api.searchJobs(query, page,PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
                     view.reject(t.message)
@@ -50,12 +50,15 @@ class HomePresenter(private val view: HomeView,
                         view.reject("Error code = ${response.code()}")
                         return
                     }
-                    view.showAllJobs(response.body()?.jobs)
+                    if (page == 1)
+                        view.showSearchedJobs(response.body()?.jobs, query)
+                    else
+                        view.addSearchedJobs(response.body()?.jobs, query)
                 }
             })
     }
 
-    fun searchJobWithPosition(id: Int?){
+    fun searchJobWithPosition(id: Int?, page: Int? = 1){
         api.getJobsWithPosition(id, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
@@ -66,16 +69,16 @@ class HomePresenter(private val view: HomeView,
                     call: Call<Model.JobsResponse>,
                     response: Response<Model.JobsResponse>
                 ) {
-                    if (response.isSuccessful)
-                        view.showAllJobs(response.body()?.jobs)
+                    if (!response.isSuccessful){
+                        view.reject("Error code = ${response.code()}")
+                        return
+                    }
+                    if (page == 1)
+                        view.showPositionJobs(response.body()?.jobs, id)
+                    else
+                        view.addPositionJobs(response.body()?.jobs, id)
                 }
             })
-    }
-
-    fun setEmptyJob(){
-        val emptyJob = emptyList<Model.JobData>()
-        val emptyPaginate = Model.JobPaginate(1, emptyJob, 1)
-        view.showAllJobs(emptyPaginate)
     }
 
     fun getPositions(){
