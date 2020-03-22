@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.R
@@ -14,6 +15,7 @@ import com.szechuanstudio.kolegahotel.ui.login.LoginActivity
 import com.szechuanstudio.kolegahotel.ui.main.ui.profile.documents.DocumentActivity
 import com.szechuanstudio.kolegahotel.ui.main.ui.profile.positions.UpdatePositionActivity
 import com.szechuanstudio.kolegahotel.ui.main.ui.profile.update.UpdateProfileActivity
+import com.szechuanstudio.kolegahotel.utils.BaseFragment
 import com.szechuanstudio.kolegahotel.utils.Constant
 import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
 import com.szechuanstudio.kolegahotel.utils.Utils
@@ -24,7 +26,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
 
-class ProfileFragment : Fragment(), ProfileView {
+class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var presenter: ProfilePresenter
 
@@ -32,18 +34,21 @@ class ProfileFragment : Fragment(), ProfileView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return getPersistentView(inflater, container, savedInstanceState, R.layout.fragment_profile)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = ProfilePresenter(this, RetrofitClient.getInstance(), act.applicationContext)
-        presenter.checkProfile()
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
+        if (!hasInitializedRootView){
+            presenter = ProfilePresenter(this, RetrofitClient.getInstance(), act.applicationContext)
+            presenter.checkProfile()
+            refresh_profile.setOnRefreshListener(this)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -79,15 +84,16 @@ class ProfileFragment : Fragment(), ProfileView {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        shimmer_android.showShimmer(true)
-        presenter.checkProfile()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        shimmer_android.showShimmer(true)
+//        presenter.checkProfile()
+//    }
 
     override fun showProfile(profile: Model.Profile?) {
         if (isAdded) {
             shimmer_android.hideShimmer()
+            refresh_profile.isRefreshing = false
             if (profile != null) {
                 profile_full_name.text = profile.nama_lengkap
                 profile_birthday.text = Utils.convertDate(profile.tanggal_lahir)
@@ -176,5 +182,9 @@ class ProfileFragment : Fragment(), ProfileView {
             rv_positions.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
             rv_positions.adapter = positions?.positions?.let { PositionAdapter(it) }
         }
+    }
+
+    override fun onRefresh() {
+        presenter.checkProfile()
     }
 }
