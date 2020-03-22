@@ -68,7 +68,7 @@ interface Api {
     fun selectPosition(@Query("id") id: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 
     @GET("auth/jobs")
-    fun getAllJobs(@Header("Authorization") token : String?) : Call<Model.JobsResponse>
+    fun getAllJobs(@Query("page") page: Int?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>
 
     @GET("auth/jobs/{query}")
     fun searchJobs(@Path("query") query: String?, @Header("Authorization") token : String?) : Call<Model.JobsResponse>

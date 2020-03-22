@@ -37,11 +37,11 @@ class PendingActivity : AppCompatActivity(), HomeView {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    override fun showAllJobs(jobData: List<Model.JobData>?) {
+    override fun showAllJobs(jobData: Model.JobPaginate?) {
         if (jobData != null) {
-            if (!jobData.isNullOrEmpty()) {
+            if (!jobData.data.isNullOrEmpty()) {
                 rv_pending.layoutManager = LinearLayoutManager(this)
-                rv_pending.adapter = HomeAdapter(jobData, null, this)
+                rv_pending.adapter = HomeAdapter(jobData.data as ArrayList<Model.JobData>, null, this)
             } else
                 setEmptyState()
         }
@@ -62,6 +62,10 @@ class PendingActivity : AppCompatActivity(), HomeView {
 
     override fun showPositions(positions: List<Model.Position>?) {
         // nothing to do
+    }
+
+    override fun addJobs(jobs: Model.JobPaginate?) {
+
     }
 
     private fun loadContent(){

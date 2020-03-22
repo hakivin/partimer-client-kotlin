@@ -13,35 +13,62 @@ import com.google.android.material.chip.ChipGroup
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
+import com.szechuanstudio.kolegahotel.utils.BaseFragment
 import com.szechuanstudio.kolegahotel.utils.Constant
-import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
+import com.szechuanstudio.kolegahotel.utils.PaginationScrollListener
+import com.szechuanstudio.kolegahotel.utils.PaginationScrollListener.Companion.PAGE_START
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.toast
 
-class HomeFragment : Fragment(), HomeView {
+class HomeFragment : BaseFragment(), HomeView {
 
+    private var currentPage: Int = PAGE_START
+    private var isLastPage = false
+    private var totalPage = 1
+    private var isLoading = false
+
+    private lateinit var layoutManager : LinearLayoutManager
+    private lateinit var adapter: HomeAdapter
     private lateinit var presenter: HomePresenter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        val root = inflater.inflate(R.layout.fragment_home, container, false)
         presenter = HomePresenter(this, RetrofitClient.getInstance(), context!!)
-        presenter.getJobs()
-        presenter.getPositions()
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return getPersistentView(inflater, container, savedInstanceState, R.layout.fragment_home)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        println(PreferenceUtils.getToken(act.applicationContext))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loading_home.visibility = View.VISIBLE
+        if (!hasInitializedRootView) {
+            hasInitializedRootView = true
+            presenter.getJobs(currentPage)
+            presenter.getPositions()
+            loading_home.visibility = View.VISIBLE
+            layoutManager = LinearLayoutManager(context)
+            rv_home_job.addOnScrollListener(object : PaginationScrollListener(layoutManager){
+                override fun loadMoreItems() {
+                    isLoading = true
+                    presenter.getJobs(currentPage+1)
+                }
+
+                override fun isLastPage(): Boolean {
+                    return isLastPage
+                }
+
+                override fun isLoading(): Boolean {
+                    return isLoading
+                }
+            })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -73,7 +100,7 @@ class HomeFragment : Fragment(), HomeView {
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                presenter.getJobs()
+                presenter.getJobs(1)
                 loading_home.visibility = View.VISIBLE
                 return true
             }
@@ -81,14 +108,21 @@ class HomeFragment : Fragment(), HomeView {
         })
     }
 
-    override fun showAllJobs(jobData: List<Model.JobData>?) {
+    override fun showAllJobs(jobData: Model.JobPaginate?) {
         if (isAdded) {
-            rv_home_job.layoutManager = LinearLayoutManager(context)
-            if (jobData != null) {
-                if(jobData.isNullOrEmpty())
+            rv_home_job.layoutManager = layoutManager
+            if (jobData?.data != null) {
+                if(jobData.data.isNullOrEmpty())
                     toast("No result")
-                rv_home_job.adapter = HomeAdapter(jobData, this, null)
+                adapter = HomeAdapter(jobData.data as ArrayList<Model.JobData>, this, null)
+                if (jobData.data.size >= 5)
+                    adapter.addLoading()
+                rv_home_job.adapter = adapter
             }
+            currentPage = jobData?.current_page!!
+            totalPage = jobData.last_page!!
+            isLastPage = false
+            isLoading = false
             loading_home.visibility = View.GONE
         }
     }
@@ -97,7 +131,7 @@ class HomeFragment : Fragment(), HomeView {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Constant.APPLY_REQUEST_CODE){
             loading_home.visibility = View.VISIBLE
-            presenter.getJobs()
+            presenter.getJobs(1)
         }
     }
 
@@ -116,6 +150,17 @@ class HomeFragment : Fragment(), HomeView {
         }
     }
 
+    override fun addJobs(jobs: Model.JobPaginate?) {
+        currentPage = jobs?.current_page!!
+        if (currentPage != PAGE_START) adapter.removeLoading()
+        jobs.data?.let { adapter.addItems(it) }
+        if (currentPage < totalPage)
+            adapter.addLoading()
+        else
+            isLastPage = true
+        isLoading = false
+    }
+
     private fun addChipView(pos : Model.Position?){
         if (isAdded) {
             val chipGroup = act.findViewById<ChipGroup>(R.id.filter_chip_group)
@@ -126,7 +171,7 @@ class HomeFragment : Fragment(), HomeView {
                 if (chip.isChecked)
                     presenter.searchJobWithPosition(pos?.id)
                 else
-                    presenter.getJobs()
+                    presenter.getJobs(1)
             }
             filter_chip_group.addView(chip)
         }

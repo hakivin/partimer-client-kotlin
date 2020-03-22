@@ -14,13 +14,16 @@ import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.ui.job.JobDetailActivity
+import com.szechuanstudio.kolegahotel.utils.BaseViewHolder
 import com.szechuanstudio.kolegahotel.utils.Constant
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.job_item.view.*
 
-class HomeAdapter(private val jobData : List<Model.JobData>, private val act: Fragment?, private val act2: Activity?) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(private val jobData : ArrayList<Model.JobData>, private val act: Fragment?, private val act2: Activity?) : RecyclerView.Adapter<BaseViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private var isLoaderVisible = false
+
+    class ViewHolder(itemView: View) : BaseViewHolder(itemView) {
         fun bind(jobData : Model.JobData, act: Fragment){
             if (jobData.foto.isNullOrBlank())
                 Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + jobData.hotel?.profile?.foto).into(itemView.img_cover_job)
@@ -66,21 +69,94 @@ class HomeAdapter(private val jobData : List<Model.JobData>, private val act: Fr
                 act.startActivityForResult(intent, Constant.APPLY_REQUEST_CODE, options.toBundle())
             }
         }
+
+        override fun clear() {
+
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.job_item, parent, false)
-        return ViewHolder(view)
+    class ProgressHolder(itemView: View) : BaseViewHolder(itemView) {
+        override fun clear() {
+        }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_NORMAL -> ViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.job_item, parent, false)
+            )
+            VIEW_TYPE_LOADING -> ProgressHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.loading_item, parent, false)
+            )
+            else -> ProgressHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.loading_item, parent, false)
+            )
+        }
+//        val view = LayoutInflater.from(parent.context).inflate(R.layout.job_item, parent, false)
+//        return ViewHolder(view)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (isLoaderVisible) {
+            if (position == jobData.size - 1) VIEW_TYPE_LOADING else VIEW_TYPE_NORMAL
+        } else {
+            VIEW_TYPE_NORMAL
+        }
+
+    }
     override fun getItemCount(): Int {
         return jobData.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    fun addItems(postItems: Collection<Model.JobData>) {
+        jobData.addAll(postItems)
+        notifyDataSetChanged()
+    }
+
+    fun addLoading() {
+        isLoaderVisible = true
+        jobData.add(Model.JobData())
+        notifyItemInserted(jobData.lastIndex)
+    }
+
+    fun removeLoading() {
+        isLoaderVisible = false
+        val position: Int = jobData.lastIndex
+        val item: Model.JobData? = getItem(position)
+        if (item != null) {
+            jobData.removeAt(jobData.lastIndex)
+            notifyItemRemoved(position)
+        }
+    }
+
+    fun clear() {
+        jobData.clear()
+        notifyDataSetChanged()
+    }
+
+    private fun getItem(position: Int): Model.JobData? {
+        return jobData[position]
+    }
+
+
+//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//        if (act != null)
+//            holder.bind(jobData[position], act)
+//        else if (act2 != null)
+//            holder.bind(jobData[position], act2)
+//    }
+
+    companion object {
+        private const val VIEW_TYPE_LOADING = 0
+        private const val VIEW_TYPE_NORMAL = 1
+    }
+
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        holder.onBind(position)
         if (act != null)
+            if (holder is ViewHolder)
             holder.bind(jobData[position], act)
         else if (act2 != null)
-            holder.bind(jobData[position], act2)
+            (holder as ViewHolder).bind(jobData[position], act2)
     }
 }

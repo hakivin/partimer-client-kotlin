@@ -11,8 +11,8 @@ import retrofit2.Response
 class HomePresenter(private val view: HomeView,
                     private val api: Api,
                     private val context: Context) {
-    fun getJobs(){
-        api.getAllJobs(PreferenceUtils.getToken(context))
+    fun getJobs(page: Int?){
+        api.getAllJobs(page, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
                     view.reject(t.message)
@@ -26,7 +26,10 @@ class HomePresenter(private val view: HomeView,
                         view.reject("Error code = ${response.code()}")
                         return
                     }
-                    view.showAllJobs(response.body()?.jobs?.data)
+                    if (page == 1)
+                        view.showAllJobs(response.body()?.jobs)
+                    else
+                        view.addJobs(response.body()?.jobs)
                 }
 
             })
@@ -47,7 +50,7 @@ class HomePresenter(private val view: HomeView,
                         view.reject("Error code = ${response.code()}")
                         return
                     }
-                    view.showAllJobs(response.body()?.jobs?.data)
+                    view.showAllJobs(response.body()?.jobs)
                 }
             })
     }
@@ -64,14 +67,15 @@ class HomePresenter(private val view: HomeView,
                     response: Response<Model.JobsResponse>
                 ) {
                     if (response.isSuccessful)
-                        view.showAllJobs(response.body()?.jobs?.data)
+                        view.showAllJobs(response.body()?.jobs)
                 }
             })
     }
 
     fun setEmptyJob(){
         val emptyJob = emptyList<Model.JobData>()
-        view.showAllJobs(emptyJob)
+        val emptyPaginate = Model.JobPaginate(1, emptyJob, 1)
+        view.showAllJobs(emptyPaginate)
     }
 
     fun getPositions(){
@@ -104,7 +108,7 @@ class HomePresenter(private val view: HomeView,
                     response: Response<Model.JobsResponse>
                 ) {
                     if (response.isSuccessful)
-                        view.showAllJobs(response.body()?.jobs?.data)
+                        view.showAllJobs(response.body()?.jobs)
                     else
                         view.reject(response.errorBody()?.string())
                 }

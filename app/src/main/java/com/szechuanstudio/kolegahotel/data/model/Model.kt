@@ -82,7 +82,8 @@ object Model {
     data class JobsResponse(val jobs: JobPaginate?)
 
     data class JobPaginate(val current_page: Int?,
-                           val data: List<JobData>?)
+                           val data: List<JobData>?,
+                           val last_page: Int?)
     @Parcelize
     data class JobData(val id: Int?,
                        val hotel_id: Int?,
@@ -107,7 +108,12 @@ object Model {
                        val isApplied: Boolean?,
                        val isExpired: Boolean?,
                        val hotel: Hotel?,
-                       val posisi: Position?) : Parcelable
+                       val posisi: Position?) : Parcelable {
+        constructor() : this(null, null, null, "", "", "",
+            "", null, null, null, null,
+            "", null, null, "", "", "","","",
+            null, null, null, null, null)
+    }
 
     data class JobDetailResponse(val active_jobs: JobDetail?)
 
