@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="There is nothing here"
+            android:text="@string/there_is_nothing_here"
             android:textSize="28sp"
             android:textColor="@android:color/black"
             android:layout_gravity="center"/>
@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apply to jobs and track your applications from dashboard"
+            android:text="@string/apply_to_jobs_and_track_your_applications_from_dashboard"
             android:gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
@@ -43,7 +43,7 @@
             android:id="@+id/find_job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Find job"
+            android:text="@string/find_job"
             android:textSize="18sp"
             android:layout_marginTop="24dp"
             android:layout_gravity="center"

@@ -23,14 +23,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Almost done"
+            android:text="@string/almost_done"
             android:textColor="@android:color/black"
             android:textSize="28sp"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your job is verified. Please contact number below if you haven't been paid."
+            android:text="@string/your_job_is_verified_please_contact_number_below_if_you_haven_t_been_paid"
             android:textSize="20sp"
             android:gravity="center"
             android:layout_marginTop="8dp"
@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:text="i have received payment"
+        android:text="@string/i_have_received_payment"
         android:id="@+id/done_button"
         app:backgroundTint="@color/green_A200"
         android:textColor="@android:color/white"

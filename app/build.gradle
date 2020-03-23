@@ -27,6 +27,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://dev.kadangkoding.com/kolegahotel\""
         }
         debug {
             buildConfigField "String", "BASE_URL", "\"http://dev.kadangkoding.com/kolegahotel\""

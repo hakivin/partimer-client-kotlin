@@ -1,8 +1,8 @@
 package com.szechuanstudio.kolegahotel.ui.dashboard.history
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.szechuanstudio.kolegahotel.R
@@ -14,9 +14,7 @@ import com.szechuanstudio.kolegahotel.utils.PaginationScrollListener.Companion.P
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.empty_state.*
-import org.jetbrains.anko.contentView
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.longToast
 import org.jetbrains.anko.singleTop
 
 class HistoryActivity : AppCompatActivity(), HistoryView, SwipeRefreshLayout.OnRefreshListener {

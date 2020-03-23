@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/offline_placeholder"
-            android:text="You're offline"
+            android:text="@string/you_re_offline"
             app:layout_constraintTop_toBottomOf="@id/image_offline"
             android:textSize="28sp"
             android:gravity="center"/>
@@ -36,7 +36,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             app:layout_constraintTop_toBottomOf="@id/offline_placeholder"
-            android:text="Swipe down to reload when you are already online"
+            android:text="@string/swipe_down_to_reload_when_you_are_already_online"
             android:textSize="18sp"
             android:gravity="center"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

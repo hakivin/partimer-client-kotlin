@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_pending.*
 import kotlinx.android.synthetic.main.empty_state.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
-import org.jetbrains.anko.toast
 
 class PendingActivity : AppCompatActivity(), HomeView, SwipeRefreshLayout.OnRefreshListener {
 

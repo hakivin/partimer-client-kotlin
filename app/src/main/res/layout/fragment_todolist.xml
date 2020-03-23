@@ -29,14 +29,14 @@
                 android:textSize="18sp"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:textColor="@color/colorAccent"
-                android:text="Loading..."/>
+                android:text="@string/loading"/>
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/todolist_placeholder"
-            android:text="To Do List"
+            android:text="@string/to_do_list"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

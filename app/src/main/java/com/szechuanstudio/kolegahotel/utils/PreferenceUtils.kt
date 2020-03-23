@@ -45,7 +45,7 @@ class PreferenceUtils {
 
         fun saveToken(token: String, context: Context){
             getPreference(context).edit()
-                .putString(Constant.KEY_TOKEN, "Bearer " + token)
+                .putString(Constant.KEY_TOKEN, "Bearer $token")
                 .apply()
         }
 

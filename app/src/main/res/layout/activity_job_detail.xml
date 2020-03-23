@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/img_backdrop_detail"
                 android:transitionName="@string/transition_1"
-                android:adjustViewBounds="true"/>
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/job_image" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -43,7 +44,7 @@
     <include layout="@layout/content_job_detail" />
 
     <com.google.android.material.button.MaterialButton
-        android:text="Apply Job"
+        android:text="@string/apply_job"
         android:id="@+id/apply_button"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"

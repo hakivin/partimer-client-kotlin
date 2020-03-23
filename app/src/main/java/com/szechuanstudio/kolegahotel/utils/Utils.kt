@@ -6,7 +6,6 @@ import android.net.ParseException
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.szechuanstudio.kolegahotel.R
 import kotlinx.android.synthetic.main.offline_state.*

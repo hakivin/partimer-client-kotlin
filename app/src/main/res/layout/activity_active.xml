@@ -72,7 +72,7 @@
         android:visibility="gone"/>
 
     <com.google.android.material.button.MaterialButton
-        android:text="Complete"
+        android:text="@string/complete"
         android:id="@+id/done_button"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"

@@ -14,7 +14,6 @@ import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.todolist_item.view.*
 import okhttp3.ResponseBody
-import org.jetbrains.anko.image
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback

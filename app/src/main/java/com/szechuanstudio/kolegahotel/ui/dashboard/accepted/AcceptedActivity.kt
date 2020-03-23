@@ -1,8 +1,8 @@
 package com.szechuanstudio.kolegahotel.ui.dashboard.accepted
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.szechuanstudio.kolegahotel.R
@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_accepted.*
 import kotlinx.android.synthetic.main.empty_state.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
-import org.jetbrains.anko.toast
 
 class AcceptedActivity : AppCompatActivity(), AcceptedView, SwipeRefreshLayout.OnRefreshListener {
 

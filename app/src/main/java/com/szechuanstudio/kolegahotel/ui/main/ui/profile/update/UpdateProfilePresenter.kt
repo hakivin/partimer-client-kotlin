@@ -2,10 +2,8 @@ package com.szechuanstudio.kolegahotel.ui.main.ui.profile.update
 
 import android.content.Context
 import android.net.Uri
-import android.provider.MediaStore
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.Api
-import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
 import com.szechuanstudio.kolegahotel.utils.Utils
 import okhttp3.MediaType

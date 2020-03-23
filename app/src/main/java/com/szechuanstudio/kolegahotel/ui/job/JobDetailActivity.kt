@@ -131,7 +131,7 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
     }
 
     private fun initToolbar() {
-        jobData = intent.getParcelableExtra<Model.JobData?>(
+        jobData = intent.getParcelableExtra(
             Constant.KEY_IMAGE_JOB
         )
         val img = BuildConfig.BASE_URL + '/' + jobData?.hotel?.profile?.foto

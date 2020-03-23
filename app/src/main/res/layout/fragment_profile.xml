@@ -130,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_birthday_placeholder"
                         android:textColor="@android:color/black"
-                        android:text="Birthday"
+                        android:text="@string/birthday"
                         app:layout_constraintTop_toBottomOf="@id/profile_line_1"
                         app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder"
                         />
@@ -204,7 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_height_weight_placeholder"
-                        android:text="Height / Weight"
+                        android:text="@string/height_weight"
                         android:textColor="@android:color/black"
                         app:layout_constraintTop_toBottomOf="@id/image_person"
                         app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder" />
@@ -278,7 +278,7 @@
                         android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_document_placeholder"
-                        android:text="Documents"
+                        android:text="@string/documents"
                         android:textColor="@android:color/black"
                         app:layout_constraintTop_toBottomOf="@id/image_height"
                         app:layout_constraintLeft_toLeftOf="@id/profile_about_placeholder" />

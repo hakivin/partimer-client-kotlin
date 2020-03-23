@@ -51,7 +51,7 @@ class ActiveActivity : AppCompatActivity(), ActiveView {
             tv_position_todolist.text = activeJobs.posisi?.nama_posisi
             tv_hotel_name_todolist.text = activeJobs.hotel?.profile?.nama
             tv_date_todolist.text = Utils.convertDate(activeJobs.tanggal_mulai)
-            tv_time_end_todolist.text = "Finish before ${Utils.convertTime(activeJobs?.tanggal_mulai, activeJobs?.waktu_selesai)}"
+            tv_time_end_todolist.text = "${getString(R.string.finish_before)} ${Utils.convertTime(activeJobs?.tanggal_mulai, activeJobs?.waktu_selesai)}"
 
             job = activeJobs
             presenter.getCheckedTodolist(job.id)

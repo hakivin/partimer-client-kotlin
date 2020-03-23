@@ -23,7 +23,8 @@
             android:padding="8dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            android:contentDescription="@string/logo" />
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

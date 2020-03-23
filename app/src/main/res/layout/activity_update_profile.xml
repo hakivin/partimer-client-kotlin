@@ -23,7 +23,8 @@
             tools:background="@color/colorPrimaryDark"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            android:src="@drawable/placeholder_cover"/>
+            android:src="@drawable/placeholder_cover"
+            android:contentDescription="@string/cover_placeholder" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -104,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update_birthday"
-            android:text="Birthday"
+            android:text="@string/birthday"
             app:layout_constraintTop_toBottomOf="@id/edit_update_full_name"
             app:layout_constraintLeft_toLeftOf="@id/update_name"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -142,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update_height"
-            android:text="Height"
+            android:text="@string/height"
             app:layout_constraintTop_toBottomOf="@id/edit_update_address"
             app:layout_constraintLeft_toLeftOf="@id/update_name"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -150,7 +151,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weight"
+            android:text="@string/weight"
             app:layout_constraintTop_toBottomOf="@id/edit_update_address"
             app:layout_constraintLeft_toLeftOf="@id/edit_update_weight"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>

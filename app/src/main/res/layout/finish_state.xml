@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Congratulation!"
+            android:text="@string/congratulation"
             android:textColor="@android:color/black"
             android:textSize="28sp"
             android:layout_gravity="center"/>
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You have finished your job. Let's find another job that suits you."
+            android:text="@string/you_have_finished_your_job_let_s_find_another_job_that_suits_you"
             android:gravity="center"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
@@ -42,7 +42,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:text="find new job"
+        android:text="@string/find_new_job"
         android:id="@+id/find_button"
         app:backgroundTint="@color/green_A200"
         android:textColor="@android:color/white"
