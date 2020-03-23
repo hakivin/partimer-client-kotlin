@@ -23,8 +23,12 @@ class HistoryPresenter(private val view: HistoryView,
                     call: Call<Model.JobHistoryResponse>,
                     response: Response<Model.JobHistoryResponse>
                 ) {
-                    if (response.isSuccessful)
-                        view.showJobHistory(response.body()?.jobs?.data)
+                    if (response.isSuccessful) {
+                        if (page == 1)
+                            view.showJobHistory(response.body()?.jobs)
+                        else
+                            view.addJobHistory(response.body()?.jobs)
+                    }
                     else
                         view.reject("Something went wrong")
                 }

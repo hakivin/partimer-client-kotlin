@@ -58,7 +58,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/contact_phone"
+        android:id="@+id/ver_contact_phone"
         android:src="@drawable/ic_phone"
         app:backgroundTint="@color/colorPrimary"
         app:tint="@android:color/white"
@@ -69,12 +69,12 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/contact_email"
+        android:id="@+id/ver_contact_email"
         android:src="@drawable/ic_email"
         app:backgroundTint="@color/colorPrimary"
         app:tint="@android:color/white"
         android:layout_margin="@dimen/activity_horizontal_margin"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/contact_phone"/>
+        app:layout_constraintBottom_toTopOf="@id/ver_contact_phone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

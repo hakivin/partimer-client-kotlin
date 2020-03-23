@@ -85,6 +85,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
 
         register.setOnClickListener {
             loading.visibility = View.VISIBLE
+            it.isEnabled = false
             presenter.register(name_register.text.toString(),
                 email_register.text.toString(),
                 password_register.text.toString(),
@@ -99,6 +100,7 @@ class RegisterActivity : AppCompatActivity(), RegisterView {
 
     override fun failed(message: String?) {
         message?.let { toast(it) }
+        register.isEnabled = true
         loading.visibility = View.GONE
     }
 }

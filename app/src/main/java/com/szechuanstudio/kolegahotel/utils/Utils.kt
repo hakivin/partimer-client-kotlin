@@ -1,11 +1,15 @@
 package com.szechuanstudio.kolegahotel.utils
 
+import android.app.Activity
 import android.content.Context
 import android.net.ParseException
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.szechuanstudio.kolegahotel.R
+import kotlinx.android.synthetic.main.offline_state.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -42,7 +46,7 @@ object Utils {
     }
 
     fun getQuotaRemaining(quota : Int?, applied: Int?, context: Context): CharSequence? {
-        return "${applied?.let { quota?.minus(it) }} ${context.getString(R.string.left)}"
+        return "$applied applied"
     }
 
     fun getRealPathFromURI(context: Context, contentURI: Uri?): String? {
@@ -58,5 +62,10 @@ object Utils {
             cursor.close()
         }
         return result
+    }
+
+    fun setOfflineState(activity: Activity, refreshListener : SwipeRefreshLayout.OnRefreshListener){
+        activity.setContentView(R.layout.offline_state)
+        activity.refresh_offline.setOnRefreshListener(refreshListener)
     }
 }

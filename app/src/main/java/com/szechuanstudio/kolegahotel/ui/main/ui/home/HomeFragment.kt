@@ -122,6 +122,8 @@ class HomeFragment : BaseFragment(), HomeView, SwipeRefreshLayout.OnRefreshListe
     override fun showSearchedJobs(jobs: Model.JobPaginate?, query: String?) {
         if (isAdded){
             if (jobs?.data != null) {
+                if(jobs.data.isNullOrEmpty())
+                    toast("No result")
                 searchedAdapter = HomeAdapter(jobs.data as ArrayList<Model.JobData>, this, null)
                 if (jobs.current_page!! < jobs.last_page!!)
                     searchedAdapter.addLoading()
@@ -152,6 +154,8 @@ class HomeFragment : BaseFragment(), HomeView, SwipeRefreshLayout.OnRefreshListe
     override fun showPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
         if (isAdded){
             if (jobs?.data != null) {
+                if(jobs.data.isNullOrEmpty())
+                    toast("No result")
                 positionAdapter = HomeAdapter(jobs.data as ArrayList<Model.JobData>, this, null)
                 if (jobs.current_page!! < jobs.last_page!!)
                     positionAdapter.addLoading()

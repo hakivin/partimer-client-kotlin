@@ -11,6 +11,7 @@ import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.ui.main.MainActivity
 import com.szechuanstudio.kolegahotel.utils.PaginationScrollListener
 import com.szechuanstudio.kolegahotel.utils.PaginationScrollListener.Companion.PAGE_START
+import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.activity_accepted.*
 import kotlinx.android.synthetic.main.empty_state.*
 import org.jetbrains.anko.intentFor
@@ -45,11 +46,13 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView, SwipeRefreshLayout.O
     }
 
     override fun reject(message: String?) {
-        message?.let { toast(it) }
+//        message?.let { toast(it) }
         loading_accepted.visibility = View.GONE
+        Utils.setOfflineState(this, this)
     }
 
     override fun showAcceptedJobs(jobs: Model.AcceptedPaginate?) {
+        setContentView(R.layout.activity_accepted)
         if (jobs?.data != null) {
             if (!jobs.data.isNullOrEmpty()) {
                 adapter = AcceptedAdapter(jobs.data as ArrayList<Model.JobAccepted>, supportFragmentManager)

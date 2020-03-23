@@ -15,7 +15,7 @@ class HomePresenter(private val view: HomeView,
         api.getAllJobs(page, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
-                    view.reject(t.message)
+                    view.reject("Check your internet connection")
                 }
 
                 override fun onResponse(
@@ -39,7 +39,7 @@ class HomePresenter(private val view: HomeView,
         api.searchJobs(query, page,PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
-                    view.reject(t.message)
+                    view.reject("Check your internet connection")
                 }
 
                 override fun onResponse(
@@ -103,7 +103,7 @@ class HomePresenter(private val view: HomeView,
         api.getAppliedJobs(PreferenceUtils.getId(context), page, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
-                    view.reject(t.message)
+                    view.reject("Check your internet connection")
                 }
 
                 override fun onResponse(

@@ -81,9 +81,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
             }
 
             login.setOnClickListener {
+                it.isEnabled = false
                 loading.visibility = View.VISIBLE
                 presenter.login(username.text.toString(), password.text.toString())
-                login.isEnabled = false
             }
         }
     }
@@ -109,6 +109,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         if (user != null) {
             updateUiWithUser()
         }
+        login.isEnabled = true
         loading.visibility = View.GONE
     }
 

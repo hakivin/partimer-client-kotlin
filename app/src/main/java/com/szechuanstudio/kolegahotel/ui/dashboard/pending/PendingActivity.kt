@@ -15,6 +15,7 @@ import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomePresenter
 import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomeView
 import com.szechuanstudio.kolegahotel.utils.Constant
 import com.szechuanstudio.kolegahotel.utils.PaginationScrollListener
+import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.activity_pending.*
 import kotlinx.android.synthetic.main.empty_state.*
 import org.jetbrains.anko.intentFor
@@ -45,6 +46,7 @@ class PendingActivity : AppCompatActivity(), HomeView, SwipeRefreshLayout.OnRefr
     }
 
     override fun showPendingJobs(jobs: Model.JobPaginate?) {
+        setContentView(R.layout.activity_pending)
         if (jobs != null) {
             if (!jobs.data.isNullOrEmpty()) {
                 adapter = HomeAdapter(jobs.data as ArrayList<Model.JobData>, null, this)
@@ -81,9 +83,10 @@ class PendingActivity : AppCompatActivity(), HomeView, SwipeRefreshLayout.OnRefr
     }
 
     override fun reject(message: String?) {
-        message?.let { toast(it) }
+//        message?.let { toast(it) }
         loading_pending.visibility = View.GONE
         refresh_pending.isRefreshing = false
+        Utils.setOfflineState(this, this)
     }
 
     private fun loadContent(){

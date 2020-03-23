@@ -102,6 +102,9 @@ interface Api {
 
     @POST("auth/job/{id}/done")
     fun jobDone(@Path("id") jobId: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
+
+    @POST("auth/job/{id}/paid")
+    fun jobPaid(@Path("id") jobId: Int?, @Header("Authorization") token : String?) : Call<ResponseBody>
 }
 
 class RetrofitClient {
