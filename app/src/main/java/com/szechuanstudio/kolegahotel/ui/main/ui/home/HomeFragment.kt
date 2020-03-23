@@ -235,6 +235,14 @@ class HomeFragment : BaseFragment(), HomeView, SwipeRefreshLayout.OnRefreshListe
         positionAttrib.isLoading = false
     }
 
+    override fun showPendingJobs(jobs: Model.JobPaginate?) {
+        //nothing
+    }
+
+    override fun addPendingJobs(jobs: Model.JobPaginate?) {
+        //nothing
+    }
+
     private fun addChipView(pos : Model.Position?){
         if (isAdded) {
             val chipGroup = act.findViewById<ChipGroup>(R.id.filter_chip_group)

@@ -12,8 +12,8 @@ class AcceptedPresenter(private val view: AcceptedView,
                         private val api: Api,
                         private val context: Context) {
 
-    fun getAcceptedJobs(){
-        api.getAcceptedJobs(PreferenceUtils.getId(context), PreferenceUtils.getToken(context))
+    fun getAcceptedJobs(page: Int? = 1){
+        api.getAcceptedJobs(PreferenceUtils.getId(context), page, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobsAcceptedResponse>{
                 override fun onFailure(call: Call<Model.JobsAcceptedResponse>, t: Throwable) {
                     view.reject("Something went wrong")

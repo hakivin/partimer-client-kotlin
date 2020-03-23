@@ -3,7 +3,6 @@ package com.szechuanstudio.kolegahotel.ui.main.ui.profile
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.squareup.picasso.Picasso
@@ -83,12 +82,6 @@ class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefres
             else -> null
         }
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        shimmer_android.showShimmer(true)
-//        presenter.checkProfile()
-//    }
 
     override fun showProfile(profile: Model.Profile?) {
         if (isAdded) {

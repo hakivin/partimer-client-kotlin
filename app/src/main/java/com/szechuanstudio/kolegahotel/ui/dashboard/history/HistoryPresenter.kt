@@ -12,8 +12,8 @@ class HistoryPresenter(private val view: HistoryView,
                        private val api: Api,
                        private val context: Context
 ) {
-    fun getJobHistory(){
-        api.getJobsHistory(PreferenceUtils.getId(context), PreferenceUtils.getToken(context))
+    fun getJobHistory(page: Int? = 1){
+        api.getJobsHistory(PreferenceUtils.getId(context), page, PreferenceUtils.getToken(context))
             .enqueue(object : Callback<Model.JobHistoryResponse>{
                 override fun onFailure(call: Call<Model.JobHistoryResponse>, t: Throwable) {
                     view.reject("Check your internet connection")

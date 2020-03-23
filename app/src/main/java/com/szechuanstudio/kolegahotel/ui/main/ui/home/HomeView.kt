@@ -9,12 +9,8 @@ interface HomeView {
     fun addJobs(jobs: Model.JobPaginate?)
     fun showSearchedJobs(jobs: Model.JobPaginate?, query: String?)
     fun addSearchedJobs(jobs: Model.JobPaginate?, query: String?)
-    fun showPositionJobs(
-        jobs: Model.JobPaginate?,
-        id: Int?
-    )
-    fun addPositionJobs(
-        jobs: Model.JobPaginate?,
-        id: Int?
-    )
+    fun showPositionJobs(jobs: Model.JobPaginate?, id: Int?)
+    fun addPositionJobs(jobs: Model.JobPaginate?, id: Int?)
+    fun showPendingJobs(jobs: Model.JobPaginate?)
+    fun addPendingJobs(jobs: Model.JobPaginate?)
 }

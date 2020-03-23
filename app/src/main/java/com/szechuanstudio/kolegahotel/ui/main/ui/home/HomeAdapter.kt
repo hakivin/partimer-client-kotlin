@@ -138,14 +138,6 @@ class HomeAdapter(private val jobData : ArrayList<Model.JobData>, private val ac
         return jobData[position]
     }
 
-
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        if (act != null)
-//            holder.bind(jobData[position], act)
-//        else if (act2 != null)
-//            holder.bind(jobData[position], act2)
-//    }
-
     companion object {
         private const val VIEW_TYPE_LOADING = 0
         private const val VIEW_TYPE_NORMAL = 1
@@ -153,9 +145,10 @@ class HomeAdapter(private val jobData : ArrayList<Model.JobData>, private val ac
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.onBind(position)
-        if (act != null)
+        if (act != null) {
             if (holder is ViewHolder)
-            holder.bind(jobData[position], act)
+                holder.bind(jobData[position], act)
+        }
         else if (act2 != null)
             (holder as ViewHolder).bind(jobData[position], act2)
     }

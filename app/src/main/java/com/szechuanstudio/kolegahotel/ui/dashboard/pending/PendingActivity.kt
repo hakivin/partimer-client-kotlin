@@ -13,6 +13,7 @@ import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomeAdapter
 import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomePresenter
 import com.szechuanstudio.kolegahotel.ui.main.ui.home.HomeView
 import com.szechuanstudio.kolegahotel.utils.Constant
+import com.szechuanstudio.kolegahotel.utils.PaginationScrollListener
 import kotlinx.android.synthetic.main.activity_pending.*
 import kotlinx.android.synthetic.main.empty_state.*
 import org.jetbrains.anko.intentFor
@@ -22,11 +23,16 @@ import org.jetbrains.anko.toast
 class PendingActivity : AppCompatActivity(), HomeView {
 
     private lateinit var presenter: HomePresenter
+    private lateinit var adapter: HomeAdapter
+    private lateinit var pendingAttrib: Model.PageAttrib
+
+    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pending)
         presenter = HomePresenter(this, RetrofitClient.getInstance(), applicationContext)
+        layoutManager = LinearLayoutManager(this)
         loadContent()
         initToolbar()
     }
@@ -37,15 +43,31 @@ class PendingActivity : AppCompatActivity(), HomeView {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    override fun showAllJobs(jobData: Model.JobPaginate?) {
-        if (jobData != null) {
-            if (!jobData.data.isNullOrEmpty()) {
-                rv_pending.layoutManager = LinearLayoutManager(this)
-                rv_pending.adapter = HomeAdapter(jobData.data as ArrayList<Model.JobData>, null, this)
+    override fun showPendingJobs(jobs: Model.JobPaginate?) {
+        if (jobs != null) {
+            if (!jobs.data.isNullOrEmpty()) {
+                adapter = HomeAdapter(jobs.data as ArrayList<Model.JobData>, null, this)
+                if (jobs.current_page!! < jobs.last_page!!)
+                    adapter.addLoading()
+                rv_pending.layoutManager = layoutManager
+                rv_pending.adapter = adapter
             } else
                 setEmptyState()
         }
+        pendingAttrib = Model.PageAttrib(jobs?.current_page!!, false, jobs.last_page!!, false)
+        initData()
         loading_pending.visibility = View.GONE
+    }
+
+    override fun addPendingJobs(jobs: Model.JobPaginate?) {
+        pendingAttrib.currentPage = jobs?.current_page!!
+        if (pendingAttrib.currentPage != PaginationScrollListener.PAGE_START) adapter.removeLoading()
+        jobs.data?.let { adapter.addItems(it) }
+        if (pendingAttrib.currentPage < pendingAttrib.totalPage)
+            adapter.addLoading()
+        else
+            pendingAttrib.isLastPage = true
+        pendingAttrib.isLoading = false
     }
 
     private fun setEmptyState(){
@@ -58,33 +80,6 @@ class PendingActivity : AppCompatActivity(), HomeView {
     override fun reject(message: String?) {
         message?.let { toast(it) }
         loading_pending.visibility = View.GONE
-    }
-
-    override fun showPositions(positions: List<Model.Position>?) {
-        // nothing to do
-    }
-
-    override fun addJobs(jobs: Model.JobPaginate?) {
-
-    }
-
-    override fun showSearchedJobs(
-        jobs: Model.JobPaginate?,
-        query: String?
-    ) {
-
-    }
-
-    override fun addSearchedJobs(jobs: Model.JobPaginate?, query: String?) {
-
-    }
-
-    override fun showPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
-
-    }
-
-    override fun addPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
-
     }
 
     private fun loadContent(){
@@ -102,5 +97,51 @@ class PendingActivity : AppCompatActivity(), HomeView {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
+    }
+
+    private fun initData(){
+        rv_pending.clearOnScrollListeners()
+        rv_pending.addOnScrollListener(object : PaginationScrollListener(layoutManager){
+            override fun loadMoreItems() {
+                pendingAttrib.isLoading = true
+                presenter.getPendingJobs(pendingAttrib.currentPage+1)
+            }
+
+            override fun isLastPage(): Boolean {
+                return pendingAttrib.isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return pendingAttrib.isLoading
+            }
+        })
+    }
+
+    override fun showAllJobs(jobData: Model.JobPaginate?) {
+        //nothing
+    }
+
+    override fun showPositions(positions: List<Model.Position>?) {
+        // nothing to do
+    }
+
+    override fun addJobs(jobs: Model.JobPaginate?) {
+        //nothing
+    }
+
+    override fun showSearchedJobs(jobs: Model.JobPaginate?, query: String?) {
+        //nothing
+    }
+
+    override fun addSearchedJobs(jobs: Model.JobPaginate?, query: String?) {
+        //nothing
+    }
+
+    override fun showPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
+        //nothing
+    }
+
+    override fun addPositionJobs(jobs: Model.JobPaginate?, id: Int?) {
+        //nothing
     }
 }
