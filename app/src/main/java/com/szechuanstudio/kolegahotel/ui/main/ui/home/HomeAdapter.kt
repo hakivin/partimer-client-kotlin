@@ -92,8 +92,6 @@ class HomeAdapter(private val jobData : ArrayList<Model.JobData>, private val ac
                 LayoutInflater.from(parent.context).inflate(R.layout.loading_item, parent, false)
             )
         }
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.job_item, parent, false)
-//        return ViewHolder(view)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -149,7 +147,9 @@ class HomeAdapter(private val jobData : ArrayList<Model.JobData>, private val ac
             if (holder is ViewHolder)
                 holder.bind(jobData[position], act)
         }
-        else if (act2 != null)
-            (holder as ViewHolder).bind(jobData[position], act2)
+        else if (act2 != null){
+            if (holder is ViewHolder)
+                holder.bind(jobData[position], act2)
+        }
     }
 }

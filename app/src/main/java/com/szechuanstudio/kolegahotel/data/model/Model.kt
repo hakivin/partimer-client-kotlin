@@ -52,7 +52,11 @@ object Model {
     @Parcelize
     data class Position(val id: Int?, val nama_posisi: String?, val deskripsi: String?) : Parcelable
 
-    data class JobsAcceptedResponse(val jobs: List<JobAccepted>)
+    data class JobsAcceptedResponse(val jobs: AcceptedPaginate)
+
+    data class AcceptedPaginate(val current_page: Int?,
+                                val data: List<JobAccepted>?,
+                                val last_page: Int?)
 
     data class JobAccepted(val id: Int?,
                            val hotel_id: Int?,
@@ -142,7 +146,11 @@ object Model {
                          val posisi: Position?,
                          val todolist: List<ToDoList>)
 
-    data class JobHistoryResponse(val jobs: List<JobHistory>?)
+    data class JobHistoryResponse(val jobs: HistoryPaginate?)
+
+    data class HistoryPaginate(val current_page: Int?,
+                               val data: List<JobHistory>?,
+                               val last_page: Int?)
 
     @Parcelize
     data class JobHistory(val id: Int?,

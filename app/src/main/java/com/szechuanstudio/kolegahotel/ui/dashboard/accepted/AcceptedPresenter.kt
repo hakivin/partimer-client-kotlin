@@ -24,7 +24,7 @@ class AcceptedPresenter(private val view: AcceptedView,
                     response: Response<Model.JobsAcceptedResponse>
                 ) {
                     if (response.isSuccessful)
-                        view.showAcceptedJobs(response.body()?.jobs)
+                        view.showAcceptedJobs(response.body()?.jobs?.data)
                     else
                         response.errorBody()?.string()?.let { view.reject(it) }
                 }
