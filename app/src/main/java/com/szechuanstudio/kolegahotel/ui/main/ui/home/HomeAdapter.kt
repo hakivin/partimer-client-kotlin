@@ -100,7 +100,6 @@ class HomeAdapter(private val jobData : ArrayList<Model.JobData>, private val ac
         } else {
             VIEW_TYPE_NORMAL
         }
-
     }
     override fun getItemCount(): Int {
         return jobData.size

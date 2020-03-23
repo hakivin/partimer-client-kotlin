@@ -191,6 +191,7 @@ class HomeFragment : BaseFragment(), HomeView, SwipeRefreshLayout.OnRefreshListe
         if (isAdded) {
             message?.let { toast(it) }
             loading_home.visibility = View.GONE
+            refresh_home.isRefreshing = false
         }
     }
 

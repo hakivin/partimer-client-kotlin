@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
@@ -20,7 +21,7 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.toast
 
-class PendingActivity : AppCompatActivity(), HomeView {
+class PendingActivity : AppCompatActivity(), HomeView, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var presenter: HomePresenter
     private lateinit var adapter: HomeAdapter
@@ -51,12 +52,14 @@ class PendingActivity : AppCompatActivity(), HomeView {
                     adapter.addLoading()
                 rv_pending.layoutManager = layoutManager
                 rv_pending.adapter = adapter
+                initData()
+                pendingAttrib = Model.PageAttrib(jobs.current_page, false, jobs.last_page, false)
+                refresh_pending.setOnRefreshListener(this)
+                loading_pending.visibility = View.GONE
+                refresh_pending.isRefreshing = false
             } else
                 setEmptyState()
         }
-        pendingAttrib = Model.PageAttrib(jobs?.current_page!!, false, jobs.last_page!!, false)
-        initData()
-        loading_pending.visibility = View.GONE
     }
 
     override fun addPendingJobs(jobs: Model.JobPaginate?) {
@@ -80,6 +83,7 @@ class PendingActivity : AppCompatActivity(), HomeView {
     override fun reject(message: String?) {
         message?.let { toast(it) }
         loading_pending.visibility = View.GONE
+        refresh_pending.isRefreshing = false
     }
 
     private fun loadContent(){
@@ -115,6 +119,10 @@ class PendingActivity : AppCompatActivity(), HomeView {
                 return pendingAttrib.isLoading
             }
         })
+    }
+
+    override fun onRefresh() {
+        loadContent()
     }
 
     override fun showAllJobs(jobData: Model.JobPaginate?) {

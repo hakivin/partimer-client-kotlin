@@ -4,5 +4,6 @@ import com.szechuanstudio.kolegahotel.data.model.Model
 
 interface AcceptedView {
     fun reject(message: String?)
-    fun showAcceptedJobs(jobs: List<Model.JobAccepted>?)
+    fun showAcceptedJobs(jobs: Model.AcceptedPaginate?)
+    fun addAcceptedJobs(jobs: Model.AcceptedPaginate?)
 }
