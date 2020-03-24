@@ -20,4 +20,5 @@ object Constant {
     const val SKCK_REQUEST_CODE = 222
     const val KARTU_REQUEST_CODE = 333
     const val SERTIF_REQUEST_CODE = 444
+    const val EDIT_PROFILE_CODE = 888
 }

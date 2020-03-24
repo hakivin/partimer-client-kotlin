@@ -26,10 +26,10 @@
     <string name="gender">Gender</string>
     <string name="education">Pendidikan</string>
     <string name="address">Alamat</string>
-    <string name="contact">Kontal</string>
+    <string name="contact">Kontak</string>
     <string name="phone">Telepon</string>
     <string name="email">Email</string>
-    <string name="social">Sosial</string>
+    <string name="social">Sosial Media</string>
     <string name="preferred_positions">Posisi yang diutamakan</string>
     <string name="male">Laki-laki</string>
     <string name="female">Perempuan</string>
@@ -82,11 +82,11 @@
     <string name="logo">logo</string>
     <string name="cover_placeholder">Cover placeholder</string>
     <string name="birthday">Tanggal lahir</string>
-    <string name="there_is_nothing_here">Tidak ada apa-apa di sini</string>
+    <string name="there_is_nothing_here">Yah, masih kosong</string>
     <string name="apply_to_jobs_and_track_your_applications_from_dashboard">Silakan lamar pekerjaan dan lacak prosesnya di dashboard</string>
     <string name="find_job">Cari pekerjaan</string>
     <string name="congratulation">Selamat!</string>
-    <string name="you_have_finished_your_job_let_s_find_another_job_that_suits_you">Anda telah menyelesaikan pekerjaan anda. Ayo cari pekerjaan lain yang cocok untuk anda.</string>
+    <string name="you_have_finished_your_job_let_s_find_another_job_that_suits_you">Pekerjaanmu telah selesai. Ayo cari pekerjaan lain yang cocok untukmu.</string>
     <string name="find_new_job">cari pekerjaan baru</string>
     <string name="active_jobs">Active Jobs</string>
     <string name="see_more">See More</string>
@@ -97,9 +97,9 @@
     <string name="documents">Dokumen</string>
     <string name="loading">Loading…</string>
     <string name="to_do_list">To Do List</string>
-    <string name="you_re_offline">Anda offline</string>
+    <string name="you_re_offline">Kamu offline</string>
     <string name="swipe_down_to_reload_when_you_are_already_online">Usap layar ke bawah untuk memuat ulang</string>
     <string name="almost_done">Hampir selesai</string>
-    <string name="your_job_is_verified_please_contact_number_below_if_you_haven_t_been_paid">Pekerjaanmu telah terverifikasi. Silakan hubungi kontak dibawah jika anda belum menerima pembayaran.</string>
+    <string name="your_job_is_verified_please_contact_number_below_if_you_haven_t_been_paid">Pekerjaanmu telah terverifikasi. Silakan hubungi kontak dibawah jika belum menerima pembayaran.</string>
     <string name="i_have_received_payment">saya telah menerima pembayaran</string>
 </resources>

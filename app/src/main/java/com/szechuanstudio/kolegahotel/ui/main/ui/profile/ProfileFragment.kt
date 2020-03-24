@@ -23,10 +23,7 @@ import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.jetbrains.anko.singleTop
-import org.jetbrains.anko.support.v4.act
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.intentFor
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.*
 import pub.devrel.easypermissions.EasyPermissions
 
 class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefreshListener {
@@ -116,17 +113,17 @@ class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefres
                     .into(profile_cover)
 
                 btn_edit_profile.setOnClickListener {
-                    startActivity(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop())
+                    startActivityForResult(intentFor<UpdateProfileActivity>(Constant.KEY_PROFILE to profile).singleTop(),Constant.EDIT_PROFILE_CODE)
                     act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
                 }
 
                 btn_edit_position.setOnClickListener {
-                    startActivity(intentFor<UpdatePositionActivity>(Constant.KEY_PROFILE to profile).singleTop())
+                    startActivityForResult(intentFor<UpdatePositionActivity>(Constant.KEY_PROFILE to profile).singleTop(),Constant.EDIT_PROFILE_CODE)
                     act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
                 }
 
                 btn_edit_documents.setOnClickListener {
-                    startActivity(intentFor<DocumentActivity>(Constant.KEY_DOCUMENTS to profile).singleTop())
+                    startActivityForResult(intentFor<DocumentActivity>(Constant.KEY_DOCUMENTS to profile).singleTop(),Constant.EDIT_PROFILE_CODE)
                     act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
                 }
 
@@ -163,14 +160,16 @@ class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefres
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        println("Request code = $requestCode")
         if(resultCode == Activity.RESULT_OK && data != null){
             if (requestCode == Constant.PHOTO_REQUEST_CODE) {
                 presenter.uploadPhoto(data.data)
             } else if (requestCode == Constant.COVER_REQUEST_CODE){
                 presenter.uploadCover(data.data)
             }
-            shimmer_android.showShimmer(true)
-        }
+        } else if (requestCode == Constant.EDIT_PROFILE_CODE)
+            reload()
+        shimmer_android.showShimmer(true)
     }
 
     private fun getDocumentStatus(profile: Model.Profile) : CharSequence{
