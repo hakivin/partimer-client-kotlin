@@ -35,6 +35,19 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/update_cover_fab"
+                    app:layout_constraintRight_toRightOf="@id/profile_cover"
+                    app:layout_constraintTop_toTopOf="@id/profile_cover"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    app:backgroundTint="@android:color/darker_gray"
+                    app:tint="@android:color/white"
+                    android:src="@drawable/ic_camera_alt_black_24dp"
+                    app:fabCustomSize="36dp"
+                    android:alpha="0.65"/>
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_photo"
                     android:layout_width="100dp"
@@ -47,26 +60,43 @@
                     app:layout_constraintTop_toBottomOf="@id/profile_cover"
                     app:layout_constraintVertical_bias="0.55" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/update_photo_fab"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_photo"
+                    app:layout_constraintRight_toLeftOf="@id/profile_full_name"
+                    app:layout_constraintTop_toTopOf="@id/profile_full_name"
+                    android:alpha="0.65"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:tint="@android:color/white"
+                    android:src="@drawable/ic_camera_alt_black_24dp"
+                    app:fabCustomSize="36dp"/>
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/verified_profile"
-                    android:visibility="gone"
                     android:src="@drawable/ic_verified"
-                    app:layout_constraintRight_toRightOf="@id/profile_photo"
-                    app:layout_constraintBottom_toBottomOf="@id/profile_photo"/>
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profile_cover"/>
 
                 <TextView
                     android:id="@+id/profile_full_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
                     android:textColor="@android:color/black"
+                    android:gravity="end"
                     android:textSize="18sp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintRight_toLeftOf="@id/btn_edit_profile"
                     app:layout_constraintLeft_toRightOf="@id/profile_photo"
                     app:layout_constraintTop_toBottomOf="@id/profile_cover"
+                    app:layout_constraintRight_toLeftOf="@id/verified_profile"
                     app:layout_constraintHorizontal_bias="0.0"
                     tools:text="full name bij" />
 
@@ -78,11 +108,11 @@
                     android:textColor="@android:color/black"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:layout_marginTop="8dp"
                     android:textAllCaps="false"
+                    android:layout_marginBottom="4dp"
                     android:background="@android:color/white"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/profile_full_name"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_about_placeholder"
                     android:layout_marginEnd="16dp" />
 
                 <TextView
@@ -95,7 +125,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/colorIcon"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
+                    android:layout_marginTop="24dp"/>
 
                 <TextView
                     android:layout_width="match_parent"

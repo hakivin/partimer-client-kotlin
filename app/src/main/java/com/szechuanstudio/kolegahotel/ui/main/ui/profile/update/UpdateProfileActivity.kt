@@ -1,24 +1,18 @@
 package com.szechuanstudio.kolegahotel.ui.main.ui.profile.update
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import com.github.dhaval2404.imagepicker.ImagePicker
-import com.squareup.picasso.Picasso
-import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.R
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.RetrofitClient
 import com.szechuanstudio.kolegahotel.utils.Constant
 import kotlinx.android.synthetic.main.activity_update_profile.*
 import org.jetbrains.anko.toast
-import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
 
 class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
@@ -52,17 +46,6 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         setGender(profile)
         setEducation(profile?.pendidikan_terakhir)
 
-        Picasso.with(applicationContext)
-            .load(BuildConfig.BASE_URL + '/' + profile?.foto)
-            .placeholder(R.drawable.placeholder_avatar)
-            .noFade()
-            .into(update_photo)
-
-        Picasso.with(applicationContext)
-            .load(BuildConfig.BASE_URL + '/' + profile?.cover)
-            .placeholder(R.drawable.placeholder_cover)
-            .into(update_cover)
-
         edit_update_birthday.setOnClickListener {
             val c = Calendar.getInstance()
             val years = c.get(Calendar.YEAR)
@@ -74,46 +57,6 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
                 edit_update_birthday.setText("""$year-${monthOfYear + 1}-$dayOfMonth""")
             }, years, month, day)
             dpd.show()
-        }
-
-        update_photo_fab.setOnClickListener {
-            if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
-                ImagePicker.with(this)
-                    .crop(1f,1f)
-                    .compress(1260)
-                    .maxResultSize(1080,1080)
-                    .start(Constant.PHOTO_REQUEST_CODE)
-                photoState = false
-            } else {
-                EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
-                    991,android.Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-        }
-        update_cover_fab.setOnClickListener {
-            if (EasyPermissions.hasPermissions(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
-                ImagePicker.with(this)
-                    .crop(1.7f,1f)
-                    .compress(4048)
-                    .maxResultSize(1080,2860)
-                    .start(Constant.COVER_REQUEST_CODE)
-                coverState = false
-            } else {
-                EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
-                    991,android.Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && data != null){
-            if (requestCode == Constant.PHOTO_REQUEST_CODE) {
-                update_photo.setImageURI(data.data)
-                presenter.uploadPhoto(data.data)
-            } else if (requestCode == Constant.COVER_REQUEST_CODE){
-                update_cover.setImageURI(data.data)
-                presenter.uploadCover(data.data)
-            }
         }
     }
 
@@ -151,19 +94,6 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
         toast("failed")
     }
 
-    private var photoState = true
-    private var coverState = true
-
-    override fun getPhoto(profile: Model.Profile) {
-        this.profile.foto = profile.foto
-        photoState = true
-    }
-
-    override fun getCover(profile: Model.Profile) {
-        this.profile.cover = profile.cover
-        coverState = true
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.update_profile_menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -171,20 +101,14 @@ class UpdateProfileActivity : AppCompatActivity(), UpdateProfileView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.update_save){
-            if (coverState && photoState) {
-                val newProfile = constructModel(profile)
-                newProfile?.let { presenter.updateProfile(it) }
-            } else
-                toast("Please Wait")
+            val newProfile = constructModel(profile)
+            newProfile?.let { presenter.updateProfile(it) }
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        if (coverState && photoState)
-            onBackPressed()
-        else
-            toast("Please Wait")
+        onBackPressed()
         return super.onSupportNavigateUp()
     }
 

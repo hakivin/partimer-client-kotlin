@@ -8,4 +8,5 @@ interface ProfileView {
     fun logoutSuccess()
     fun logoutFailed()
     fun showPositions(positions: Model.PositionsResponse?)
+    fun reload()
 }

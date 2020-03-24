@@ -5,6 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 object Model {
 
+    data class LoginObject(val login: LoginResponse?)
+
     data class LoginResponse(
         val user: User?,
         val access_token: String?

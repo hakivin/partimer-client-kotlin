@@ -15,7 +15,7 @@ interface Api {
     @POST("login")
     fun login(
         @Field("email") email: String,
-        @Field("password") password: String) : Call<Model.LoginResponse>
+        @Field("password") password: String) : Call<Model.LoginObject>
 
     @FormUrlEncoded
     @POST("register")
@@ -23,7 +23,7 @@ interface Api {
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("password_confirmation") passwordConfirmation : String) : Call<Model.LoginResponse>
+        @Field("password_confirmation") passwordConfirmation : String) : Call<Model.LoginObject>
 
     @POST("logout")
     fun logout(@Header("Authorization") token : String?) : Call<ResponseBody>
@@ -36,27 +36,27 @@ interface Api {
 
     @Multipart
     @POST("profile/{id}/upload/profile")
-    fun uploadPhoto(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part imageName:MultipartBody.Part) : Call<Model.ProfileResponse>
+    fun uploadPhoto(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part imageName:MultipartBody.Part) : Call<ResponseBody>
 
     @Multipart
     @POST("profile/{id}/upload/cover")
-    fun uploadCover(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
+    fun uploadCover(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<ResponseBody>
 
     @Multipart
     @POST("profile/{id}/upload/ktp")
-    fun uploadKtp(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
+    fun uploadKtp(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<ResponseBody>
 
     @Multipart
     @POST("profile/{id}/upload/skck")
-    fun uploadSkck(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
+    fun uploadSkck(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<ResponseBody>
 
     @Multipart
     @POST("profile/{id}/upload/sertif")
-    fun uploadCertificate(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
+    fun uploadCertificate(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<ResponseBody>
 
     @Multipart
     @POST("profile/{id}/upload/kartu")
-    fun uploadCard(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<Model.ProfileResponse>
+    fun uploadCard(@Path("id") id: Int?, @Header("Authorization") token : String?, @Part cover:MultipartBody.Part) : Call<ResponseBody>
 
     @GET("positions")
     fun getPositions() : Call<Model.PositionsResponse>

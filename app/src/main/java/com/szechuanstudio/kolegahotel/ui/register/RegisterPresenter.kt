@@ -17,21 +17,21 @@ class RegisterPresenter(private val view : RegisterView,
                  confPassword: String) {
 
         api.register(name, email, password, confPassword)
-            .enqueue(object : Callback<Model.LoginResponse>{
-                override fun onFailure(call: Call<Model.LoginResponse>, t: Throwable) {
+            .enqueue(object : Callback<Model.LoginObject>{
+                override fun onFailure(call: Call<Model.LoginObject>, t: Throwable) {
                     view.failed(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.LoginResponse>,
-                    response: Response<Model.LoginResponse>
+                    call: Call<Model.LoginObject>,
+                    response: Response<Model.LoginObject>
                 ) {
-                    val newUser = response.body()?.user
+                    val newUser = response.body()?.login?.user
                     if (newUser!=null){
                         view.registered(newUser)
                         PreferenceUtils.saveEmail(email, context)
                         PreferenceUtils.savePassword(password, context)
-                        PreferenceUtils.saveToken(response.body()!!.access_token.toString(), context)
+                        PreferenceUtils.saveToken(response.body()?.login?.access_token.toString(), context)
                         newUser.id?.let { PreferenceUtils.saveId(it, context) }
                     } else
                         view.failed("Invalid Credential")

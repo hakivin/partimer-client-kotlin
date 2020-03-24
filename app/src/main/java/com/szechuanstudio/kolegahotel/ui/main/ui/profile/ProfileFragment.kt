@@ -1,10 +1,13 @@
 package com.szechuanstudio.kolegahotel.ui.main.ui.profile
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.squareup.picasso.Picasso
 import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.R
@@ -24,6 +27,7 @@ import org.jetbrains.anko.support.v4.act
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.toast
+import pub.devrel.easypermissions.EasyPermissions
 
 class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefreshListener {
 
@@ -126,9 +130,46 @@ class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefres
                     act.overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
                 }
 
+                update_photo_fab.setOnClickListener {
+                    if (EasyPermissions.hasPermissions(act.applicationContext, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                        ImagePicker.with(this)
+                            .crop(1f,1f)
+                            .compress(1260)
+                            .maxResultSize(1080,1080)
+                            .start(Constant.PHOTO_REQUEST_CODE)
+                    } else {
+                        EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
+                            991,android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
+                }
+                update_cover_fab.setOnClickListener {
+                    if (EasyPermissions.hasPermissions(act.applicationContext, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                        ImagePicker.with(this)
+                            .crop(1.7f,1f)
+                            .compress(4048)
+                            .maxResultSize(1080,2860)
+                            .start(Constant.COVER_REQUEST_CODE)
+                    } else {
+                        EasyPermissions.requestPermissions(this,"This application need your permission to access photo gallery",
+                            991,android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
+                }
+
                 if(profile.isCompleted!!)
                     verified_profile.visibility = View.VISIBLE
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && data != null){
+            if (requestCode == Constant.PHOTO_REQUEST_CODE) {
+                presenter.uploadPhoto(data.data)
+            } else if (requestCode == Constant.COVER_REQUEST_CODE){
+                presenter.uploadCover(data.data)
+            }
+            shimmer_android.showShimmer(true)
         }
     }
 
@@ -175,6 +216,10 @@ class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefres
             rv_positions.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
             rv_positions.adapter = positions?.positions?.let { PositionAdapter(it) }
         }
+    }
+
+    override fun reload() {
+        presenter.checkProfile()
     }
 
     override fun onRefresh() {

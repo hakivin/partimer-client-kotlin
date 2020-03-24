@@ -9,6 +9,7 @@ import com.szechuanstudio.kolegahotel.utils.Utils
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,14 +46,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadKtp(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.ProfileResponse>{
-                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
+            .enqueue(object : Callback<ResponseBody>{
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.ProfileResponse>,
-                    response: Response<Model.ProfileResponse>
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()
@@ -69,14 +70,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadSkck(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.ProfileResponse>{
-                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
+            .enqueue(object : Callback<ResponseBody>{
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.ProfileResponse>,
-                    response: Response<Model.ProfileResponse>
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()
@@ -93,14 +94,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadCertificate(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.ProfileResponse>{
-                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
+            .enqueue(object : Callback<ResponseBody>{
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.ProfileResponse>,
-                    response: Response<Model.ProfileResponse>
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()
@@ -117,14 +118,14 @@ class DocumentPresenter(private val view: DocumentView,
             MultipartBody.Part.createFormData("image", file.name, requestFile)
 
         api.uploadCard(PreferenceUtils.getId(context),PreferenceUtils.getToken(context),body)
-            .enqueue(object : Callback<Model.ProfileResponse>{
-                override fun onFailure(call: Call<Model.ProfileResponse>, t: Throwable) {
+            .enqueue(object : Callback<ResponseBody>{
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     println(t.message)
                 }
 
                 override fun onResponse(
-                    call: Call<Model.ProfileResponse>,
-                    response: Response<Model.ProfileResponse>
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
                 ) {
                     if (response.isSuccessful) {
                         view.imageUploaded()
