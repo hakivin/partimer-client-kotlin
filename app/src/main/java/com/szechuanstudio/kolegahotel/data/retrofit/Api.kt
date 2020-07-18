@@ -1,5 +1,6 @@
 package com.szechuanstudio.kolegahotel.data.retrofit
 
+import com.google.gson.GsonBuilder
 import com.szechuanstudio.kolegahotel.BuildConfig
 import com.szechuanstudio.kolegahotel.data.model.Model
 import okhttp3.MultipartBody
@@ -24,6 +25,14 @@ interface Api {
         @Field("email") email: String,
         @Field("password") password: String,
         @Field("password_confirmation") passwordConfirmation : String) : Call<Model.LoginObject>
+
+    @FormUrlEncoded
+    @POST("register")
+    fun registertest(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("password_confirmation") passwordConfirmation : String) : Call<ResponseBody>
 
     @POST("logout")
     fun logout(@Header("Authorization") token : String?) : Call<ResponseBody>
@@ -114,12 +123,14 @@ class RetrofitClient {
 
         @Synchronized
         fun getInstance(): Api {
-            if (instance == null)
+            if (instance == null) {
+                val gson = GsonBuilder().setLenient().create()
                 instance = Retrofit.Builder()
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BuildConfig.BASE_URL+"/api/")
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl(BuildConfig.BASE_URL + "/api/")
                     .build()
                     .create(Api::class.java)
+            }
             return instance as Api
         }
     }

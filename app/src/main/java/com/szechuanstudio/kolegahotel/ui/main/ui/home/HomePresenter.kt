@@ -1,6 +1,7 @@
 package com.szechuanstudio.kolegahotel.ui.main.ui.home
 
 import android.content.Context
+import android.util.Log
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.Api
 import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
@@ -16,6 +17,7 @@ class HomePresenter(private val view: HomeView,
             .enqueue(object : Callback<Model.JobsResponse>{
                 override fun onFailure(call: Call<Model.JobsResponse>, t: Throwable) {
                     view.reject("Check your internet connection")
+                    Log.d("TAG", "onFailure: ${t.message}")
                 }
 
                 override fun onResponse(

@@ -1,9 +1,11 @@
 package com.szechuanstudio.kolegahotel.ui.register
 
 import android.content.Context
+import android.util.Log
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.Api
 import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +22,7 @@ class RegisterPresenter(private val view : RegisterView,
             .enqueue(object : Callback<Model.LoginObject>{
                 override fun onFailure(call: Call<Model.LoginObject>, t: Throwable) {
                     view.failed(t.message)
+                    Log.d("TAG", "onFailure: ${t.message}")
                 }
 
                 override fun onResponse(
@@ -38,5 +41,15 @@ class RegisterPresenter(private val view : RegisterView,
                 }
 
             })
+//        api.registertest(name, email, password, confPassword).enqueue(object : Callback<ResponseBody>{
+//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//
+//            }
+//
+//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                Log.d("TAG", "onResponse: ${response.body()?.string()}")
+//            }
+//
+//        })
     }
 }
