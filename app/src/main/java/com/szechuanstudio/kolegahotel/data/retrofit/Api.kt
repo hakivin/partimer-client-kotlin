@@ -12,12 +12,14 @@ import retrofit2.http.*
 
 interface Api {
 
+    @Headers("Accept: application/json")
     @FormUrlEncoded
     @POST("login")
     fun login(
         @Field("email") email: String,
         @Field("password") password: String) : Call<Model.LoginObject>
 
+    @Headers("Accept: application/json")
     @FormUrlEncoded
     @POST("register")
     fun register(

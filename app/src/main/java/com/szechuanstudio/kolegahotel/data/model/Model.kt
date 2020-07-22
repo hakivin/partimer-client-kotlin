@@ -12,6 +12,10 @@ object Model {
         val access_token: String?
     )
 
+    data class ErrorResponse(val message: String?, val errors: ErrorMessage?)
+
+    data class ErrorMessage(val name: List<String>?, val email: List<String>?, val password: List<String>?)
+
     data class User(val id: Int?,
                     val name: String?,
                     val email: String?,

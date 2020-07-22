@@ -2,6 +2,7 @@ package com.szechuanstudio.kolegahotel.ui.register
 
 import android.content.Context
 import android.util.Log
+import com.google.gson.GsonBuilder
 import com.szechuanstudio.kolegahotel.data.model.Model
 import com.szechuanstudio.kolegahotel.data.retrofit.Api
 import com.szechuanstudio.kolegahotel.utils.PreferenceUtils
@@ -36,10 +37,18 @@ class RegisterPresenter(private val view : RegisterView,
                         PreferenceUtils.savePassword(password, context)
                         PreferenceUtils.saveToken(response.body()?.login?.access_token.toString(), context)
                         newUser.id?.let { PreferenceUtils.saveId(it, context) }
-                    } else
-                        view.failed("Invalid Credential")
+                    } else if (response.code() == 422){
+                        val gson = GsonBuilder().create()
+                        val error = gson.fromJson(response.errorBody()?.string(), Model.ErrorResponse::class.java)
+                        when {
+                            error.errors?.name != null -> view.failed("The name has already been taken.")
+                            error.errors?.email != null -> view.failed("The email has already been taken.")
+                            error.errors?.password != null -> view.failed("The password confirmation does not match.")
+                            else -> view.failed("Invalid Credential")
+                        }
+                        Log.d("TAG", "onResponse: ${response.errorBody()?.string()}")
+                    }
                 }
-
             })
 //        api.registertest(name, email, password, confPassword).enqueue(object : Callback<ResponseBody>{
 //            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
