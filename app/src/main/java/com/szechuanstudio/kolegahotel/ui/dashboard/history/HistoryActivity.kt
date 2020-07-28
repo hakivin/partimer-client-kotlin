@@ -112,6 +112,6 @@ class HistoryActivity : AppCompatActivity(), HistoryView, SwipeRefreshLayout.OnR
     }
 
     override fun onRefresh() {
-        presenter.getJobHistory()
+        loadContent()
     }
 }

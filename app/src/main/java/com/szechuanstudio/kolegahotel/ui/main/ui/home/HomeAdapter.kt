@@ -31,7 +31,7 @@ class HomeAdapter(private val jobData : ArrayList<Model.JobData>, private val ac
                 Picasso.with(itemView.context).load(BuildConfig.BASE_URL+ '/' + jobData.foto).into(itemView.img_cover_job)
             itemView.tv_date_job.text = Utils.convertDate(jobData.tanggal_mulai)
             itemView.tv_hotel_name_job.text = jobData.hotel?.profile?.nama
-            itemView.tv_quota_job.text = Utils.getQuotaRemaining(jobData.kuota, jobData.dikerjakan_count, act.context!!)
+            itemView.tv_quota_job.text = Utils.getQuotaRemaining(jobData.kuota, jobData.dikerjakan_count, act.requireContext())
             itemView.tv_position_job.text = jobData.posisi?.nama_posisi
             itemView.setOnClickListener {
                 val intent =

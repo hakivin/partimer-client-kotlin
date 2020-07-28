@@ -111,6 +111,6 @@ class AcceptedActivity : AppCompatActivity(), AcceptedView, SwipeRefreshLayout.O
     }
 
     override fun onRefresh() {
-        presenter.getAcceptedJobs()
+        loadContent()
     }
 }

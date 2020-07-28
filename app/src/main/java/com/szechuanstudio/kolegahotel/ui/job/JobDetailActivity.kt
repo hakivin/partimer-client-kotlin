@@ -17,6 +17,7 @@ import com.szechuanstudio.kolegahotel.utils.Constant
 import com.szechuanstudio.kolegahotel.utils.Utils
 import kotlinx.android.synthetic.main.activity_job_detail.*
 import kotlinx.android.synthetic.main.content_job_detail.*
+import kotlinx.android.synthetic.main.job_item.view.*
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -134,7 +135,12 @@ class JobDetailActivity : AppCompatActivity(), JobDetailView {
         jobData = intent.getParcelableExtra(
             Constant.KEY_IMAGE_JOB
         )
-        val img = BuildConfig.BASE_URL + '/' + jobData?.hotel?.profile?.foto
+
+        var img = BuildConfig.BASE_URL + '/' + jobData?.foto
+
+        if (jobData?.foto.isNullOrBlank())
+            img = BuildConfig.BASE_URL + '/' + jobData?.hotel?.profile?.foto
+
         toolbar.title = jobData?.hotel?.profile?.nama
         setSupportActionBar(toolbar)
         supportPostponeEnterTransition()
